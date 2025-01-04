@@ -1,6 +1,30 @@
 export class TierlistModel {
 	constructor() {
-		this.tiers = [];
+		this.tiers = [
+			{
+				name: "S",
+				champions: ["camille", "renekton", "chogath"],
+			},
+			{
+				name: "A",
+				champions: [
+					"aurora",
+					"ahri",
+					"aatrox",
+					"lillia",
+					"fiora",
+					"kassadin",
+				],
+			},
+			{
+				name: "B",
+				champions: ["leona", "irelia", "yuumi"],
+			},
+			{
+				name: "F",
+				champions: ["gnar", "udyr", "ivern"],
+			},
+		];
 	}
 
 	addTier(tier) {

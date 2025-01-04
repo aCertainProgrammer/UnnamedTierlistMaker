@@ -2,6 +2,15 @@
 	font-family: Helvetica, Arial, sans-serif;
 }
 
+:root {
+	--tierlistTierHeight: 90px;
+	--championIconHeight: calc(0.8 * var(var(--tierlistTierHeight)));
+}
+
+:root[data-theme="dark"] {
+	--tierBackgroundColor: gray;
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -24,4 +33,44 @@ body {
 	height: 100vh;
 	width: 100vw;
 	padding-top: 10px;
+}
+
+#tierlist {
+	display: flex;
+	flex-direction: column;
+}
+.tier-container {
+	display: flex;
+	flex-direction: row;
+	width: 70vw;
+	min-height: var(--tierlistTierHeight);
+	background: var(--tierBackgroundColor);
+}
+
+.tier-name {
+	min-width: var(--tierlistTierHeight);
+	min-height: var(--tierlistTierHeight);
+	font-size: 3rem;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: lightgray;
+}
+
+.tier-champions {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	align-items: center;
+	justify-content: start;
+	padding: 2px 4px;
+	gap: 2px;
+}
+
+.tier-champions > img {
+	height: var(--championIconHeight);
+	width: var(--championIconHeight);
 }
