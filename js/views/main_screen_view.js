@@ -2,8 +2,8 @@ import { TierlistView } from "./tierlist_view.js";
 import { ChampionSelectionView } from "./champion_selection_view.js";
 
 export default class MainScreenView {
-	constructor(viewModel) {
-		this.viewModel = viewModel;
+	constructor(mainScreenViewModel) {
+		this.mainScreenViewModel = mainScreenViewModel;
 		this.tierlistView = null;
 		this.championSelectionView = null;
 
@@ -12,9 +12,11 @@ export default class MainScreenView {
 	}
 
 	initialize() {
-		this.tierlistView = new TierlistView(this.viewModel.tierlistModel);
+		this.tierlistView = new TierlistView(
+			this.mainScreenViewModel.tierlistViewModel,
+		);
 		this.championSelectionView = new ChampionSelectionView(
-			this.viewModel.championSelectionViewModel,
+			this.mainScreenViewModel.championSelectionViewModel,
 		);
 	}
 

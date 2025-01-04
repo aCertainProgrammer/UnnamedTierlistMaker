@@ -1,5 +1,13 @@
 export class TierlistViewModel {
-	constructor(model) {
-		this.model = model;
+	constructor(tierlistModel) {
+		this.tierlistModel = tierlistModel;
+	}
+
+	addChampion(champion, tierName) {
+		this.tierlistModel.addChampion(champion, tierName);
+	}
+
+	getTiers() {
+		return this.tierlistModel.getTiers();
 	}
 }

@@ -6,11 +6,11 @@ import { ChampionSelectionViewModel } from "./champion_selection_viewmodel.js";
 export default class MainScreenViewModel {
 	constructor() {
 		const tierlistModel = new TierlistModel();
-		this.tierlistViewModel = new TierlistViewModel(this.tierlistModel);
+		this.tierlistViewModel = new TierlistViewModel(tierlistModel);
 
 		const championSelectionModel = new ChampionSelectionModel();
 		this.championSelectionViewModel = new ChampionSelectionViewModel(
-			this.championSelectionModel,
+			championSelectionModel,
 		);
 	}
 }
