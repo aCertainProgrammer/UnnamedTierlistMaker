@@ -1,6 +1,8 @@
+import { default_data } from "../default_data.js";
+
 export class ChampionSelectionModel {
 	constructor() {
-		this.champions = [];
+		this.champions = default_data;
 	}
 
 	addChampion(champion) {

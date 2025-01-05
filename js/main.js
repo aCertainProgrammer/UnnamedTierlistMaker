@@ -5,3 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const appView = new AppView(appViewmodel);
 	appView.render();
 });
+
+document.documentElement.addEventListener("dragstart", () => {
+	if (!event.target.draggable == true) event.preventDefault();
+});

@@ -7,4 +7,8 @@ export class ChampionSelectionViewModel {
 	addChampion() {
 		this.model.addChampion();
 	}
+
+	getChampions() {
+		return this.model.getChampions();
+	}
 }
