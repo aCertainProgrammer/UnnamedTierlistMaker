@@ -18,8 +18,8 @@ export class TierlistViewModel {
 		];
 	}
 
-	addChampion(champion, tierName) {
-		this.tierlistModel.addChampion(champion, tierName);
+	addChampion(champion, tierIndex) {
+		this.tierlistModel.addChampion(champion, tierIndex);
 	}
 
 	addTier(tier) {

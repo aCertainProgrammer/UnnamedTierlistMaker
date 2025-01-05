@@ -38,4 +38,10 @@ export class TierlistModel {
 	getTiers() {
 		return this.tiers;
 	}
+
+	addChampion(champion, index) {
+		if (!this.tiers[index].champions.includes(champion)) {
+			this.tiers[index].champions.push(champion);
+		}
+	}
 }

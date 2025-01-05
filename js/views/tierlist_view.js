@@ -4,6 +4,12 @@ export class TierlistView {
 		this.tierlistViewModel = tierlistViewModel;
 
 		this.tierlistContainer = document.getElementById("tierlist");
+
+		this.dropFunction = function (index) {
+			const champion = event.dataTransfer.getData("text/plain");
+			this.tierlistViewModel.addChampion(champion, index);
+			this.render();
+		};
 	}
 
 	render() {
@@ -12,7 +18,18 @@ export class TierlistView {
 		this.tierlistContainer.innerHTML = "";
 		for (let i = 0; i < tiers.length; i++) {
 			const tier = this.createTier(tiers[i]);
+
 			this.tierlistContainer.appendChild(tier);
+
+			tier.addEventListener("dragenter", () => {
+				event.preventDefault();
+			});
+
+			tier.addEventListener("dragover", () => {
+				event.preventDefault();
+			});
+
+			tier.addEventListener("drop", this.dropFunction.bind(this, i));
 		}
 	}
 
