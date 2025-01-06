@@ -9,7 +9,6 @@ export class ChampionSelectionView {
 		this.championSelection.innerHTML = [];
 		const champions = this.viewModel.getChampions();
 
-		console.log(champions);
 		for (let i = 0; i < champions.length; i++) {
 			this.createChampionIcon(champions[i]);
 		}
