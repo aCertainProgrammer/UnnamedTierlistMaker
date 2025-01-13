@@ -56,6 +56,28 @@ export class TierlistView {
 				capitalize(tier.champions[i]) +
 				".webp";
 			tierChampions.appendChild(championIcon);
+
+			championIcon.addEventListener("dragstart", () => {
+				let dragImage = document.createElement("img");
+				dragImage.src = event.target.src;
+				dragImage.id = "drag-image";
+				let width = event.target.offsetWidth;
+				let height = event.target.offsetHeight;
+				document.body.appendChild(dragImage);
+
+				event.dataTransfer.setDragImage(
+					dragImage,
+					width / 2,
+					height / 2,
+				);
+				event.dataTransfer.setData("text/plain", tier.champions[i]);
+			});
+
+			championIcon.addEventListener("dragend", () => {
+				event.preventDefault();
+				const dragImage = document.querySelector("#drag-image");
+				document.body.removeChild(dragImage);
+			});
 		}
 
 		return tierContainer;
