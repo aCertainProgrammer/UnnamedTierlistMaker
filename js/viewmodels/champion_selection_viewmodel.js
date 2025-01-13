@@ -11,4 +11,8 @@ export class ChampionSelectionViewModel {
 	getChampions() {
 		return this.model.getChampions();
 	}
+
+	searchChampions(search_query) {
+		return this.model.searchChampions(search_query);
+	}
 }

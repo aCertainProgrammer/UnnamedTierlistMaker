@@ -1,13 +1,26 @@
 import { capitalize } from "../util.js";
 export class ChampionSelectionView {
-	constructor(viewModel) {
-		this.viewModel = viewModel;
+	constructor(championSelectionViewModel) {
+		this.championSelectionViewModel = championSelectionViewModel;
 		this.championSelection = document.getElementById("champion-selection");
+		this.searchBar = document.getElementById(
+			"champion-selection-search-bar",
+		);
+		this.searchBar.addEventListener(
+			"input",
+			this.searchChampions.bind(this),
+		);
+		if (this.searchBar.value != "") this.searchChampions();
 	}
 
 	render() {
-		this.championSelection.innerHTML = [];
-		const champions = this.viewModel.getChampions();
+		const champions = this.championSelectionViewModel.getChampions();
+
+		for (let i = 1; this.championSelection.children.length > 1; ) {
+			this.championSelection.removeChild(
+				this.championSelection.children[i],
+			);
+		}
 
 		for (let i = 0; i < champions.length; i++) {
 			this.createChampionIcon(champions[i]);
@@ -45,5 +58,13 @@ export class ChampionSelectionView {
 			const dragImage = document.querySelector("#drag-image");
 			document.body.removeChild(dragImage);
 		});
+	}
+
+	searchChampions() {
+		const search_query = this.searchBar.value.trim();
+		let data =
+			this.championSelectionViewModel.searchChampions(search_query);
+
+		this.render();
 	}
 }
