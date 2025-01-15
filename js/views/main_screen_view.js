@@ -8,10 +8,11 @@ export default class MainScreenView {
 		this.championSelectionView = null;
 
 		this.mainScreen = document.getElementById("main-screen");
-		this.initialize();
-	}
+		this.mainScreen.addEventListener("drop", this.dropFunction.bind(this));
+		this.mainScreen.addEventListener("dragover", () => {
+			event.preventDefault();
+		});
 
-	initialize() {
 		this.tierlistView = new TierlistView(
 			this.mainScreenViewModel.tierlistViewModel,
 		);
@@ -23,5 +24,11 @@ export default class MainScreenView {
 	render() {
 		this.tierlistView.render();
 		this.championSelectionView.render();
+	}
+
+	dropFunction(event) {
+		const champion = event.dataTransfer.getData("text/plain");
+		console.log(champion);
+		this.mainScreenViewModel.handleDrop(event);
 	}
 }

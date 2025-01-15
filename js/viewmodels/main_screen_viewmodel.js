@@ -13,4 +13,6 @@ export default class MainScreenViewModel {
 			championSelectionModel,
 		);
 	}
+
+	handleDrop() {}
 }
