@@ -1,0 +1,20 @@
+CURRENT WORK:
+
+- dragging to void kills the image
+
+THEN:
+
+SHORT IDEAS:
+
+- shortcuts 1234 to select a champion into a tier
+
+- global keyboard handling (pub-sub)
+
+- tiers CRUD
+
+- saving tiers
+
+- icons move during drag events like in draftinggg
+LONG IDEAS:
+
+BUGS:
