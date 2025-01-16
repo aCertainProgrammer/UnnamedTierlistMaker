@@ -27,8 +27,7 @@ export default class MainScreenView {
 	}
 
 	dropFunction(event) {
-		const champion = event.dataTransfer.getData("text/plain");
-		console.log(champion);
 		this.mainScreenViewModel.handleDrop(event);
+		this.render();
 	}
 }

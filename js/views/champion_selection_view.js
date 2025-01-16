@@ -42,15 +42,21 @@ export class ChampionSelectionView {
 		this.championSelection.appendChild(championIcon);
 
 		championIcon.addEventListener("dragstart", () => {
-			let dragImage = document.createElement("img");
+			const dragImage = document.createElement("img");
 			dragImage.src = event.target.src;
 			dragImage.id = "drag-image";
-			let width = event.target.offsetWidth;
-			let height = event.target.offsetHeight;
+			const width = event.target.offsetWidth;
+			const height = event.target.offsetHeight;
 			document.body.appendChild(dragImage);
 
 			event.dataTransfer.setDragImage(dragImage, width / 2, height / 2);
-			event.dataTransfer.setData("text/plain", champion);
+
+			const dragData = JSON.stringify({
+				tier: null,
+				champion: champion,
+			});
+			event.dataTransfer.clearData();
+			event.dataTransfer.setData("text/plain", dragData);
 		});
 
 		championIcon.addEventListener("dragend", () => {

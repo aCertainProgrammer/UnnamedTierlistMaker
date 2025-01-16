@@ -6,7 +6,11 @@ export class TierlistView {
 		this.tierlistContainer = document.getElementById("tierlist");
 
 		this.dropFunction = function (index) {
-			const champion = event.dataTransfer.getData("text/plain");
+			const dropData = JSON.parse(
+				event.dataTransfer.getData("text/plain"),
+			);
+			const champion = dropData.champion;
+
 			this.tierlistViewModel.addChampion(champion, index);
 			this.render();
 		};
@@ -17,7 +21,7 @@ export class TierlistView {
 
 		this.tierlistContainer.innerHTML = "";
 		for (let i = 0; i < tiers.length; i++) {
-			const tier = this.createTier(tiers[i]);
+			const tier = this.createTier(tiers[i], i);
 
 			this.tierlistContainer.appendChild(tier);
 
@@ -33,7 +37,7 @@ export class TierlistView {
 		}
 	}
 
-	createTier(tier) {
+	createTier(tier, index) {
 		const tierContainer = document.createElement("div");
 		tierContainer.classList = "tier-container";
 
@@ -58,11 +62,12 @@ export class TierlistView {
 			tierChampions.appendChild(championIcon);
 
 			championIcon.addEventListener("dragstart", () => {
-				let dragImage = document.createElement("img");
+				const dragImage = document.createElement("img");
 				dragImage.src = event.target.src;
 				dragImage.id = "drag-image";
-				let width = event.target.offsetWidth;
-				let height = event.target.offsetHeight;
+
+				const width = event.target.offsetWidth;
+				const height = event.target.offsetHeight;
 				document.body.appendChild(dragImage);
 
 				event.dataTransfer.setDragImage(
@@ -70,7 +75,14 @@ export class TierlistView {
 					width / 2,
 					height / 2,
 				);
-				event.dataTransfer.setData("text/plain", tier.champions[i]);
+
+				const dragData = JSON.stringify({
+					tier: index,
+					champion: tier.champions[i],
+				});
+
+				event.dataTransfer.clearData();
+				event.dataTransfer.setData("text/plain", dragData);
 			});
 
 			championIcon.addEventListener("dragend", () => {

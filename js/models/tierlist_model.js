@@ -44,4 +44,12 @@ export class TierlistModel {
 			this.tiers[index].champions.push(champion);
 		}
 	}
+
+	removeChampion(index, champion) {
+		const champion_index = this.tiers[index].champions.findIndex(
+			(element) => element == champion,
+		);
+
+		this.tiers[index].champions.splice(champion_index, 1);
+	}
 }

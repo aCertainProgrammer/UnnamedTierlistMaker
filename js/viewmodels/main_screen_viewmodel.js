@@ -14,5 +14,16 @@ export default class MainScreenViewModel {
 		);
 	}
 
-	handleDrop() {}
+	handleDrop() {
+		console.log(event.dataTransfer.getData("text/plain"));
+		const dropData = JSON.parse(event.dataTransfer.getData("text/plain"));
+		console.log(dropData);
+
+		if (dropData.tier != null) {
+			this.tierlistViewModel.removeChampion(
+				dropData.tier,
+				dropData.champion,
+			);
+		}
+	}
 }

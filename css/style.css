@@ -44,7 +44,8 @@ body {
 #tierlist {
 	display: flex;
 	flex-direction: column;
-	width: 100%;
+	width: 45vw;
+	min-height: 0;
 }
 .tier-container {
 	display: flex;
@@ -66,7 +67,7 @@ body {
 }
 
 .tier-champions {
-	width: 45vw;
+	width: 100%;
 	height: 100%;
 	display: flex;
 	flex-wrap: wrap;
@@ -83,7 +84,7 @@ body {
 }
 
 #champion-selection {
-	width: 100%;
+	width: 45vw;
 	min-height: 0;
 	height: 100%;
 	display: flex;

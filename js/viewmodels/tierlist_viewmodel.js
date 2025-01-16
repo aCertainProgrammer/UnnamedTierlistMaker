@@ -29,4 +29,9 @@ export class TierlistViewModel {
 	getTiers() {
 		return this.tierlistModel.getTiers();
 	}
+
+	removeChampion(tierIndex, champion) {
+		this.tierlistModel.removeChampion(tierIndex, champion);
+		return true;
+	}
 }
