@@ -10,6 +10,7 @@ export class TierlistView {
 				event.dataTransfer.getData("text/plain"),
 			);
 			const champion = dropData.champion;
+			if (dropData.tier == index) event.stopPropagation();
 
 			this.tierlistViewModel.addChampion(champion, index);
 			this.render();
