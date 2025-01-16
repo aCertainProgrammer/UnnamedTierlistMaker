@@ -86,7 +86,6 @@ body {
 #champion-selection {
 	width: 45vw;
 	min-height: 0;
-	height: 100%;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;

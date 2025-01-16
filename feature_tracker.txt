@@ -1,7 +1,5 @@
 CURRENT WORK:
 
-- dragging to void kills the image
-
 THEN:
 
 SHORT IDEAS:
