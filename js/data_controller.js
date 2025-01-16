@@ -1,4 +1,4 @@
-import { default_data } from "./default_data.js";
+import { default_data, default_tiers } from "./default_data.js";
 
 export default class DataController {
 	constructor() {}
@@ -50,5 +50,9 @@ export default class DataController {
 		}
 
 		return newData;
+	}
+
+	static getTiers() {
+		return default_tiers;
 	}
 }

@@ -17,9 +17,10 @@ export default class Controller {
 		const championSelectionChampions =
 			DataController.getChampionSelectionChampions(request);
 
+		const tiers = DataController.getTiers();
 		/** @type {RenderingData}*/
 		const renderingData = {
-			tiers: [],
+			tiers: tiers,
 			championSelectionChampions: championSelectionChampions,
 		};
 		this.userInterface.render(renderingData);
