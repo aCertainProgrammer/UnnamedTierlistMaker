@@ -4,7 +4,7 @@
 
 :root {
 	--mainScreenPadding: 40px;
-	--tierlistTierHeight: 90px;
+	--tierlistTierHeight: 80px;
 	--championIconHeight: calc(0.8 * var(var(--tierlistTierHeight)));
 }
 
@@ -53,6 +53,7 @@ body {
 	width: 100%;
 	min-height: var(--tierlistTierHeight);
 	background: var(--tierBackgroundColor);
+	border: 1px solid black;
 }
 
 .tier-name {
@@ -74,8 +75,6 @@ body {
 	flex-direction: row;
 	align-items: center;
 	justify-content: start;
-	padding: 2px 4px;
-	gap: 2px;
 }
 
 .tier-champions > img {

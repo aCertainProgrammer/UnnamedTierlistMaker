@@ -45,10 +45,15 @@ export class TierlistModel {
 		}
 	}
 
+	addChampionAtIndex(tierIndex, championIndex, champion) {
+		this.tiers[tierIndex].champions.splice(championIndex, 0, champion);
+	}
+
 	removeChampion(index, champion) {
 		const champion_index = this.tiers[index].champions.findIndex(
 			(element) => element == champion,
 		);
+		if (champion_index == -1) return;
 
 		this.tiers[index].champions.splice(champion_index, 1);
 	}

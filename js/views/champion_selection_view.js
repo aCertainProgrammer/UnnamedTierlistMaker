@@ -14,13 +14,9 @@ export class ChampionSelectionView {
 	}
 
 	render() {
-		const champions = this.championSelectionViewModel.getChampions();
+		this.championSelection.innerHTML = "";
 
-		for (let i = 1; this.championSelection.children.length > 1; ) {
-			this.championSelection.removeChild(
-				this.championSelection.children[i],
-			);
-		}
+		const champions = this.championSelectionViewModel.getChampions();
 
 		for (let i = 0; i < champions.length; i++) {
 			this.createChampionIcon(champions[i]);

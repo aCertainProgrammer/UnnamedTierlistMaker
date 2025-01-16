@@ -22,6 +22,14 @@ export class TierlistViewModel {
 		this.tierlistModel.addChampion(champion, tierIndex);
 	}
 
+	addChampionAtIndex(tierIndex, championIndex, champion) {
+		this.tierlistModel.addChampionAtIndex(
+			tierIndex,
+			championIndex,
+			champion,
+		);
+	}
+
 	addTier(tier) {
 		this.tierlistModel.addTier(tier);
 	}
