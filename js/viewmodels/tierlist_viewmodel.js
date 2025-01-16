@@ -19,10 +19,12 @@ export class TierlistViewModel {
 	}
 
 	addChampion(champion, tierIndex) {
+		this.tierlistModel.removeChampion(tierIndex, champion);
 		this.tierlistModel.addChampion(champion, tierIndex);
 	}
 
 	addChampionAtIndex(tierIndex, championIndex, champion) {
+		this.tierlistModel.removeChampion(tierIndex, champion);
 		this.tierlistModel.addChampionAtIndex(
 			tierIndex,
 			championIndex,
