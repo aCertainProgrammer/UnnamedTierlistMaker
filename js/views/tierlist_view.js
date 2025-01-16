@@ -10,11 +10,11 @@ export class TierlistView {
 			y: null,
 		};
 
+		this.tierlistContainer = document.getElementById("tierlist");
+
 		this.imageSize = 80;
 		this.tierNameSize = 90;
 		this.borderSize = 1;
-
-		this.tierlistContainer = document.getElementById("tierlist");
 
 		this.dropFunction = function (index) {
 			const dropData = JSON.parse(
@@ -29,7 +29,10 @@ export class TierlistView {
 				champion,
 			);
 
-			this.tierlistViewModel.removeChampion(index, "dummy");
+			const tiers = this.tierlistViewModel.getTiers();
+			while (tiers[index].champions.includes("dummy")) {
+				this.tierlistViewModel.removeChampion(index, "dummy");
+			}
 			this.render();
 		};
 	}
@@ -86,23 +89,18 @@ export class TierlistView {
 				const numberOfChampions = tiers[i].champions.length;
 
 				if (index > numberOfChampions) index = numberOfChampions;
+				if (this.championDragIndex != index) {
+					this.tierlistViewModel.removeChampion(i, "dummy");
+					this.tierlistViewModel.addChampionAtIndex(
+						i,
+						index,
+						"dummy",
+					);
 
-				//console.log(
-				//	"Here fit: " +
-				//		+championsPerRow +
-				//		" champions / row, we are in the " +
-				//		currentRow +
-				//		" row, " +
-				//		currentColumn +
-				//		" column, meaning we are at the " +
-				//		index +
-				//		" index",
-				//);
+					this.render();
+				}
 
-				this.tierlistViewModel.removeChampion(i, "dummy");
-				this.tierlistViewModel.addChampionAtIndex(i, index, "dummy");
-
-				this.render();
+				this.championDragIndex = index;
 
 				this.dragData.championIndex = index;
 			});

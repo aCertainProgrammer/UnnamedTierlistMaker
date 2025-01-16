@@ -27,12 +27,14 @@ export class TierlistModel {
 		];
 	}
 
-	addTier(tier) {
-		this.tiers.push(tier);
+	addTier() {
+		this.tiers.push({ name: "X", champions: [] });
 	}
 
 	removeTier(index) {
-		this.tiers.slice(index, 1);
+		console.log(this.tiers);
+		this.tiers.splice(index, 1);
+		console.log(this.tiers);
 	}
 
 	getTiers() {
@@ -56,5 +58,9 @@ export class TierlistModel {
 		if (champion_index == -1) return;
 
 		this.tiers[index].champions.splice(champion_index, 1);
+	}
+
+	changeTierName(index, name) {
+		this.tiers[index].name = name;
 	}
 }
