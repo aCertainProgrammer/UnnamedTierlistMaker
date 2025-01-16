@@ -163,5 +163,4 @@ export const default_data = [
 	"ziggs",
 	"zilean",
 	"zoe",
-	"zyra",
 ];
