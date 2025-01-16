@@ -163,23 +163,5 @@ export const default_data = [
 	"ziggs",
 	"zilean",
 	"zoe",
-];
-
-export const default_tiers = [
-	{
-		name: "S",
-		champions: ["zoe", "camille", "zilean"],
-	},
-	{
-		name: "A",
-		champions: ["zoe", "camille", "zilean"],
-	},
-	{
-		name: "B",
-		champions: ["zoe", "camille", "zilean"],
-	},
-	{
-		name: "C",
-		champions: ["zoe", "camille", "zilean"],
-	},
+	"zyra",
 ];
