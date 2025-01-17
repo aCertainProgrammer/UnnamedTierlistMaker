@@ -1,5 +1,7 @@
 CURRENT WORK:
 
+- tiers CRUD
+
 THEN:
 
 SHORT IDEAS:
@@ -8,11 +10,8 @@ SHORT IDEAS:
 
 - global keyboard handling (pub-sub)
 
-- tiers CRUD
-
 - saving tiers
 
-- icons move during drag events like in draftinggg
 LONG IDEAS:
 
 BUGS:

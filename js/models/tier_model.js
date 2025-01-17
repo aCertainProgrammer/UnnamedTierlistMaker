@@ -2,6 +2,7 @@ export default class TierModel {
 	constructor(name) {
 		this.name = name;
 		this.champions = [];
+		this.colorHex = "#ffffff";
 	}
 
 	addChampion(champion) {
@@ -28,6 +29,10 @@ export default class TierModel {
 	}
 
 	getTier() {
-		return { name: this.name, champions: this.champions };
+		return {
+			name: this.name,
+			champions: this.champions,
+			color: this.colorHex,
+		};
 	}
 }

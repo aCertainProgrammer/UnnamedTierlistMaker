@@ -1,5 +1,13 @@
 import { capitalize } from "../util.js";
+import TierViewModel from "../viewmodels/tier_viewmodel.js";
 export default class TierView {
+	/**
+	 * @constructor
+	 * @param {TierViewModel} tierViewModel
+	 * @param {Object} tierContainer
+	 * @param {*} tierlistRenderSignal
+	 * @param {number} tierIndex
+	 */
 	constructor(tierViewModel, tierContainer, tierlistRenderSignal, tierIndex) {
 		this.tierViewModel = tierViewModel;
 		this.tierContainer = tierContainer;
@@ -97,9 +105,11 @@ export default class TierView {
 		this.tierContainer.innerHTML = "";
 		const tier = this.tierViewModel.getTier();
 
+		console.log(tier);
 		const tierName = document.createElement("div");
 		tierName.classList = "tier-name";
 		tierName.innerHTML = tier.name;
+		tierName.style.backgroundColor = tier.color;
 
 		this.tierContainer.appendChild(tierName);
 
