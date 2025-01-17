@@ -105,7 +105,6 @@ export default class TierView {
 		this.tierContainer.innerHTML = "";
 		const tier = this.tierViewModel.getTier();
 
-		console.log(tier);
 		const tierName = document.createElement("div");
 		tierName.classList = "tier-name";
 		tierName.innerHTML = tier.name;

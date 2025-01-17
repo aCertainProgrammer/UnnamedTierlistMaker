@@ -8,6 +8,7 @@ export class TierlistView {
 		this.tierlistEditor = document.getElementById("tierlist-editor");
 
 		this.tierViews = [];
+		this.lastFocusOnEditor = null;
 		for (let i = 0; i < this.tierlistViewModel.tierViewModels.length; i++) {
 			this.createTierContainer(i);
 		}
@@ -36,6 +37,12 @@ export class TierlistView {
 		tierAdditionElement.addEventListener("click", this.addTier.bind(this));
 
 		this.tierlistEditor.appendChild(tierAdditionElement);
+
+		if (this.lastFocusOnEditor != null) {
+			this.tierlistEditor.children[
+				this.lastFocusOnEditor
+			].children[0].focus();
+		}
 	}
 
 	createTierEditor(tier, index) {
@@ -49,6 +56,14 @@ export class TierlistView {
 			"input",
 			this.changeTierName.bind(this, index),
 		);
+
+		tierEditorName.addEventListener("focus", () => {
+			this.lastFocusOnEditor = index;
+		});
+
+		tierEditorName.addEventListener("blur", () => {
+			this.lastFocusOnEditor = null;
+		});
 
 		tierEditorContainer.appendChild(tierEditorName);
 
@@ -82,7 +97,6 @@ export class TierlistView {
 		this.tierlistViewModel.removeTier(index);
 		this.tierViews.splice(index, 1);
 		this.tierlistContainer.innerHTML = "";
-		console.log(this.tierViews);
 
 		this.render();
 	}
