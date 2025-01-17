@@ -12,6 +12,8 @@ export default class TierView {
 			y: null,
 		};
 
+		this.championDragIndex = -1;
+
 		this.imageSize = 80;
 		this.tierNameSize = 90;
 		this.borderSize = 1;
@@ -113,6 +115,7 @@ export default class TierView {
 		}
 
 		this.tierContainer.appendChild(tierChampions);
+		return this.tierContainer;
 	}
 
 	createChampionIcon(index, champion) {

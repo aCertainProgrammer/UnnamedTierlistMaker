@@ -36,6 +36,10 @@ export class TierlistViewModel {
 		return tierData;
 	}
 
+	removeTier(index) {
+		this.tierViewModels.splice(index, 1);
+	}
+
 	removeChampion(tierIndex, champion) {
 		this.tierViewModels[tierIndex].removeChampion(champion);
 		return true;
@@ -45,5 +49,9 @@ export class TierlistViewModel {
 		for (let i = 0; i < this.tierViewModels.length; i++) {
 			this.tierViewModels[i].removeChampion("dummy");
 		}
+	}
+
+	changeTierName(tierIndex, name) {
+		this.tierViewModels[tierIndex].setName(name);
 	}
 }
