@@ -88,7 +88,7 @@ export class TierlistView {
 	}
 
 	addTier() {
-		this.tierlistViewModel.addTier("X");
+		this.tierlistViewModel.addTier();
 		this.createTierContainer(this.tierViews.length);
 		this.render();
 	}

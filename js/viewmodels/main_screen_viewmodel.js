@@ -7,10 +7,10 @@ export default class MainScreenViewModel {
 	constructor() {
 		this.tierlistViewModel = new TierlistViewModel();
 
-		this.tierlistViewModel.addTier("S");
-		this.tierlistViewModel.addTier("A");
-		this.tierlistViewModel.addTier("B");
-		this.tierlistViewModel.addTier("F");
+		this.tierlistViewModel.addTier();
+		this.tierlistViewModel.addTier();
+		this.tierlistViewModel.addTier();
+		this.tierlistViewModel.addTier();
 
 		const championSelectionModel = new ChampionSelectionModel();
 		this.championSelectionViewModel = new ChampionSelectionViewModel(

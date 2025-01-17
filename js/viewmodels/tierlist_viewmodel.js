@@ -19,7 +19,22 @@ export class TierlistViewModel {
 		);
 	}
 
-	addTier(name) {
+	addTier() {
+		let name = "Z";
+		if (this.tierViewModels.length == 0) name = "S";
+		else if (this.tierViewModels.length == 1) name = "A";
+		else {
+			const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+			const lastTier =
+				this.tierViewModels[this.tierViewModels.length - 1].getTier();
+			const lastName = lastTier.name;
+
+			for (let i = 0; i < alphabet.length; i++) {
+				if (lastName.toUpperCase() == alphabet[i])
+					name = alphabet[i + 1];
+			}
+		}
+
 		const tierModel = new TierModel(name);
 		const tierViewModel = new TierViewModel(tierModel);
 
