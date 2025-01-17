@@ -2,16 +2,15 @@ import { TierlistModel } from "../models/tierlist_model.js";
 import { TierlistViewModel } from "./tierlist_viewmodel.js";
 import { ChampionSelectionModel } from "../models/champion_selection_model.js";
 import { ChampionSelectionViewModel } from "./champion_selection_viewmodel.js";
-import TierlistEditorViewModel from "./tierlist_editor_viewmodel.js";
 
 export default class MainScreenViewModel {
 	constructor() {
-		const tierlistModel = new TierlistModel();
-		this.tierlistViewModel = new TierlistViewModel(tierlistModel);
+		this.tierlistViewModel = new TierlistViewModel();
 
-		this.tierlistEditorViewModel = new TierlistEditorViewModel(
-			tierlistModel,
-		);
+		this.tierlistViewModel.addTier("S");
+		this.tierlistViewModel.addTier("A");
+		this.tierlistViewModel.addTier("B");
+		this.tierlistViewModel.addTier("F");
 
 		const championSelectionModel = new ChampionSelectionModel();
 		this.championSelectionViewModel = new ChampionSelectionViewModel(
@@ -22,6 +21,7 @@ export default class MainScreenViewModel {
 	handleDrop() {
 		const dropData = JSON.parse(event.dataTransfer.getData("text/plain"));
 
+		console.log(dropData);
 		if (dropData.tier != null) {
 			this.tierlistViewModel.removeChampion(
 				dropData.tier,

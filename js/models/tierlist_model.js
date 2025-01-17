@@ -42,9 +42,7 @@ export class TierlistModel {
 	}
 
 	addChampion(champion, index) {
-		if (!this.tiers[index].champions.includes(champion)) {
-			this.tiers[index].champions.push(champion);
-		}
+		this.tiers[index].addChampion(champion);
 	}
 
 	addChampionAtIndex(tierIndex, championIndex, champion) {
