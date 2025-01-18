@@ -130,7 +130,7 @@ export class TierlistView {
 		const tierColorEditorContainer = document.createElement("div");
 
 		const colors = [
-			"blueviolet",
+			"plum",
 			"limegreen",
 			"greenyellow",
 			"yellow",
