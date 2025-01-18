@@ -7,10 +7,20 @@
 	--tierlistTierHeight: 80px;
 	--championIconHeight: 80px;
 	--tierColorButtonHeight: 20px;
+	--generalBorderRadius: 6px;
+	--searchBarFontSize: 1rem;
 }
 
 :root[data-theme="dark"] {
-	--tierBackgroundColor: gray;
+	--bodyBackgroundColor: #0d1117;
+	--buttonBackgroundColor: #06145e;
+	--generalTextColor: #cccccc;
+	--buttonBorder: 1px solid #707070;
+	--textInputBackgroundColor: #0f093e;
+	--textInputPlaceholderColor: #797979;
+	--textInputBorder: 1px solid #797979;
+	--tierBackgroundColor: #0a0440;
+	--tierNameTextColor: var(--tierBackgroundColor);
 }
 
 * {
@@ -76,6 +86,7 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	color:;
 }
 
 .tier-champions {
@@ -96,6 +107,7 @@ body {
 #champion-selection {
 	width: 45vw;
 	min-height: 0;
+	max-height: 90vh;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -106,13 +118,12 @@ body {
 
 	overflow-x: hidden;
 	overflow-y: auto;
-
-	background: lightgreen;
 }
 
 #champion-selection-search-bar {
 	width: 100%;
 	text-align: center;
+	font-size: var(--searchBarFontSize);
 }
 
 #champion-selection-container {
@@ -143,4 +154,23 @@ body {
 	height: var(--tierColorButtonHeight);
 	width: var(--tierColorButtonHeight);
 	border: 1px solid black;
+}
+
+input[type="button"] {
+	background: var(--buttonBackgroundColor);
+	border: var(--buttonBorder);
+	color: var(--generalTextColor);
+	border-radius: var(--generalBorderRadius);
+	padding: 2px 4px;
+}
+
+input[type="text"] {
+	background: var(--textInputBackgroundColor);
+	color: var(--generalTextColor);
+	border: var(--textInputBorder);
+	border-radius: var(--generalBorderRadius);
+	padding-left: 4px;
+}
+::placeholder {
+	color: var(--InputPlaceholderColor);
 }
