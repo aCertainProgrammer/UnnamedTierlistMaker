@@ -46,6 +46,9 @@ body {
 	height: 100%;
 	width: 45vw;
 	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
 }
 #tierlist {
 	display: flex;
@@ -117,7 +120,27 @@ body {
 	width: 45vw;
 }
 
+#tierlist-editor {
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	justify-content: center;
+	gap: 5px;
+	border: 1px solid black;
+}
+
+.tier-editor-container {
+	display: flex;
+	flex-direction: row;
+	align-items: start;
+	justify-content: center;
+	gap: 4px;
+}
+.tier-name-editor {
+	max-width: 100px;
+}
 .tier-color-button {
 	height: var(--tierColorButtonHeight);
 	width: var(--tierColorButtonHeight);
+	border: 1px solid black;
 }

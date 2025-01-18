@@ -47,25 +47,30 @@ export class TierlistView {
 
 	createTierEditor(tier, index) {
 		const tierEditorContainer = document.createElement("div");
+		tierEditorContainer.classList.add("tier-editor-container");
 
-		const tierEditorName = document.createElement("input");
-		tierEditorName.type = "text";
-		tierEditorName.value = tier.name;
+		const tierNameEditor = document.createElement("input");
+		tierNameEditor.type = "text";
+		tierNameEditor.value = tier.name;
+		tierNameEditor.classList.add("tier-name-editor");
 
-		tierEditorName.addEventListener(
+		tierNameEditor.addEventListener(
 			"input",
 			this.changeTierName.bind(this, index),
 		);
 
-		tierEditorName.addEventListener("focus", () => {
+		tierNameEditor.addEventListener("focus", () => {
 			this.lastFocusOnEditor = index;
 		});
 
-		tierEditorName.addEventListener("blur", () => {
+		tierNameEditor.addEventListener("blur", () => {
 			this.lastFocusOnEditor = null;
 		});
 
-		tierEditorContainer.appendChild(tierEditorName);
+		tierEditorContainer.appendChild(tierNameEditor);
+
+		const tierColorEditor = this.createTierColorEditor(index);
+		tierEditorContainer.appendChild(tierColorEditor);
 
 		const tierRemovalElement = document.createElement("input");
 		tierRemovalElement.type = "button";
@@ -77,9 +82,6 @@ export class TierlistView {
 		);
 
 		tierEditorContainer.appendChild(tierRemovalElement);
-
-		const tierColorEditor = this.createTierColorEditor(index);
-		tierEditorContainer.appendChild(tierColorEditor);
 
 		return tierEditorContainer;
 	}
