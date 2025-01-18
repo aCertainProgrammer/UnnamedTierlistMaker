@@ -79,7 +79,6 @@ export class TierlistView {
 		tierEditorContainer.appendChild(tierRemovalElement);
 
 		const tierColorEditor = this.createTierColorEditor(index);
-		tierEditorContainer.appendChild(tierColorEditor);
 
 		return tierEditorContainer;
 	}
@@ -131,15 +130,12 @@ export class TierlistView {
 		for (let i = 0; i < colors.length; i++) {
 			const colorButton = document.createElement("input");
 			colorButton.type = "button";
-			colorButton.classList.add("tier-color-button");
 			colorButton.style.backgroundColor = colors[i];
 
 			colorButton.addEventListener(
-				"click",
+				"input",
 				this.changeTierColor.bind(this, index, colors[i]),
 			);
-
-			tierColorEditorContainer.appendChild(colorButton);
 		}
 
 		return tierColorEditorContainer;

@@ -19,6 +19,10 @@ export default class TierViewModel {
 		this.tierModel.setName(name);
 	}
 
+	setColor(color) {
+		this.tierModel.setColor(color);
+	}
+
 	getTier() {
 		return this.tierModel.getTier();
 	}

@@ -7,10 +7,12 @@ export default class MainScreenViewModel {
 	constructor() {
 		this.tierlistViewModel = new TierlistViewModel();
 
-		this.tierlistViewModel.addTier();
-		this.tierlistViewModel.addTier();
-		this.tierlistViewModel.addTier();
-		this.tierlistViewModel.addTier();
+		const tiersOnLoad = 4;
+		const colors = ["green", "red", "black", "orange"];
+		for (let i = 0; i < tiersOnLoad; i++) {
+			this.tierlistViewModel.addTier();
+			this.tierlistViewModel.changeTierColor(i, colors[i]);
+		}
 
 		const championSelectionModel = new ChampionSelectionModel();
 		this.championSelectionViewModel = new ChampionSelectionViewModel(

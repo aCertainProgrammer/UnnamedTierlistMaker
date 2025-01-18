@@ -6,6 +6,7 @@
 	--mainScreenPadding: 40px;
 	--tierlistTierHeight: 80px;
 	--championIconHeight: 80px;
+	--tierColorButtonHeight: 20px;
 }
 
 :root[data-theme="dark"] {
@@ -114,4 +115,9 @@ body {
 #champion-selection-container {
 	height: 100%;
 	width: 45vw;
+}
+
+.tier-color-button {
+	height: var(--tierColorButtonHeight);
+	width: var(--tierColorButtonHeight);
 }

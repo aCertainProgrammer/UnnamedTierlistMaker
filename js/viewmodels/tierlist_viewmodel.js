@@ -69,4 +69,8 @@ export class TierlistViewModel {
 	changeTierName(tierIndex, name) {
 		this.tierViewModels[tierIndex].setName(name);
 	}
+
+	changeTierColor(tierIndex, color) {
+		this.tierViewModels[tierIndex].setColor(color);
+	}
 }
