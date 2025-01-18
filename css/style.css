@@ -124,11 +124,15 @@ body {
 	width: 100%;
 	text-align: center;
 	font-size: var(--searchBarFontSize);
+	padding: 2px 0px;
 }
 
 #champion-selection-container {
 	height: 100%;
 	width: 45vw;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 }
 
 #tierlist-editor {
@@ -172,5 +176,5 @@ input[type="text"] {
 	padding-left: 4px;
 }
 ::placeholder {
-	color: var(--InputPlaceholderColor);
+	color: var(--textInputPlaceholderColor);
 }
