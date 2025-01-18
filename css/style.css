@@ -86,7 +86,7 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	color:;
+	padding-top: 10px;
 }
 
 .tier-champions {
