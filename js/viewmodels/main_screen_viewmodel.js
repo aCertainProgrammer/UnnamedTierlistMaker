@@ -8,7 +8,7 @@ export default class MainScreenViewModel {
 		this.tierlistViewModel = new TierlistViewModel();
 
 		const tiersOnLoad = 4;
-		const colors = ["green", "yellow", "orange", "red"];
+		const colors = ["limegreen", "yellow", "orange", "tomato"];
 		for (let i = 0; i < tiersOnLoad; i++) {
 			this.tierlistViewModel.addTier();
 			this.tierlistViewModel.changeTierColor(i, colors[i]);

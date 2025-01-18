@@ -2,7 +2,7 @@ export default class TierModel {
 	constructor(name) {
 		this.name = name;
 		this.champions = [];
-		this.color = "#cccccc";
+		this.color = "tomato";
 	}
 
 	addChampion(champion) {

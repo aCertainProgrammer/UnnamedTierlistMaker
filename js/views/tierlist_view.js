@@ -129,7 +129,14 @@ export class TierlistView {
 	createTierColorEditor(index) {
 		const tierColorEditorContainer = document.createElement("div");
 
-		const colors = ["red", "green", "blue", "white", "black"];
+		const colors = [
+			"blueviolet",
+			"limegreen",
+			"greenyellow",
+			"yellow",
+			"orange",
+			"tomato",
+		];
 		for (let i = 0; i < colors.length; i++) {
 			const colorButton = document.createElement("input");
 			colorButton.type = "button";
