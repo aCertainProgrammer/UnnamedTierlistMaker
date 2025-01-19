@@ -1,7 +1,7 @@
 import TierModel from "../models/tier_model.js";
 import TierViewModel from "./tier_viewmodel.js";
 
-export class TierlistViewModel {
+export default class TierlistViewModel {
 	constructor() {
 		this.tierViewModels = [];
 	}

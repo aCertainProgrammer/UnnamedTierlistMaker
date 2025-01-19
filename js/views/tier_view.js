@@ -1,15 +1,24 @@
 import { capitalize } from "../util.js";
 import TierViewModel from "../viewmodels/tier_viewmodel.js";
+import TierEditorView from "./tier_editor_view.js";
 export default class TierView {
 	/**
 	 * @constructor
 	 * @param {TierViewModel} tierViewModel
+	 * @param {TierlistViewModel} tierlistViewModel
 	 * @param {Object} tierContainer
 	 * @param {*} tierlistRenderSignal
 	 * @param {number} tierIndex
 	 */
-	constructor(tierViewModel, tierContainer, tierlistRenderSignal, tierIndex) {
+	constructor(
+		tierViewModel,
+		tierlistViewModel,
+		tierContainer,
+		tierlistRenderSignal,
+		tierIndex,
+	) {
 		this.tierViewModel = tierViewModel;
+		this.tierlistViewModel = tierlistViewModel;
 		this.tierContainer = tierContainer;
 		this.tierlistRenderSignal = tierlistRenderSignal;
 		this.tierIndex = tierIndex;
@@ -109,6 +118,15 @@ export default class TierView {
 		tierName.classList = "tier-name";
 		tierName.innerHTML = tier.name;
 		tierName.style.backgroundColor = tier.color;
+
+		tierName.addEventListener("click", () => {
+			const tierEditorView = new TierEditorView(
+				this.tierlistViewModel,
+				tier,
+				this.tierIndex,
+				this.tierlistRenderSignal,
+			);
+		});
 
 		this.tierContainer.appendChild(tierName);
 

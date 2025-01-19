@@ -1,5 +1,5 @@
 import { TierlistModel } from "../models/tierlist_model.js";
-import { TierlistViewModel } from "./tierlist_viewmodel.js";
+import TierlistViewModel from "./tierlist_viewmodel.js";
 import { ChampionSelectionModel } from "../models/champion_selection_model.js";
 import { ChampionSelectionViewModel } from "./champion_selection_viewmodel.js";
 
