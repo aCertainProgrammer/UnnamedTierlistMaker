@@ -23,6 +23,18 @@ export class TierlistView {
 
 			this.tierlistContainer.appendChild(tierContainer);
 		}
+
+		const tierlistAdditionElement = document.createElement("div");
+
+		tierlistAdditionElement.classList.add("tierlist-addition-element");
+
+		tierlistAdditionElement.innerText = "+ Add tier";
+
+		tierlistAdditionElement.addEventListener("click", () => {
+			this.addTier();
+		});
+
+		this.tierlistContainer.appendChild(tierlistAdditionElement);
 	}
 
 	addTier() {

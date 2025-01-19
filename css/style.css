@@ -9,6 +9,7 @@
 	--tierColorButtonHeight: 20px;
 	--generalBorderRadius: 6px;
 	--searchBarFontSize: 1rem;
+	--addTierFontSize: 2rem;
 }
 
 :root[data-theme="dark"] {
@@ -22,6 +23,7 @@
 	--tierBackgroundColor: #0a0440;
 	--tierNameTextColor: var(--tierBackgroundColor);
 	--tierContainerBoxShadow: 0px 0px 1px 1px black;
+	--tierAdditionElementBorder: 1px solid #aaaaaa;
 }
 
 * {
@@ -89,7 +91,6 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding-top: 10px;
 }
 
 .tier-champions {
@@ -199,4 +200,21 @@ input[type="text"] {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+.tierlist-addition-element {
+	width: 100%;
+	height: var(--tierlistTierHeight);
+	min-height: var(--tierlistTierHeight);
+
+	background: var(--tierBackgroundColor);
+	color: var(--generalTextColor);
+	border: var(--tierAdditionElementBorder);
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+
+	font-size: var(--addTierFontSize);
 }
