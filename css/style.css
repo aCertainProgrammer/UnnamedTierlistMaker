@@ -6,10 +6,13 @@
 	--mainScreenPadding: 40px;
 	--tierlistTierHeight: 80px;
 	--championIconHeight: 80px;
-	--tierColorButtonHeight: 20px;
+	--tierColorButtonHeight: 2rem;
 	--generalBorderRadius: 6px;
 	--searchBarFontSize: 1rem;
 	--addTierFontSize: 2rem;
+	--changeTierNameFontSize: 2rem;
+	--removeTierButtonFontSize: 1.5rem;
+	--tierEditorContainerOpacity: 0.95;
 }
 
 :root[data-theme="dark"] {
@@ -160,12 +163,14 @@ body {
 	align-items: center;
 	justify-content: center;
 	gap: 4px;
-	width: 50vh;
-	height: 50vh;
+	width: 80vh;
+	height: 80vh;
 	background: var(--tierBackgroundColor);
 }
 .tier-name-editor {
 	max-width: 100px;
+	font-size: var(--changeTierNameFontSize);
+	padding: 4px 0px;
 }
 .tier-color-button {
 	height: var(--tierColorButtonHeight);
@@ -195,7 +200,7 @@ input[type="text"] {
 	position: fixed;
 	top: 0px;
 	left: 0px;
-	opacity: 0.9;
+	opacity: var(--tierEditorContainerOpacity);
 	background: var(--bodyBackgroundColor);
 
 	height: 100vh;
@@ -231,4 +236,9 @@ input[type="text"] {
 .tier-color-button:hover,
 .tierlist-addition-element:hover {
 	filter: brightness(110%);
+}
+
+#tier-removal-button {
+	height: var(--tierColorButtonHeight);
+	font-size: var(--removeTierButtonFontSize);
 }

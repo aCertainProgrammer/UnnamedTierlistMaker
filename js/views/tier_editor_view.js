@@ -59,6 +59,7 @@ export default class TierEditorView {
 
 		const tierRemovalElement = document.createElement("input");
 		tierRemovalElement.classList.add("normal-button");
+		tierRemovalElement.id = "tier-removal-button";
 		tierRemovalElement.type = "button";
 		tierRemovalElement.value = "Remove tier";
 
