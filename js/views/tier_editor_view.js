@@ -58,6 +58,7 @@ export default class TierEditorView {
 		tierEditorContainer.appendChild(tierColorEditor);
 
 		const tierRemovalElement = document.createElement("input");
+		tierRemovalElement.classList.add("normal-button");
 		tierRemovalElement.type = "button";
 		tierRemovalElement.value = "Remove tier";
 
@@ -86,6 +87,7 @@ export default class TierEditorView {
 			const colorButton = document.createElement("input");
 			colorButton.type = "button";
 			colorButton.classList.add("tier-color-button");
+			colorButton.classList.add("normal-button");
 			colorButton.style.backgroundColor = colors[i];
 
 			colorButton.addEventListener(

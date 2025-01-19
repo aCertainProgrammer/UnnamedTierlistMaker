@@ -1,5 +1,7 @@
 CURRENT WORK:
 
+- Cool visuals on interaction
+
 THEN:
 
 SHORT IDEAS:
@@ -18,15 +20,11 @@ SHORT IDEAS:
 
 - Swap tier order
 
-- Create clickable tier editors like https://ceciliabot.github.io/#/tierlist-maker/
-
 - Champion preview instead of dummy
 
 - Moving tiers not with arrows but by dragging?
 
 - Name on hover
-
-- Cool visuals on interaction
 
 - S tier candidates: deepskyblue, 
 

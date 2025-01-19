@@ -24,11 +24,11 @@ export class TierlistView {
 			this.tierlistContainer.appendChild(tierContainer);
 		}
 
-		const tierlistAdditionElement = document.createElement("div");
+		const tierlistAdditionElement = document.createElement("input");
 
 		tierlistAdditionElement.classList.add("tierlist-addition-element");
-
-		tierlistAdditionElement.innerText = "+ Add tier";
+		tierlistAdditionElement.type = "button";
+		tierlistAdditionElement.value = "+ Add tier";
 
 		tierlistAdditionElement.addEventListener("click", () => {
 			this.addTier();

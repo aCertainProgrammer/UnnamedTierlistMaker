@@ -23,7 +23,7 @@
 	--tierBackgroundColor: #0a0440;
 	--tierNameTextColor: var(--tierBackgroundColor);
 	--tierContainerBoxShadow: 0px 0px 1px 1px black;
-	--tierAdditionElementBorder: 1px solid #aaaaaa;
+	--tierAdditionElementBorder: 1px solid #555555;
 }
 
 * {
@@ -91,6 +91,8 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+
+	cursor: pointer;
 }
 
 .tier-champions {
@@ -106,6 +108,8 @@ body {
 .tier-champions > img {
 	height: var(--championIconHeight);
 	width: var(--championIconHeight);
+
+	cursor: pointer;
 }
 
 #champion-selection {
@@ -168,7 +172,7 @@ body {
 	width: var(--tierColorButtonHeight);
 }
 
-input[type="button"] {
+.normal-button {
 	background: var(--buttonBackgroundColor);
 	border: var(--buttonBorder);
 	color: var(--generalTextColor);
@@ -217,4 +221,14 @@ input[type="text"] {
 	text-align: center;
 
 	font-size: var(--addTierFontSize);
+}
+
+.champion-icon {
+	cursor: pointer;
+}
+
+.normal-button:hover,
+.tier-color-button:hover,
+.tierlist-addition-element:hover {
+	filter: brightness(110%);
 }
