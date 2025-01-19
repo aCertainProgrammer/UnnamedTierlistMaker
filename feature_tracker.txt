@@ -12,6 +12,26 @@ SHORT IDEAS:
 
 - saving tiers
 
+- Tierlist export image
+
+- Tierlist snapshots
+
+- Tierlist export all snaphots as images
+
+- Swap tier order
+
+- Create clickable tier editors like https://ceciliabot.github.io/#/tierlist-maker/
+
+- Champion preview instead of dummy
+
+- Moving tiers not with arrows but by dragging?
+
+- Name on hover
+
+- Cool visuals on interaction
+
+- S tier candidates: deepskyblue, 
+
 LONG IDEAS:
 
 BUGS:
