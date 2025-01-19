@@ -21,6 +21,7 @@
 	--textInputBorder: 1px solid #797979;
 	--tierBackgroundColor: #0a0440;
 	--tierNameTextColor: var(--tierBackgroundColor);
+	--tierContainerBoxShadow: 0px 0px 1px 1px black;
 }
 
 * {
@@ -73,7 +74,7 @@ body {
 	width: 100%;
 	min-height: var(--tierlistTierHeight);
 	background: var(--tierBackgroundColor);
-	box-shadow: 0px 0px 1px 1px black;
+	box-shadow: var(--tierContainerBoxShadow);
 }
 
 .tier-name {
@@ -124,7 +125,7 @@ body {
 	width: 100%;
 	text-align: center;
 	font-size: var(--searchBarFontSize);
-	padding: 2px 0px;
+	padding: 4px 0px;
 }
 
 #champion-selection-container {
@@ -141,7 +142,6 @@ body {
 	align-items: start;
 	justify-content: center;
 	gap: 5px;
-	border: 1px solid black;
 }
 
 .tier-editor-container {
@@ -157,7 +157,6 @@ body {
 .tier-color-button {
 	height: var(--tierColorButtonHeight);
 	width: var(--tierColorButtonHeight);
-	border: 1px solid black;
 }
 
 input[type="button"] {

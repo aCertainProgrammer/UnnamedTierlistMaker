@@ -1,7 +1,5 @@
 CURRENT WORK:
 
-- tiers CRUD
-
 THEN:
 
 SHORT IDEAS:
