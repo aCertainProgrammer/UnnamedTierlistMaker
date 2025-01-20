@@ -242,3 +242,20 @@ input[type="text"] {
 	height: var(--tierColorButtonHeight);
 	font-size: var(--removeTierButtonFontSize);
 }
+
+.tier-swapping-container {
+	height: 100%;
+	width: var(--tierlistTierHeight);
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	gap: 4px;
+	padding: 0px 2px;
+}
+
+.tier-swapping-arrow {
+	height: 50%;
+	width: 50%;
+	filter: invert(50%);
+}

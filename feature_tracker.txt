@@ -1,5 +1,7 @@
 CURRENT WORK:
 
+- Swap tier order
+
 THEN:
 
 SHORT IDEAS:
@@ -16,8 +18,6 @@ SHORT IDEAS:
 
 - Tierlist export all snaphots as images
 
-- Swap tier order
-
 - Champion preview instead of dummy
 
 - Moving tiers not with arrows but by dragging?
@@ -29,3 +29,7 @@ SHORT IDEAS:
 LONG IDEAS:
 
 BUGS:
+
+NOTES:
+
+- When swapping tiers I just swap the viewmodels around - might be a problem when saving/loading depending on what happens to the models

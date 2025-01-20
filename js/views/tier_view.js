@@ -142,6 +142,28 @@ export default class TierView {
 		}
 
 		this.tierContainer.appendChild(tierChampions);
+
+		const tierSwappingContainer = document.createElement("div");
+		tierSwappingContainer.classList.add("tier-swapping-container");
+
+		const tierUpArrow = document.createElement("img");
+		tierUpArrow.classList.add("tier-swapping-arrow");
+		tierUpArrow.src = "../img/up-arrow.png";
+
+		tierUpArrow.addEventListener("click", this.swapTierUp.bind(this));
+
+		tierSwappingContainer.appendChild(tierUpArrow);
+
+		const tierDownArrow = document.createElement("img");
+		tierDownArrow.classList.add("tier-swapping-arrow");
+		tierDownArrow.src = "../img/down-arrow.png";
+
+		tierDownArrow.addEventListener("click", this.swapTierDown.bind(this));
+
+		tierSwappingContainer.appendChild(tierDownArrow);
+
+		this.tierContainer.appendChild(tierSwappingContainer);
+
 		return this.tierContainer;
 	}
 
@@ -213,5 +235,17 @@ export default class TierView {
 
 	sendTierlistRenderSignal() {
 		this.tierlistRenderSignal();
+	}
+
+	swapTierUp() {
+		this.tierlistViewModel.swapTierUp(this.tierIndex);
+
+		this.sendTierlistRenderSignal();
+	}
+
+	swapTierDown() {
+		this.tierlistViewModel.swapTierDown(this.tierIndex);
+
+		this.sendTierlistRenderSignal();
 	}
 }

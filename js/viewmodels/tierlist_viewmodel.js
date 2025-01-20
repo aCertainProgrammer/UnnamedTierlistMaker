@@ -29,7 +29,7 @@ export default class TierlistViewModel {
 				this.tierViewModels[this.tierViewModels.length - 1].getTier();
 			const lastName = lastTier.name;
 
-			for (let i = 0; i < alphabet.length; i++) {
+			for (let i = 0; i < alphabet.length - 1; i++) {
 				if (lastName.toUpperCase() == alphabet[i])
 					name = alphabet[i + 1];
 			}
@@ -72,5 +72,21 @@ export default class TierlistViewModel {
 
 	changeTierColor(tierIndex, color) {
 		this.tierViewModels[tierIndex].setColor(color);
+	}
+
+	swapTierUp(tierIndex) {
+		if (tierIndex == 0) return;
+
+		const temp = this.tierViewModels[tierIndex];
+		this.tierViewModels[tierIndex] = this.tierViewModels[tierIndex - 1];
+		this.tierViewModels[tierIndex - 1] = temp;
+	}
+
+	swapTierDown(tierIndex) {
+		if (tierIndex == this.tierViewModels.length - 1) return;
+
+		const temp = this.tierViewModels[tierIndex];
+		this.tierViewModels[tierIndex] = this.tierViewModels[tierIndex + 1];
+		this.tierViewModels[tierIndex + 1] = temp;
 	}
 }

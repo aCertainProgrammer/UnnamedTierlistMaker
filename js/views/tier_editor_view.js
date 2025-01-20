@@ -77,7 +77,7 @@ export default class TierEditorView {
 		const tierColorEditorContainer = document.createElement("div");
 
 		const colors = [
-			"plum",
+			"deepskyblue",
 			"limegreen",
 			"greenyellow",
 			"yellow",
