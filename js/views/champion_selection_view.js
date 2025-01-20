@@ -23,6 +23,14 @@ export class ChampionSelectionView {
 	render() {
 		this.championSelection.innerHTML = "";
 
+		const championNameContainers = document.querySelectorAll(
+			".champion-name-container-on-hover",
+		);
+		if (championNameContainers != null) {
+			for (let i = 0; i < championNameContainers.length; i++) {
+				championNameContainers[i].remove();
+			}
+		}
 		const champions = this.championSelectionViewModel.getChampions();
 
 		for (let i = 0; i < champions.length; i++) {
