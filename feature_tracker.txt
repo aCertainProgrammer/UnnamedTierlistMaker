@@ -1,14 +1,12 @@
 CURRENT WORK:
 
-- Name on hover
+- global keyboard handling (pub-sub)
 
 THEN:
 
 SHORT IDEAS:
 
 - shortcuts 1234 to select a champion into a tier
-
-- global keyboard handling (pub-sub)
 
 - saving tiers
 
@@ -21,8 +19,6 @@ SHORT IDEAS:
 - Champion preview instead of dummy
 
 - Moving tiers not with arrows but by dragging?
-
-- S tier candidates: deepskyblue, 
 
 LONG IDEAS:
 
