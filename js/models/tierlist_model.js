@@ -32,9 +32,7 @@ export class TierlistModel {
 	}
 
 	removeTier(index) {
-		console.log(this.tiers);
 		this.tiers.splice(index, 1);
-		console.log(this.tiers);
 	}
 
 	getTiers() {

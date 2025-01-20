@@ -190,7 +190,6 @@ export default class TierView {
 				tier: index,
 				champion: champion,
 			});
-			console.log(dragData);
 
 			event.dataTransfer.clearData();
 			event.dataTransfer.setData("text/plain", dragData);
