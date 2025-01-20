@@ -1,5 +1,6 @@
 export class ChampionSelectionViewModel {
-	constructor(model) {
+	constructor(model, notificationCenter) {
+		this.notificationCenter = notificationCenter;
 		this.model = model;
 		this.champions = [];
 	}

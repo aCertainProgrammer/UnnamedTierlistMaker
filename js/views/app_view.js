@@ -1,16 +1,17 @@
 import MainScreenView from "./main_screen_view.js";
+import KeyboardView from "./keyboard_view.js";
 export default class AppView {
-	constructor(viewmodel) {
-		this.viewmodel = viewmodel;
+	constructor(appViewModel) {
+		this.appViewModel = appViewModel;
 		this.mainScreenView = null;
 
 		this.appContainer = document.getElementById("root");
-		this.initialize();
-	}
-
-	initialize() {
 		this.mainScreenView = new MainScreenView(
-			this.viewmodel.mainScreenViewModel,
+			this.appViewModel.mainScreenViewModel,
+		);
+
+		this.keyboardView = new KeyboardView(
+			this.appViewModel.keyboardViewModel,
 		);
 	}
 

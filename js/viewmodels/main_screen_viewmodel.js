@@ -4,7 +4,8 @@ import { ChampionSelectionModel } from "../models/champion_selection_model.js";
 import { ChampionSelectionViewModel } from "./champion_selection_viewmodel.js";
 
 export default class MainScreenViewModel {
-	constructor() {
+	constructor(notificationCenter) {
+		this.notificationCenter = notificationCenter;
 		this.tierlistViewModel = new TierlistViewModel();
 
 		const tiersOnLoad = 5;
@@ -25,6 +26,7 @@ export default class MainScreenViewModel {
 		const championSelectionModel = new ChampionSelectionModel();
 		this.championSelectionViewModel = new ChampionSelectionViewModel(
 			championSelectionModel,
+			this.notificationCenter,
 		);
 	}
 

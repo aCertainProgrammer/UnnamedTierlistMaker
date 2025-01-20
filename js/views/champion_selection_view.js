@@ -1,7 +1,9 @@
 import { capitalize, prettifyChampionName } from "../util.js";
 export class ChampionSelectionView {
-	constructor(championSelectionViewModel) {
+	constructor(championSelectionViewModel, notificationCenter) {
 		this.championSelectionViewModel = championSelectionViewModel;
+		this.notificationCenter =
+			this.championSelectionViewModel.notificationCenter;
 		this.championSelection = document.getElementById("champion-selection");
 		this.searchBar = document.getElementById(
 			"champion-selection-search-bar",
@@ -11,6 +13,11 @@ export class ChampionSelectionView {
 			this.searchChampions.bind(this),
 		);
 		if (this.searchBar.value != "") this.searchChampions();
+
+		this.notificationCenter.subscribe(
+			"key",
+			this.handleKeyEvent.bind(this),
+		);
 	}
 
 	render() {
@@ -95,5 +102,14 @@ export class ChampionSelectionView {
 			this.championSelectionViewModel.searchChampions(search_query);
 
 		this.render();
+	}
+
+	handleKeyEvent(data) {
+		if (data.target != "championSelectionSearchBar") return;
+		const key = data.key;
+		const letterRegex = /^[A-Za-z]$/;
+		if (key.match(letterRegex)) {
+			this.searchBar.focus();
+		}
 	}
 }
