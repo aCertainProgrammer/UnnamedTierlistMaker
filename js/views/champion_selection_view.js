@@ -115,10 +115,11 @@ export class ChampionSelectionView {
 			this.searchBar.focus();
 			return;
 		} else if (key == "Backspace") {
-			const value = this.searchBar.value;
-			this.searchBar.value = "";
-			this.searchBar.focus();
-			this.searchBar.value = value;
+			if (document.activeElement != this.searchBar) {
+				this.searchBar.focus();
+				const length = this.searchBar.value.length;
+				this.searchBar.setSelectionRange(length, length);
+			}
 		} else {
 			this.searchBar.blur();
 		}
