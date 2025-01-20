@@ -68,11 +68,14 @@ export class ChampionSelectionView {
 			);
 			championNameContainer.innerText = prettifyChampionName(champion);
 
-			const rect = championIcon.getBoundingClientRect();
-			championNameContainer.style.top = parseInt(rect.y - 30) + "px";
-			championNameContainer.style.left = parseInt(rect.x) + "px";
-
 			document.body.appendChild(championNameContainer);
+
+			const rect = championIcon.getBoundingClientRect();
+			const nameRect = championNameContainer.getBoundingClientRect();
+			const width = parseInt(nameRect.width);
+			championNameContainer.style.top = parseInt(rect.y - 30) + "px";
+			championNameContainer.style.left =
+				parseInt(rect.x + 40 - width / 2) + "px";
 		});
 
 		championIcon.addEventListener("mouseleave", () => {
