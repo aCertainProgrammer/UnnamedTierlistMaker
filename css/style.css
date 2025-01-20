@@ -257,5 +257,7 @@ input[type="text"] {
 .tier-swapping-arrow {
 	height: 50%;
 	width: 50%;
+	max-height: 40px;
+	max-width: 28px;
 	filter: invert(50%);
 }
