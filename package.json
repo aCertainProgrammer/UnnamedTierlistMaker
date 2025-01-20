@@ -21,5 +21,8 @@
 	},
 	"jest": {
 		"testEnvironment": "jsdom"
+	},
+	"dependencies": {
+		"@intactile/dom-to-image-next": "^3.0.3"
 	}
 }

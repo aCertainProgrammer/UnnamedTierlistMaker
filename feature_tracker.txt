@@ -1,6 +1,6 @@
 CURRENT WORK:
 
-- Swap tier order
+- Tierlist export image
 
 THEN:
 
@@ -11,8 +11,6 @@ SHORT IDEAS:
 - global keyboard handling (pub-sub)
 
 - saving tiers
-
-- Tierlist export image
 
 - Tierlist snapshots
 
