@@ -1,4 +1,4 @@
-import { capitalize } from "../util.js";
+import { capitalize, prettifyChampionName } from "../util.js";
 import TierViewModel from "../viewmodels/tier_viewmodel.js";
 import TierEditorView from "./tier_editor_view.js";
 export default class TierView {

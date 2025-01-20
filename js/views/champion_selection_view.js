@@ -1,4 +1,4 @@
-import { capitalize } from "../util.js";
+import { capitalize, prettifyChampionName } from "../util.js";
 export class ChampionSelectionView {
 	constructor(championSelectionViewModel) {
 		this.championSelectionViewModel = championSelectionViewModel;
@@ -59,6 +59,30 @@ export class ChampionSelectionView {
 			event.preventDefault();
 			const dragImage = document.querySelector("#drag-image");
 			document.body.removeChild(dragImage);
+		});
+
+		championIcon.addEventListener("mouseenter", () => {
+			const championNameContainer = document.createElement("div");
+			championNameContainer.classList.add(
+				"champion-name-container-on-hover",
+			);
+			championNameContainer.innerText = prettifyChampionName(champion);
+
+			const rect = championIcon.getBoundingClientRect();
+			championNameContainer.style.top = parseInt(rect.y - 30) + "px";
+			championNameContainer.style.left = parseInt(rect.x) + "px";
+
+			document.body.appendChild(championNameContainer);
+		});
+
+		championIcon.addEventListener("mouseleave", () => {
+			const championNameContainer = document.querySelector(
+				".champion-name-container-on-hover",
+			);
+
+			if (championNameContainer != null) {
+				championNameContainer.remove();
+			}
 		});
 	}
 

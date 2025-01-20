@@ -229,6 +229,7 @@ input[type="text"] {
 }
 
 .champion-icon {
+	position: relative;
 	cursor: pointer;
 }
 
@@ -260,4 +261,11 @@ input[type="text"] {
 	max-height: 40px;
 	max-width: 28px;
 	filter: invert(50%);
+}
+
+.champion-name-container-on-hover {
+	position: absolute;
+	background: var(--bodyBackgroundColor);
+	padding: 4px 4px;
+	color: var(--generalTextColor);
 }

@@ -1,6 +1,6 @@
 CURRENT WORK:
 
-- Tierlist export image
+- Name on hover
 
 THEN:
 
@@ -12,6 +12,8 @@ SHORT IDEAS:
 
 - saving tiers
 
+- Tierlist export image
+
 - Tierlist snapshots
 
 - Tierlist export all snaphots as images
@@ -19,8 +21,6 @@ SHORT IDEAS:
 - Champion preview instead of dummy
 
 - Moving tiers not with arrows but by dragging?
-
-- Name on hover
 
 - S tier candidates: deepskyblue, 
 
