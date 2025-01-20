@@ -2,8 +2,24 @@ import TierModel from "../models/tier_model.js";
 import TierViewModel from "./tier_viewmodel.js";
 
 export default class TierlistViewModel {
-	constructor() {
+	constructor(notificationCenter) {
 		this.tierViewModels = [];
+		this.notificationCenter = notificationCenter;
+		this.notificationCenter.subscribe(
+			"pickChampion",
+			this.pickChampion.bind(this),
+		);
+	}
+
+	pickChampion(data) {
+		const champion = data.champion;
+		const index = parseInt(data.key) - 1;
+
+		if (index < 0) return;
+		if (this.tierViewModels.length <= index) return;
+
+		this.addChampion(champion, index);
+		this.notificationCenter.publish("refreshTierlist", {});
 	}
 
 	addChampion(champion, tierIndex) {

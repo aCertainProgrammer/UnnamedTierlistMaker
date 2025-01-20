@@ -6,7 +6,7 @@ import { ChampionSelectionViewModel } from "./champion_selection_viewmodel.js";
 export default class MainScreenViewModel {
 	constructor(notificationCenter) {
 		this.notificationCenter = notificationCenter;
-		this.tierlistViewModel = new TierlistViewModel();
+		this.tierlistViewModel = new TierlistViewModel(this.notificationCenter);
 
 		const tiersOnLoad = 5;
 		const colors = [

@@ -105,11 +105,20 @@ export class ChampionSelectionView {
 	}
 
 	handleKeyEvent(data) {
-		if (data.target != "championSelectionSearchBar") return;
+		if (data.target != "championSelectionSearchBar") {
+			this.searchBar.blur();
+			return;
+		}
 		const key = data.key;
 		const letterRegex = /^[A-Za-z]$/;
 		if (key.match(letterRegex)) {
 			this.searchBar.focus();
+			return;
+		} else if (key == "Backspace") {
+			this.searchBar.value = "a";
+			this.searchBar.focus();
+		} else {
+			this.searchBar.blur();
 		}
 	}
 }

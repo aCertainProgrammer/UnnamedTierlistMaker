@@ -3,11 +3,17 @@ import { capitalize } from "../util.js";
 export class TierlistView {
 	constructor(tierlistViewModel) {
 		this.tierlistViewModel = tierlistViewModel;
+		this.notificationCenter = this.tierlistViewModel.notificationCenter;
 
 		this.tierlistContainer = document.getElementById("tierlist");
 		this.tierlistEditor = document.getElementById("tierlist-editor");
 
 		this.tierViews = [];
+
+		this.notificationCenter.subscribe(
+			"refreshTierlist",
+			this.render.bind(this),
+		);
 	}
 
 	render() {
