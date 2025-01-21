@@ -72,3 +72,8 @@ export function prettifyChampionName(name) {
 	}
 	return name;
 }
+
+export async function readFile(file) {
+	const text = file.text();
+	return text;
+}

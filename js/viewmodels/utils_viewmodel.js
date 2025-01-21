@@ -7,4 +7,14 @@ export default class UtilsViewModel {
 	clearTierlist() {
 		this.notificationCenter.publish("clearTierlist", {});
 	}
+
+	exportTierlist() {
+		this.notificationCenter.publish("exportTierlist", {});
+	}
+
+	importTierlist(event) {
+		this.notificationCenter.publish("importTierlist", {
+			file: event.target.files[0],
+		});
+	}
 }

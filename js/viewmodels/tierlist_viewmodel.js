@@ -1,9 +1,11 @@
 import TierModel from "../models/tier_model.js";
 import TierViewModel from "./tier_viewmodel.js";
+import { readFile } from "../util.js";
 
 export default class TierlistViewModel {
 	constructor(notificationCenter, tierlistModel) {
 		this.tierlistModel = tierlistModel;
+
 		this.notificationCenter = notificationCenter;
 		this.notificationCenter.subscribe(
 			"pickChampion",
@@ -12,6 +14,14 @@ export default class TierlistViewModel {
 		this.notificationCenter.subscribe(
 			"clearTierlist",
 			this.clearTierlist.bind(this),
+		);
+		this.notificationCenter.subscribe(
+			"exportTierlist",
+			this.exportTierlist.bind(this),
+		);
+		this.notificationCenter.subscribe(
+			"importTierlist",
+			this.importTierlist.bind(this),
 		);
 
 		this.tierViewModels = null;
@@ -156,5 +166,34 @@ export default class TierlistViewModel {
 		this.loadTiers();
 		this.saveTierlist(this.tierViewModels);
 		this.notificationCenter.publish("refreshTierlist");
+	}
+
+	exportTierlist() {
+		const tierlist = this.tierlistModel.getSavedTierlist();
+
+		const blob = new Blob([JSON.stringify(tierlist, null, 4)], {
+			type: "plain/text",
+		});
+		const fileUrl = URL.createObjectURL(blob);
+		const downloadElement = document.createElement("a");
+		downloadElement.href = fileUrl;
+		downloadElement.download = "tierlist.json";
+		downloadElement.style.display = "none";
+		document.body.appendChild(downloadElement);
+		downloadElement.click();
+		document.body.removeChild(downloadElement);
+	}
+
+	async importTierlist(data) {
+		const text = await readFile(data.file);
+
+		try {
+			const json = JSON.parse(text);
+			this.tierlistModel.saveTierlist(json);
+			this.loadTiers();
+			this.notificationCenter.publish("refreshTierlist");
+		} catch (e) {
+			console.log(e);
+		}
 	}
 }
