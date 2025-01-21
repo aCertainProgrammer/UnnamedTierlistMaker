@@ -148,6 +148,7 @@ export default class TierView {
 		const tierUpArrow = document.createElement("img");
 		tierUpArrow.classList.add("tier-swapping-arrow");
 		tierUpArrow.src = "./img/up-arrow.png";
+		tierUpArrow.draggable = false;
 
 		tierUpArrow.addEventListener("click", this.swapTierUp.bind(this));
 
@@ -156,6 +157,7 @@ export default class TierView {
 		const tierDownArrow = document.createElement("img");
 		tierDownArrow.classList.add("tier-swapping-arrow");
 		tierDownArrow.src = "./img/down-arrow.png";
+		tierDownArrow.draggable = false;
 
 		tierDownArrow.addEventListener("click", this.swapTierDown.bind(this));
 
