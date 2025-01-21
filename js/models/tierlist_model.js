@@ -1,6 +1,8 @@
 export default class TierlistModel {
-	constructor() {
-		this.defaultData = [
+	constructor() {}
+
+	getSavedTierlist() {
+		const defaultData = [
 			{
 				name: "S",
 				champions: [],
@@ -27,17 +29,21 @@ export default class TierlistModel {
 				color: "tomato",
 			},
 		];
-	}
 
-	getSavedTierlist() {
-		let tierlistData = localStorage.getItem("tierlist");
+		const tierlistData = localStorage.getItem("tierlist");
 
-		if (tierlistData == null) return this.defaultData;
+		if (tierlistData == null) {
+			return defaultData;
+		}
 
 		return JSON.parse(tierlistData);
 	}
 
 	saveTierlist(tiers) {
 		localStorage.setItem("tierlist", JSON.stringify(tiers));
+	}
+
+	clearTierlist() {
+		localStorage.removeItem("tierlist");
 	}
 }

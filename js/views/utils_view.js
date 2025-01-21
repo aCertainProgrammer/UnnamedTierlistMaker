@@ -5,7 +5,7 @@ export default class UtilsView {
 
 		this.clearTierlistButton = document.createElement("input");
 		this.clearTierlistButton.type = "button";
-		this.clearTierlistButton.value = "Clear tierlist";
+		this.clearTierlistButton.value = "Reset tierlist";
 		this.clearTierlistButton.classList.add("normal-button");
 
 		this.clearTierlistButton.addEventListener(

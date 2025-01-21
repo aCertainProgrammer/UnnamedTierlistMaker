@@ -14,7 +14,8 @@ export default class TierlistViewModel {
 			this.clearTierlist.bind(this),
 		);
 
-		this.tierViewModels = this.loadTiers();
+		this.tierViewModels = null;
+		this.loadTiers();
 	}
 
 	loadTiers() {
@@ -29,7 +30,7 @@ export default class TierlistViewModel {
 			tierViewModels.push(tierViewModel);
 		}
 
-		return tierViewModels;
+		this.tierViewModels = tierViewModels;
 	}
 
 	saveTierlist() {
@@ -150,11 +151,10 @@ export default class TierlistViewModel {
 	}
 
 	clearTierlist() {
-		for (let i = 0; i < this.tierViewModels.length; i++) {
-			this.tierViewModels[i].clearTier();
-		}
+		this.tierlistModel.clearTierlist();
 
-		this.saveTierlist();
+		this.loadTiers();
+		this.saveTierlist(this.tierViewModels);
 		this.notificationCenter.publish("refreshTierlist");
 	}
 }
