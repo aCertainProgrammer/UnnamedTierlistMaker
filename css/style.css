@@ -260,6 +260,8 @@ input[type="text"] {
 	width: 50%;
 	min-height: 40px;
 	min-width: 28px;
+	max-height: 40px;
+	max-width: 28px;
 	filter: invert(50%);
 }
 
