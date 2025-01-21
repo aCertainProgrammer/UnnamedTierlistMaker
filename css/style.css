@@ -285,3 +285,7 @@ input[type="text"] {
 	justify-content: start;
 	padding: 4px 4px;
 }
+
+.hidden {
+	display: none !important;
+}
