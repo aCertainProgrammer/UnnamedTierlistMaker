@@ -1,5 +1,4 @@
 import TierView from "./tier_view.js";
-import { capitalize } from "../util.js";
 export class TierlistView {
 	constructor(tierlistViewModel) {
 		this.tierlistViewModel = tierlistViewModel;

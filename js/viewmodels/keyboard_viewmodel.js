@@ -1,7 +1,5 @@
-import KeyboardModel from "../models/keyboard_model.js";
 export default class KeyboardViewModel {
-	constructor(keyboardModel, notificationCenter) {
-		this.keyboardModel = keyboardModel;
+	constructor(notificationCenter) {
 		this.notificationCenter = notificationCenter;
 	}
 

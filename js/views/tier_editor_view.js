@@ -1,4 +1,3 @@
-import TierlistViewModel from "../viewmodels/tierlist_viewmodel.js";
 export default class TierEditorView {
 	/**
 	 * @constructor

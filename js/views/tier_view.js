@@ -1,5 +1,4 @@
-import { capitalize, prettifyChampionName } from "../util.js";
-import TierViewModel from "../viewmodels/tier_viewmodel.js";
+import { capitalize } from "../util.js";
 import TierEditorView from "./tier_editor_view.js";
 export default class TierView {
 	/**
@@ -35,7 +34,7 @@ export default class TierView {
 		this.tierNameSize = 90;
 		this.borderSize = 1;
 
-		this.dropFunction = function (index) {
+		this.dropFunction = function () {
 			event.stopPropagation();
 			const dropData = JSON.parse(
 				event.dataTransfer.getData("text/plain"),
@@ -120,7 +119,7 @@ export default class TierView {
 		tierName.style.backgroundColor = tier.color;
 
 		tierName.addEventListener("click", () => {
-			const tierEditorView = new TierEditorView(
+			new TierEditorView(
 				this.tierlistViewModel,
 				tier,
 				this.tierIndex,

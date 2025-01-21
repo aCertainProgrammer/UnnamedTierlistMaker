@@ -1,6 +1,6 @@
 import { capitalize, prettifyChampionName } from "../util.js";
 export class ChampionSelectionView {
-	constructor(championSelectionViewModel, notificationCenter) {
+	constructor(championSelectionViewModel) {
 		this.championSelectionViewModel = championSelectionViewModel;
 		this.notificationCenter =
 			this.championSelectionViewModel.notificationCenter;
@@ -106,8 +106,7 @@ export class ChampionSelectionView {
 
 	searchChampions() {
 		const search_query = this.searchBar.value.trim();
-		let data =
-			this.championSelectionViewModel.searchChampions(search_query);
+		this.championSelectionViewModel.searchChampions(search_query);
 
 		this.render();
 	}
