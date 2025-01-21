@@ -1,26 +1,17 @@
 import TierlistViewModel from "./tierlist_viewmodel.js";
 import { ChampionSelectionModel } from "../models/champion_selection_model.js";
 import { ChampionSelectionViewModel } from "./champion_selection_viewmodel.js";
+import TierlistModel from "../models/tierlist_model.js";
 
 export default class MainScreenViewModel {
 	constructor(notificationCenter) {
 		this.notificationCenter = notificationCenter;
-		this.tierlistViewModel = new TierlistViewModel(this.notificationCenter);
 
-		const tiersOnLoad = 5;
-		const colors = [
-			"deepskyblue",
-			"limegreen",
-			"yellow",
-			"orange",
-			"tomato",
-		];
-		for (let i = 0; i < tiersOnLoad; i++) {
-			this.tierlistViewModel.addTier();
-			this.tierlistViewModel.changeTierColor(i, colors[i]);
-		}
-
-		this.tierlistViewModel.tierViewModels[tiersOnLoad - 1].setName("F");
+		const tierlistModel = new TierlistModel();
+		this.tierlistViewModel = new TierlistViewModel(
+			this.notificationCenter,
+			tierlistModel,
+		);
 
 		const championSelectionModel = new ChampionSelectionModel();
 		this.championSelectionViewModel = new ChampionSelectionViewModel(

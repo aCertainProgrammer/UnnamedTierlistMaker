@@ -1,14 +1,10 @@
 CURRENT WORK:
 
-- global keyboard handling (pub-sub)
+- saving tiers
 
 THEN:
 
 SHORT IDEAS:
-
-- shortcuts 1234 to select a champion into a tier
-
-- saving tiers
 
 - Tierlist export image
 

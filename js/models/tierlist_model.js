@@ -1,62 +1,43 @@
-export class TierlistModel {
+export default class TierlistModel {
 	constructor() {
-		this.tiers = [
+		this.defaultData = [
 			{
 				name: "S",
-				champions: ["camille", "renekton", "chogath"],
+				champions: [],
+				color: "deepskyblue",
 			},
 			{
 				name: "A",
-				champions: [
-					"aurora",
-					"ahri",
-					"aatrox",
-					"lillia",
-					"fiora",
-					"kassadin",
-				],
+				champions: [],
+				color: "limegreen",
 			},
 			{
 				name: "B",
-				champions: ["leona", "irelia", "yuumi"],
+				champions: [],
+				color: "yellow",
+			},
+			{
+				name: "C",
+				champions: [],
+				color: "orange",
 			},
 			{
 				name: "F",
-				champions: ["gnar", "udyr", "ivern"],
+				champions: [],
+				color: "tomato",
 			},
 		];
 	}
 
-	addTier() {
-		this.tiers.push({ name: "X", champions: [] });
+	getSavedTierlist() {
+		let tierlistData = localStorage.getItem("tierlist");
+
+		if (tierlistData == null) return this.defaultData;
+
+		return JSON.parse(tierlistData);
 	}
 
-	removeTier(index) {
-		this.tiers.splice(index, 1);
-	}
-
-	getTiers() {
-		return this.tiers;
-	}
-
-	addChampion(champion, index) {
-		this.tiers[index].addChampion(champion);
-	}
-
-	addChampionAtIndex(tierIndex, championIndex, champion) {
-		this.tiers[tierIndex].champions.splice(championIndex, 0, champion);
-	}
-
-	removeChampion(index, champion) {
-		const champion_index = this.tiers[index].champions.findIndex(
-			(element) => element == champion,
-		);
-		if (champion_index == -1) return;
-
-		this.tiers[index].champions.splice(champion_index, 1);
-	}
-
-	changeTierName(index, name) {
-		this.tiers[index].name = name;
+	saveTierlist(tiers) {
+		localStorage.setItem("tierlist", JSON.stringify(tiers));
 	}
 }

@@ -2,13 +2,41 @@ import TierModel from "../models/tier_model.js";
 import TierViewModel from "./tier_viewmodel.js";
 
 export default class TierlistViewModel {
-	constructor(notificationCenter) {
-		this.tierViewModels = [];
+	constructor(notificationCenter, tierlistModel) {
+		this.tierlistModel = tierlistModel;
 		this.notificationCenter = notificationCenter;
 		this.notificationCenter.subscribe(
 			"pickChampion",
 			this.pickChampion.bind(this),
 		);
+
+		this.tierViewModels = this.loadTiers();
+	}
+
+	loadTiers() {
+		const tierViewModels = [];
+
+		const tierlistData = this.tierlistModel.getSavedTierlist();
+		for (let i = 0; i < tierlistData.length; i++) {
+			const tierModel = new TierModel(tierlistData[i].name);
+			tierModel.champions = tierlistData[i].champions;
+			tierModel.color = tierlistData[i].color;
+			const tierViewModel = new TierViewModel(tierModel);
+			tierViewModels.push(tierViewModel);
+		}
+
+		return tierViewModels;
+	}
+
+	saveTierlist() {
+		const tiersToSave = [];
+
+		for (let i = 0; i < this.tierViewModels.length; i++) {
+			const tierData = this.tierViewModels[i].getTier();
+			tiersToSave.push(tierData);
+		}
+
+		this.tierlistModel.saveTierlist(tiersToSave);
 	}
 
 	pickChampion(data) {
@@ -20,11 +48,14 @@ export default class TierlistViewModel {
 
 		this.addChampion(champion, index);
 		this.notificationCenter.publish("refreshTierlist", {});
+
+		this.saveTierlist();
 	}
 
 	addChampion(champion, tierIndex) {
 		this.tierViewModels[tierIndex].removeChampion(champion);
 		this.tierViewModels[tierIndex].addChampion(champion);
+		this.saveTierlist();
 	}
 
 	addChampionAtIndex(tierIndex, championIndex, champion) {
@@ -33,6 +64,7 @@ export default class TierlistViewModel {
 			champion,
 			championIndex,
 		);
+		this.saveTierlist();
 	}
 
 	addTier() {
@@ -55,6 +87,7 @@ export default class TierlistViewModel {
 		const tierViewModel = new TierViewModel(tierModel);
 
 		this.tierViewModels.push(tierViewModel);
+		this.saveTierlist();
 	}
 
 	getTiers() {
@@ -69,25 +102,29 @@ export default class TierlistViewModel {
 
 	removeTier(index) {
 		this.tierViewModels.splice(index, 1);
+		this.saveTierlist();
 	}
 
 	removeChampion(tierIndex, champion) {
 		this.tierViewModels[tierIndex].removeChampion(champion);
-		return true;
+		this.saveTierlist();
 	}
 
 	removeDummies() {
 		for (let i = 0; i < this.tierViewModels.length; i++) {
 			this.tierViewModels[i].removeChampion("dummy");
 		}
+		this.saveTierlist();
 	}
 
 	changeTierName(tierIndex, name) {
 		this.tierViewModels[tierIndex].setName(name);
+		this.saveTierlist();
 	}
 
 	changeTierColor(tierIndex, color) {
 		this.tierViewModels[tierIndex].setColor(color);
+		this.saveTierlist();
 	}
 
 	swapTierUp(tierIndex) {
@@ -96,6 +133,7 @@ export default class TierlistViewModel {
 		const temp = this.tierViewModels[tierIndex];
 		this.tierViewModels[tierIndex] = this.tierViewModels[tierIndex - 1];
 		this.tierViewModels[tierIndex - 1] = temp;
+		this.saveTierlist();
 	}
 
 	swapTierDown(tierIndex) {
@@ -104,5 +142,6 @@ export default class TierlistViewModel {
 		const temp = this.tierViewModels[tierIndex];
 		this.tierViewModels[tierIndex] = this.tierViewModels[tierIndex + 1];
 		this.tierViewModels[tierIndex + 1] = temp;
+		this.saveTierlist();
 	}
 }
