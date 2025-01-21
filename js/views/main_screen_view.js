@@ -1,5 +1,6 @@
 import { TierlistView } from "./tierlist_view.js";
 import { ChampionSelectionView } from "./champion_selection_view.js";
+import UtilsView from "./utils_view.js";
 
 export default class MainScreenView {
 	constructor(mainScreenViewModel) {
@@ -11,6 +12,7 @@ export default class MainScreenView {
 			event.preventDefault();
 		});
 
+		this.utilsView = new UtilsView(this.mainScreenViewModel.utilsViewModel);
 		this.tierlistView = new TierlistView(
 			this.mainScreenViewModel.tierlistViewModel,
 		);
@@ -20,6 +22,7 @@ export default class MainScreenView {
 	}
 
 	render() {
+		this.utilsView.render();
 		this.tierlistView.render();
 		this.championSelectionView.render();
 	}

@@ -1,7 +1,5 @@
 CURRENT WORK:
 
-- saving tiers
-
 THEN:
 
 SHORT IDEAS:
@@ -19,6 +17,8 @@ SHORT IDEAS:
 LONG IDEAS:
 
 BUGS:
+
+- champions overflow tiers on small resolutions
 
 NOTES:
 

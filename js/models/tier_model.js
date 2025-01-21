@@ -39,4 +39,8 @@ export default class TierModel {
 			color: this.color,
 		};
 	}
+
+	clearTier() {
+		this.champions = [];
+	}
 }

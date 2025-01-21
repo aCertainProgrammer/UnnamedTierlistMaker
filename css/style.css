@@ -49,6 +49,13 @@ body {
 
 #main-screen {
 	display: flex;
+	flex-direction: column;
+	align-items: start;
+	justify-content: center;
+}
+
+#not-utils {
+	display: flex;
 	flex-direction: row;
 	align-items: start;
 	justify-content: center;
@@ -245,7 +252,6 @@ input[type="text"] {
 }
 
 .tier-swapping-container {
-	height: 100%;
 	width: var(--tierlistTierHeight);
 	display: flex;
 	flex-direction: row;
@@ -270,4 +276,12 @@ input[type="text"] {
 	background: var(--bodyBackgroundColor);
 	padding: 4px 4px;
 	color: var(--generalTextColor);
+}
+
+#utils {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: start;
+	padding: 4px 4px;
 }

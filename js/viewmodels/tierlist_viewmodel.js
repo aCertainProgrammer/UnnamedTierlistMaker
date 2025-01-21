@@ -9,6 +9,10 @@ export default class TierlistViewModel {
 			"pickChampion",
 			this.pickChampion.bind(this),
 		);
+		this.notificationCenter.subscribe(
+			"clearTierlist",
+			this.clearTierlist.bind(this),
+		);
 
 		this.tierViewModels = this.loadTiers();
 	}
@@ -143,5 +147,14 @@ export default class TierlistViewModel {
 		this.tierViewModels[tierIndex] = this.tierViewModels[tierIndex + 1];
 		this.tierViewModels[tierIndex + 1] = temp;
 		this.saveTierlist();
+	}
+
+	clearTierlist() {
+		for (let i = 0; i < this.tierViewModels.length; i++) {
+			this.tierViewModels[i].clearTier();
+		}
+
+		this.saveTierlist();
+		this.notificationCenter.publish("refreshTierlist");
 	}
 }

@@ -26,4 +26,8 @@ export default class TierViewModel {
 	getTier() {
 		return this.tierModel.getTier();
 	}
+
+	clearTier() {
+		this.tierModel.clearTier();
+	}
 }
