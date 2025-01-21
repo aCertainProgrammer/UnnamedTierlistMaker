@@ -77,3 +77,17 @@ export async function readFile(file) {
 	const text = file.text();
 	return text;
 }
+
+export function exportData(data, fileName) {
+	const blob = new Blob([JSON.stringify(data, null, 4)], {
+		type: "plain/text",
+	});
+	const fileUrl = URL.createObjectURL(blob);
+	const downloadElement = document.createElement("a");
+	downloadElement.href = fileUrl;
+	downloadElement.download = fileName;
+	downloadElement.style.display = "none";
+	document.body.appendChild(downloadElement);
+	downloadElement.click();
+	document.body.removeChild(downloadElement);
+}

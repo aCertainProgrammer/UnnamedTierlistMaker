@@ -17,4 +17,13 @@ export default class UtilsViewModel {
 			file: event.target.files[0],
 		});
 	}
+
+	usePoolTemplate() {
+		this.notificationCenter.publish("usePoolTemplate");
+	}
+
+	exportPoolTemplate() {
+		this.notificationCenter.publish("exportPoolTemplate");
+		console.log("hi");
+	}
 }

@@ -45,10 +45,34 @@ export default class UtilsView {
 
 		this.importTierlistButton.addEventListener(
 			"click",
-			this.clickImportButton.bind(this),
+			this.clickInput.bind(this, this.importTierlistInput),
 		);
 
 		this.utilsContainer.appendChild(this.importTierlistButton);
+
+		this.usePoolTemplateButton = document.createElement("input");
+		this.usePoolTemplateButton.type = "button";
+		this.usePoolTemplateButton.value = "Use draft pool template";
+		this.usePoolTemplateButton.classList.add("normal-button");
+
+		this.usePoolTemplateButton.addEventListener(
+			"click",
+			this.usePoolTemplate.bind(this),
+		);
+
+		this.utilsContainer.appendChild(this.usePoolTemplateButton);
+
+		this.exportDraftPoolButton = document.createElement("input");
+		this.exportDraftPoolButton.type = "button";
+		this.exportDraftPoolButton.value = "Export draft pool";
+		this.exportDraftPoolButton.classList.add("normal-button");
+
+		this.exportDraftPoolButton.addEventListener(
+			"click",
+			this.exportPoolTemplate.bind(this),
+		);
+
+		this.utilsContainer.appendChild(this.exportDraftPoolButton);
 	}
 
 	render() {}
@@ -61,11 +85,19 @@ export default class UtilsView {
 		this.utilsViewModel.exportTierlist();
 	}
 
-	clickImportButton() {
-		this.importTierlistInput.click();
+	clickInput(button) {
+		button.click();
 	}
 
 	importTierlist(event) {
 		this.utilsViewModel.importTierlist(event);
+	}
+
+	usePoolTemplate() {
+		this.utilsViewModel.usePoolTemplate();
+	}
+
+	exportPoolTemplate() {
+		this.utilsViewModel.exportPoolTemplate();
 	}
 }

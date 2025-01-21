@@ -1,6 +1,6 @@
 import TierModel from "../models/tier_model.js";
 import TierViewModel from "./tier_viewmodel.js";
-import { readFile } from "../util.js";
+import { readFile, exportData } from "../util.js";
 
 export default class TierlistViewModel {
 	constructor(notificationCenter, tierlistModel) {
@@ -22,6 +22,14 @@ export default class TierlistViewModel {
 		this.notificationCenter.subscribe(
 			"importTierlist",
 			this.importTierlist.bind(this),
+		);
+		this.notificationCenter.subscribe(
+			"usePoolTemplate",
+			this.usePoolTemplate.bind(this),
+		);
+		this.notificationCenter.subscribe(
+			"exportPoolTemplate",
+			this.exportPoolTemplate.bind(this),
 		);
 
 		this.tierViewModels = null;
@@ -170,18 +178,7 @@ export default class TierlistViewModel {
 
 	exportTierlist() {
 		const tierlist = this.tierlistModel.getSavedTierlist();
-
-		const blob = new Blob([JSON.stringify(tierlist, null, 4)], {
-			type: "plain/text",
-		});
-		const fileUrl = URL.createObjectURL(blob);
-		const downloadElement = document.createElement("a");
-		downloadElement.href = fileUrl;
-		downloadElement.download = "tierlist.json";
-		downloadElement.style.display = "none";
-		document.body.appendChild(downloadElement);
-		downloadElement.click();
-		document.body.removeChild(downloadElement);
+		exportData(tierlist, "tierlist.json");
 	}
 
 	async importTierlist(data) {
@@ -195,5 +192,35 @@ export default class TierlistViewModel {
 		} catch (e) {
 			console.log(e);
 		}
+	}
+
+	usePoolTemplate() {
+		const tierViewModels = [];
+
+		const tierlistData = this.tierlistModel.loadPoolTemplate();
+		for (let i = 0; i < tierlistData.length; i++) {
+			const tierModel = new TierModel(tierlistData[i].name);
+			tierModel.champions = tierlistData[i].champions;
+			tierModel.color = tierlistData[i].color;
+			const tierViewModel = new TierViewModel(tierModel);
+			tierViewModels.push(tierViewModel);
+		}
+
+		this.tierViewModels = tierViewModels;
+		this.saveTierlist();
+		this.notificationCenter.publish("refreshTierlist");
+	}
+
+	exportPoolTemplate() {
+		const tiers = this.getTiers();
+		const template = {
+			top: tiers[0].champions,
+			jungle: tiers[1].champions,
+			mid: tiers[2].champions,
+			adc: tiers[3].champions,
+			support: tiers[4].champions,
+		};
+
+		exportData(template, "team_pool.json");
 	}
 }

@@ -46,4 +46,36 @@ export default class TierlistModel {
 	clearTierlist() {
 		localStorage.removeItem("tierlist");
 	}
+
+	loadPoolTemplate() {
+		const poolTemplate = [
+			{
+				name: "Top",
+				champions: [],
+				color: "deepskyblue",
+			},
+			{
+				name: "Jungle",
+				champions: [],
+				color: "limegreen",
+			},
+			{
+				name: "Mid",
+				champions: [],
+				color: "yellow",
+			},
+			{
+				name: "Bottom",
+				champions: [],
+				color: "orange",
+			},
+			{
+				name: "Support",
+				champions: [],
+				color: "tomato",
+			},
+		];
+
+		return poolTemplate;
+	}
 }
