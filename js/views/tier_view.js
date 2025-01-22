@@ -31,8 +31,8 @@ export default class TierView {
 		this.championDragIndex = -1;
 
 		this.imageSize = 80;
-		this.tierNameSize = 90;
-		this.borderSize = 1;
+		this.tierNameSize = 80;
+		this.swapArrowsSize = 80;
 
 		this.dropFunction = function () {
 			event.stopPropagation();
@@ -66,23 +66,20 @@ export default class TierView {
 			);
 			this.dragData.y = event.clientY - rect.top;
 
-			const tierLengthWithoutName = parseInt(
-				rect.right -
-					rect.left -
-					this.tierNameSize -
-					2 * this.borderSize,
+			const tierChampions = this.tierContainer.children[1];
+			const tierChampionsRect = tierChampions.getBoundingClientRect();
+			const tierLengthWithoutNameAndSwapArrows = parseInt(
+				tierChampionsRect.width,
 			);
 			const championsPerRow = parseInt(
-				tierLengthWithoutName / this.imageSize,
+				tierLengthWithoutNameAndSwapArrows / this.imageSize,
 			);
 
-			const tierHeight = parseInt(
-				rect.bottom - rect.top - 2 * this.borderSize,
-			);
+			const tierHeight = parseInt(rect.bottom - rect.top);
 			const currentRow = this.findCurrentRow(this.dragData.y, tierHeight);
 			const currentColumn = this.findCurrentColumn(
 				this.dragData.x,
-				tierLengthWithoutName,
+				tierLengthWithoutNameAndSwapArrows,
 			);
 
 			let index = currentRow * championsPerRow + currentColumn;
@@ -96,6 +93,9 @@ export default class TierView {
 				this.tierViewModel.addChampionAtIndex("dummy", index);
 
 				this.render();
+				//console.log(
+				//	`We are in row ${currentRow} and column ${currentColumn}, there are currently ${championsPerRow} championsPerRow, meaning our index is ${index}`,
+				//);
 			}
 
 			this.championDragIndex = index;
