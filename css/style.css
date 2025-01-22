@@ -86,7 +86,6 @@ body {
 	display: flex;
 	flex-direction: row;
 	width: 100%;
-	min-height: var(--tierlistTierHeight);
 	background: var(--tierBackgroundColor);
 	box-shadow: var(--tierContainerBoxShadow);
 }
