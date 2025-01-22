@@ -73,6 +73,18 @@ export default class UtilsView {
 		);
 
 		this.utilsContainer.appendChild(this.exportDraftPoolButton);
+
+		this.exportPngButton = document.createElement("input");
+		this.exportPngButton.type = "button";
+		this.exportPngButton.value = "Export image";
+		this.exportPngButton.classList.add("normal-button");
+
+		this.exportPngButton.addEventListener(
+			"click",
+			this.exportPng.bind(this),
+		);
+
+		this.utilsContainer.appendChild(this.exportPngButton);
 	}
 
 	render() {}
@@ -99,5 +111,9 @@ export default class UtilsView {
 
 	exportPoolTemplate() {
 		this.utilsViewModel.exportPoolTemplate();
+	}
+
+	exportPng() {
+		this.utilsViewModel.exportPng();
 	}
 }

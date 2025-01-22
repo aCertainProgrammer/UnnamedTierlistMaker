@@ -1,6 +1,7 @@
 import TierModel from "../models/tier_model.js";
 import TierViewModel from "./tier_viewmodel.js";
-import { readFile, exportData } from "../util.js";
+import { readFile, exportData, exportImage } from "../util.js";
+import domtoimage from "dom-to-image";
 
 export default class TierlistViewModel {
 	constructor(notificationCenter, tierlistModel) {
@@ -34,6 +35,10 @@ export default class TierlistViewModel {
 		this.notificationCenter.subscribe(
 			"key",
 			this.handleKeyboardInput.bind(this),
+		);
+		this.notificationCenter.subscribe(
+			"exportPng",
+			this.exportTierlistAsPng.bind(this),
 		);
 
 		this.tierViewModels = null;
@@ -243,5 +248,28 @@ export default class TierlistViewModel {
 		if (key == "Delete" && target == "mainScreen") {
 			this.clearTierlist();
 		}
+	}
+
+	exportTierlistAsPng() {
+		// This violates MVVM. Too bad!
+		const tierlist = document.getElementById("tierlist");
+		const rect = tierlist.getBoundingClientRect();
+		console.log(rect);
+		domtoimage
+			.toPng(tierlist, {
+				filter: function (node) {
+					if (node.classList == undefined) return true;
+					if (node.classList.contains("tier-swapping-container"))
+						return false;
+					if (node.classList.contains("tierlist-addition-element"))
+						return false;
+					return true;
+				},
+				height: parseInt(rect.height) - 80,
+				width: parseInt(rect.width),
+			})
+			.then(function (dataUrl) {
+				exportImage(dataUrl, "tierlist.png");
+			});
 	}
 }

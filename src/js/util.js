@@ -91,3 +91,13 @@ export function exportData(data, fileName) {
 	downloadElement.click();
 	document.body.removeChild(downloadElement);
 }
+
+export function exportImage(dataUrl, fileName) {
+	const downloadElement = document.createElement("a");
+	downloadElement.href = dataUrl;
+	downloadElement.download = fileName;
+	downloadElement.style.display = "none";
+	document.body.appendChild(downloadElement);
+	downloadElement.click();
+	document.body.removeChild(downloadElement);
+}
