@@ -95,7 +95,7 @@ body {
 	min-width: var(--tierlistTierHeight);
 	min-height: var(--tierlistTierHeight);
 	max-width: var(--tierlistTierHeight);
-	font-size: 3rem;
+	font-size: 1.5rem;
 	text-align: center;
 	text-wrap: wrap;
 	display: flex;
@@ -175,9 +175,10 @@ body {
 	background: var(--tierBackgroundColor);
 }
 .tier-name-editor {
-	max-width: 100px;
+	max-width: 120px;
 	font-size: var(--changeTierNameFontSize);
 	padding: 4px 0px;
+	text-align: center;
 }
 .tier-color-button {
 	height: var(--tierColorButtonHeight);
