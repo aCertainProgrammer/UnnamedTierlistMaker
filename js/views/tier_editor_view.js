@@ -6,11 +6,17 @@ export default class TierEditorView {
 	 * @param {number} tierIndex
 	 * @param {*} tierlistRenderSignal
 	 */
-	constructor(tierlistViewModel, tier, tierIndex, tierlistRenderSignal) {
+	constructor(tierlistViewModel, tier, tierIndex, notificationCenter) {
 		this.tierlistViewModel = tierlistViewModel;
 		this.tier = tier;
 		this.tierIndex = tierIndex;
-		this.tierlistRenderSignal = tierlistRenderSignal;
+
+		this.notificationCenter = notificationCenter;
+		this.notificationCenter.subscribe(
+			"key",
+			this.handleKeyboardInput.bind(this),
+		);
+
 		this.tierEditorOverlay = null;
 
 		this.render();
@@ -31,7 +37,7 @@ export default class TierEditorView {
 	}
 
 	sendTierlistRenderSignal() {
-		this.tierlistRenderSignal();
+		this.notificationCenter.publish("refreshTierlist");
 	}
 
 	createTierEditor(tier, index) {
@@ -118,5 +124,24 @@ export default class TierEditorView {
 		this.tierlistViewModel.changeTierColor(index, color);
 
 		this.sendTierlistRenderSignal();
+	}
+
+	handleKeyboardInput(data) {
+		if (data.target != "tierEditorOverlay") {
+			return;
+		}
+
+		const key = data.key;
+		const letterRegex = /^[A-Za-z]$/;
+		if (key.match(letterRegex)) {
+			const tierNameEditor = document.querySelector(".tier-name-editor");
+			if (document.activeElement != tierNameEditor) {
+				tierNameEditor.value = "";
+			}
+			tierNameEditor.focus();
+			return;
+		} else if (key == "Escape") {
+			this.tierEditorOverlay.remove();
+		}
 	}
 }

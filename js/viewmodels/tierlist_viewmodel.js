@@ -48,7 +48,10 @@ export default class TierlistViewModel {
 			const tierModel = new TierModel(tierlistData[i].name);
 			tierModel.champions = tierlistData[i].champions;
 			tierModel.color = tierlistData[i].color;
-			const tierViewModel = new TierViewModel(tierModel);
+			const tierViewModel = new TierViewModel(
+				tierModel,
+				this.notificationCenter,
+			);
 			tierViewModels.push(tierViewModel);
 		}
 
@@ -111,7 +114,10 @@ export default class TierlistViewModel {
 		}
 
 		const tierModel = new TierModel(name);
-		const tierViewModel = new TierViewModel(tierModel);
+		const tierViewModel = new TierViewModel(
+			tierModel,
+			this.notificationCenter,
+		);
 
 		this.tierViewModels.push(tierViewModel);
 		this.saveTierlist();
@@ -206,7 +212,10 @@ export default class TierlistViewModel {
 			const tierModel = new TierModel(tierlistData[i].name);
 			tierModel.champions = tierlistData[i].champions;
 			tierModel.color = tierlistData[i].color;
-			const tierViewModel = new TierViewModel(tierModel);
+			const tierViewModel = new TierViewModel(
+				tierModel,
+				this.notificationCenter,
+			);
 			tierViewModels.push(tierViewModel);
 		}
 

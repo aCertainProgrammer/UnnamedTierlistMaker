@@ -1,6 +1,7 @@
 export default class TierViewModel {
-	constructor(tierModel) {
+	constructor(tierModel, notificationCenter) {
 		this.tierModel = tierModel;
+		this.notificationCenter = notificationCenter;
 	}
 
 	addChampion(champion) {

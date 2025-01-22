@@ -123,7 +123,7 @@ export default class TierView {
 				this.tierlistViewModel,
 				tier,
 				this.tierIndex,
-				this.tierlistRenderSignal,
+				this.tierViewModel.notificationCenter,
 			);
 		});
 
