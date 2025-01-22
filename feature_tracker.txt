@@ -14,6 +14,8 @@ SHORT IDEAS:
 
 - Moving tiers not with arrows but by dragging?
 
+- Make a manual
+
 LONG IDEAS:
 
 BUGS:
