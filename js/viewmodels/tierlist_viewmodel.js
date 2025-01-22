@@ -31,6 +31,10 @@ export default class TierlistViewModel {
 			"exportPoolTemplate",
 			this.exportPoolTemplate.bind(this),
 		);
+		this.notificationCenter.subscribe(
+			"key",
+			this.handleKeyboardInput.bind(this),
+		);
 
 		this.tierViewModels = null;
 		this.loadTiers();
@@ -222,5 +226,13 @@ export default class TierlistViewModel {
 		};
 
 		exportData(template, "team_pool.json");
+	}
+
+	handleKeyboardInput(data) {
+		const key = data.key;
+		const target = data.target;
+		if (key == "Delete" && target == "championSelectionSearchBar") {
+			this.clearTierlist();
+		}
 	}
 }

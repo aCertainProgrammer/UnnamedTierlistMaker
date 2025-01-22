@@ -119,6 +119,9 @@ export class ChampionSelectionView {
 		const key = data.key;
 		const letterRegex = /^[A-Za-z]$/;
 		if (key.match(letterRegex)) {
+			if (document.activeElement != this.searchBar) {
+				this.searchBar.value = "";
+			}
 			this.searchBar.focus();
 			return;
 		} else if (key == "Backspace") {
