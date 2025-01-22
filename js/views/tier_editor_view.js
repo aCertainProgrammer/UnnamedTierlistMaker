@@ -27,7 +27,7 @@ export default class TierEditorView {
 
 		this.tierEditorOverlay.id = "tier-editor-overlay";
 		this.tierEditorOverlay.addEventListener("click", () => {
-			this.tierEditorOverlay.remove();
+			this.die();
 		});
 
 		const tierEditor = this.createTierEditor(this.tier, this.tierIndex);
@@ -109,7 +109,7 @@ export default class TierEditorView {
 
 	removeTier(index) {
 		this.tierlistViewModel.removeTier(index);
-		this.tierEditorOverlay.remove();
+		this.die();
 
 		this.sendTierlistRenderSignal();
 	}
@@ -131,17 +131,37 @@ export default class TierEditorView {
 			return;
 		}
 
+		const tierNameEditor = document.querySelector(".tier-name-editor");
+
 		const key = data.key;
 		const letterRegex = /^[A-Za-z]$/;
 		if (key.match(letterRegex)) {
-			const tierNameEditor = document.querySelector(".tier-name-editor");
 			if (document.activeElement != tierNameEditor) {
 				tierNameEditor.value = "";
 			}
 			tierNameEditor.focus();
 			return;
 		} else if (key == "Escape") {
-			this.tierEditorOverlay.remove();
+			this.die();
+			return;
 		}
+
+		const numberRegex = /[0-9]/;
+		const colorButtons =
+			this.tierEditorOverlay.querySelectorAll(".tier-color-button");
+		if (
+			key.match(numberRegex) &&
+			key.length == 1 &&
+			this.activeElement != tierNameEditor &&
+			key != 0 &&
+			!(key - 1 >= colorButtons.length)
+		) {
+			colorButtons[key - 1].click();
+		}
+	}
+
+	die() {
+		this.tierEditorOverlay.innerHTML = "";
+		this.tierEditorOverlay.remove();
 	}
 }

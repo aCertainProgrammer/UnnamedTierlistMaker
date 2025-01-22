@@ -112,7 +112,7 @@ export class ChampionSelectionView {
 	}
 
 	handleKeyEvent(data) {
-		if (data.target != "championSelectionSearchBar") {
+		if (data.target != "mainScreen") {
 			this.searchBar.blur();
 			return;
 		}

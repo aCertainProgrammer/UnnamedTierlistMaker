@@ -240,7 +240,7 @@ export default class TierlistViewModel {
 	handleKeyboardInput(data) {
 		const key = data.key;
 		const target = data.target;
-		if (key == "Delete" && target == "championSelectionSearchBar") {
+		if (key == "Delete" && target == "mainScreen") {
 			this.clearTierlist();
 		}
 	}

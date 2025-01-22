@@ -4,7 +4,7 @@ export default class KeyboardViewModel {
 	}
 
 	handleKeyboardInput(event) {
-		let target = "championSelectionSearchBar";
+		let target = "mainScreen";
 		const tierEditorOverlay = document.getElementById(
 			"tier-editor-overlay",
 		);

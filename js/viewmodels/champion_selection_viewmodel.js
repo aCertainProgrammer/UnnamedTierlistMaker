@@ -6,7 +6,7 @@ export class ChampionSelectionViewModel {
 
 		this.notificationCenter.subscribe(
 			"key",
-			this.pickFirstChampion.bind(this),
+			this.handleKeyboardInput.bind(this),
 		);
 	}
 
@@ -22,7 +22,10 @@ export class ChampionSelectionViewModel {
 	searchChampions(search_query) {
 		return this.model.searchChampions(search_query);
 	}
-	pickFirstChampion(data) {
+	handleKeyboardInput(data) {
+		if (data.target != "mainScreen") {
+			return;
+		}
 		const key = data.key;
 		const numberRegex = /[0-9]/;
 		if (!(key.match(numberRegex) && key.length == 1)) return;
