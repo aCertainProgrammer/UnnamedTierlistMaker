@@ -20,4 +20,6 @@ LONG IDEAS:
 
 BUGS:
 
+- tierlist pushes utils out of bounds when too many tiers are added
+
 NOTES:
