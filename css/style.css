@@ -127,7 +127,7 @@ body {
 #champion-selection {
 	width: 45vw;
 	min-height: 0;
-	max-height: 90vh;
+	max-height: 80vh;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
