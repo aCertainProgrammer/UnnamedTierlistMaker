@@ -121,6 +121,7 @@ body {
 	width: var(--championIconHeight);
 
 	cursor: pointer;
+	padding: 0px;
 }
 
 #champion-selection {
