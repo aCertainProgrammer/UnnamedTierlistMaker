@@ -18,8 +18,4 @@ LONG IDEAS:
 
 BUGS:
 
-- champions overflow tiers on small resolutions
-
 NOTES:
-
-- When swapping tiers I just swap the viewmodels around - might be a problem when saving/loading depending on what happens to the models
