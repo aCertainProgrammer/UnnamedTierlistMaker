@@ -43,9 +43,7 @@ export class ChampionSelectionView {
 
 		championIcon.classList = "champion-icon";
 		championIcon.src =
-			"./assets/img/champion_icons/small_converted_to_webp_scaled/" +
-			capitalize(champion) +
-			".webp";
+			"./assets/img/champion_icons/" + capitalize(champion) + ".webp";
 		championIcon.alt = champion;
 
 		championIcon.draggable = true;

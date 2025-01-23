@@ -77,6 +77,7 @@ export const default_data = [
 	"malzahar",
 	"maokai",
 	"masteryi",
+	"mel",
 	"milio",
 	"missfortune",
 	"mordekaiser",
