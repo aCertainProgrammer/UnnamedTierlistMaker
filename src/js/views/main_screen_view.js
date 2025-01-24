@@ -4,6 +4,7 @@ import UtilsView from "./utils_view.js";
 
 export default class MainScreenView {
 	constructor(mainScreenViewModel) {
+		this.visible = true;
 		this.mainScreenViewModel = mainScreenViewModel;
 
 		this.mainScreen = document.getElementById("main-screen");

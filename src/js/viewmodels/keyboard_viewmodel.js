@@ -12,6 +12,7 @@ export default class KeyboardViewModel {
 
 		this.notificationCenter.publish("key", {
 			key: event.key,
+			shift: event.shiftKey,
 			target: target,
 		});
 	}

@@ -30,4 +30,8 @@ export default class UtilsViewModel {
 	exportPng() {
 		this.notificationCenter.publish("exportPng");
 	}
+
+	toggleSnapshots() {
+		this.notificationCenter.publish("toggleSnapshots");
+	}
 }

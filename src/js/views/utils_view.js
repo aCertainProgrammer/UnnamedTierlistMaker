@@ -1,6 +1,13 @@
 export default class UtilsView {
 	constructor(utilsViewModel) {
 		this.utilsViewModel = utilsViewModel;
+
+		this.notificationCenter = this.utilsViewModel.notificationCenter;
+		this.notificationCenter.subscribe(
+			"key",
+			this.handleKeyInput.bind(this),
+		);
+
 		this.utilsContainer = document.querySelector("#utils");
 
 		this.clearTierlistButton = document.createElement("input");
@@ -85,6 +92,18 @@ export default class UtilsView {
 		);
 
 		this.utilsContainer.appendChild(this.exportPngButton);
+
+		this.toggleSnapshotsButton = document.createElement("input");
+		this.toggleSnapshotsButton.type = "button";
+		this.toggleSnapshotsButton.value = "Show snapshots";
+		this.toggleSnapshotsButton.classList.add("normal-button");
+
+		this.toggleSnapshotsButton.addEventListener(
+			"click",
+			this.toggleSnapshots.bind(this),
+		);
+
+		this.utilsContainer.appendChild(this.toggleSnapshotsButton);
 	}
 
 	render() {}
@@ -115,5 +134,25 @@ export default class UtilsView {
 
 	exportPng() {
 		this.utilsViewModel.exportPng();
+	}
+
+	toggleSnapshots() {
+		this.toggleSnapshotsButton.value =
+			this.toggleSnapshotsButton.value == "Show snapshots"
+				? "Hide snapshots"
+				: "Show snapshots";
+		this.utilsViewModel.toggleSnapshots();
+	}
+
+	handleKeyInput(data) {
+		const key = data.key;
+		const isShiftPressed = data.shift;
+
+		if (!isShiftPressed) {
+			return;
+		}
+		if (key.toLowerCase() == "g") {
+			this.clickInput(this.toggleSnapshotsButton);
+		}
 	}
 }

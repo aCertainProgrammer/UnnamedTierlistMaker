@@ -1,10 +1,10 @@
 CURRENT WORK:
 
+- Tierlist snapshots
+
 THEN:
 
 SHORT IDEAS:
-
-- Tierlist snapshots
 
 - Tierlist export all snaphots as images
 

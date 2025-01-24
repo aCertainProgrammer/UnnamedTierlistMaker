@@ -103,13 +103,17 @@ export class ChampionSelectionView {
 	}
 
 	searchChampions() {
-		const search_query = this.searchBar.value.trim();
+		const search_query = this.searchBar.value.trim().toLowerCase();
 		this.championSelectionViewModel.searchChampions(search_query);
 
 		this.render();
 	}
 
 	handleKeyEvent(data) {
+		if (data.shift) {
+			this.searchBar.blur();
+			return;
+		}
 		if (data.target != "mainScreen") {
 			this.searchBar.blur();
 			return;

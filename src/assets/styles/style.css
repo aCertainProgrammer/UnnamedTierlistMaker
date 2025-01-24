@@ -8,6 +8,7 @@
 	--championIconHeight: 80px;
 	--tierColorButtonHeight: 2rem;
 	--generalBorderRadius: 6px;
+	--overlayBorderRadius: 24px;
 	--searchBarFontSize: 1rem;
 	--addTierFontSize: 2rem;
 	--changeTierNameFontSize: 2rem;
@@ -291,4 +292,17 @@ input[type="text"] {
 
 .hidden {
 	display: none !important;
+}
+
+#snapshots-container {
+	position: absolute;
+	left: 15vw;
+	top: 15vh;
+
+	height: 70vh;
+	width: 70vw;
+
+	background: var(--bodyBackgroundColor);
+	opacity: 0.95;
+	border-radius: var(--overlayBorderRadius);
 }
