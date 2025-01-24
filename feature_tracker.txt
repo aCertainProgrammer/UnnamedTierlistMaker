@@ -4,8 +4,6 @@ THEN:
 
 SHORT IDEAS:
 
-- Tierlist export image
-
 - Tierlist snapshots
 
 - Tierlist export all snaphots as images
