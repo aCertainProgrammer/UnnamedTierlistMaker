@@ -1,5 +1,7 @@
 import MainScreenView from "./main_screen_view.js";
 import KeyboardView from "./keyboard_view.js";
+
+/** Container for the app views */
 export default class AppView {
 	constructor(appViewModel) {
 		this.appViewModel = appViewModel;

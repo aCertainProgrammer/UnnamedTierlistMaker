@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: views/tier_editor_view.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: views/tier_editor_view.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>export default class TierEditorView {
+	/**
+	 * @constructor
+	 * @param {TierlistViewModel} tierlistViewModel
+	 * @param {*} tier
+	 * @param {number} tierIndex
+	 * @param {*} tierlistRenderSignal
+	 */
+	constructor(tierlistViewModel, tier, tierIndex, notificationCenter) {
+		this.tierlistViewModel = tierlistViewModel;
+		this.tier = tier;
+		this.tierIndex = tierIndex;
+
+		this.notificationCenter = notificationCenter;
+		this.notificationCenter.subscribe(
+			"key",
+			this.handleKeyboardInput.bind(this),
+		);
+
+		this.tierEditorOverlay = null;
+
+		this.render();
+	}
+
+	render() {
+		this.tierEditorOverlay = document.createElement("div");
+
+		this.tierEditorOverlay.id = "tier-editor-overlay";
+		this.tierEditorOverlay.addEventListener("click", () => {
+			this.die();
+		});
+
+		const tierEditor = this.createTierEditor(this.tier, this.tierIndex);
+		this.tierEditorOverlay.appendChild(tierEditor);
+
+		document.body.appendChild(this.tierEditorOverlay);
+	}
+
+	sendTierlistRenderSignal() {
+		this.notificationCenter.publish("refreshTierlist");
+	}
+
+	createTierEditor(tier, index) {
+		const tierEditorContainer = document.createElement("div");
+		tierEditorContainer.classList.add("tier-editor-container");
+		tierEditorContainer.addEventListener("click", () => {
+			event.stopPropagation();
+		});
+
+		const tierNameEditor = document.createElement("input");
+		tierNameEditor.type = "text";
+		tierNameEditor.value = tier.name;
+		tierNameEditor.classList.add("tier-name-editor");
+
+		tierNameEditor.addEventListener(
+			"input",
+			this.changeTierName.bind(this, index),
+		);
+
+		tierEditorContainer.appendChild(tierNameEditor);
+
+		const tierColorEditor = this.createTierColorEditor(index);
+		tierEditorContainer.appendChild(tierColorEditor);
+
+		const tierRemovalElement = document.createElement("input");
+		tierRemovalElement.classList.add("normal-button");
+		tierRemovalElement.id = "tier-removal-button";
+		tierRemovalElement.type = "button";
+		tierRemovalElement.value = "Remove tier";
+
+		tierRemovalElement.addEventListener(
+			"click",
+			this.removeTier.bind(this, index),
+		);
+
+		tierEditorContainer.appendChild(tierRemovalElement);
+
+		return tierEditorContainer;
+	}
+
+	createTierColorEditor(index) {
+		const tierColorEditorContainer = document.createElement("div");
+
+		const colors = [
+			"deepskyblue",
+			"limegreen",
+			"greenyellow",
+			"yellow",
+			"orange",
+			"tomato",
+		];
+		for (let i = 0; i &lt; colors.length; i++) {
+			const colorButton = document.createElement("input");
+			colorButton.type = "button";
+			colorButton.classList.add("tier-color-button");
+			colorButton.classList.add("normal-button");
+			colorButton.style.backgroundColor = colors[i];
+
+			colorButton.addEventListener(
+				"click",
+				this.changeTierColor.bind(this, index, colors[i]),
+			);
+
+			tierColorEditorContainer.appendChild(colorButton);
+		}
+
+		return tierColorEditorContainer;
+	}
+
+	removeTier(index) {
+		this.tierlistViewModel.removeTier(index);
+		this.die();
+
+		this.sendTierlistRenderSignal();
+	}
+
+	changeTierName(index) {
+		this.tierlistViewModel.changeTierName(index, event.target.value.trim());
+
+		this.sendTierlistRenderSignal();
+	}
+
+	changeTierColor(index, color) {
+		this.tierlistViewModel.changeTierColor(index, color);
+
+		this.sendTierlistRenderSignal();
+	}
+
+	handleKeyboardInput(data) {
+		if (data.target != "tierEditorOverlay") {
+			return;
+		}
+
+		const tierNameEditor = document.querySelector(".tier-name-editor");
+
+		const key = data.key;
+		const letterRegex = /^[A-Za-z]$/;
+		if (key.match(letterRegex)) {
+			if (document.activeElement != tierNameEditor) {
+				tierNameEditor.value = "";
+			}
+			tierNameEditor.focus();
+			return;
+		} else if (key == "Escape") {
+			this.die();
+			return;
+		}
+
+		const numberRegex = /[0-9]/;
+		const colorButtons =
+			this.tierEditorOverlay.querySelectorAll(".tier-color-button");
+		if (
+			key.match(numberRegex) &amp;&amp;
+			key.length == 1 &amp;&amp;
+			this.activeElement != tierNameEditor &amp;&amp;
+			key != 0 &amp;&amp;
+			!(key - 1 >= colorButtons.length)
+		) {
+			colorButtons[key - 1].click();
+		}
+	}
+
+	die() {
+		this.tierEditorOverlay.innerHTML = "";
+		this.tierEditorOverlay.remove();
+	}
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="module.exports.html">exports</a></li><li><a href="module.exports_module.exports.html">exports</a></li></ul><h3>Global</h3><ul><li><a href="global.html#capitalize">capitalize</a></li><li><a href="global.html#prettifyChampionName">prettifyChampionName</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Fri Jan 24 2025 09:45:24 GMT+0100 (Central European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
