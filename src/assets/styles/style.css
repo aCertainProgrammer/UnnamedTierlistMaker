@@ -333,6 +333,11 @@ input[type="text"] {
 	border: var(--snapshotContainerBorder);
 	border-radius: var(--generalBorderRadius);
 	padding: 4px;
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	align-items: center;
+	justify-content: space-evenly;
 	cursor: pointer;
 }
 
@@ -352,9 +357,15 @@ input[type="text"] {
 }
 
 .snapshot-tier-name {
-	width: var(--snapshotChampionIconHeight);
+	min-width: var(--snapshotChampionIconHeight);
+	max-width: var(--snapshotChampionIconHeight);
 	min-height: var(--snapshotChampionIconHeight);
 	font-size: calc(--tierNameFontSize / 2);
+	text-align: center;
+	text-wrap: wrap;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .snapshot-tier-champions {
@@ -377,5 +388,13 @@ input[type="text"] {
 	height: calc(var(--tierlistTierHeight) / 2);
 	text-align: center;
 	padding: 4px 0px;
+	font-size: var(--tierNameFontSize);
+	margin-bottom: 4px;
+}
+
+#snapshot-name {
+	width: 100%;
+	padding: 4px 0px;
+	text-align: center;
 	font-size: var(--tierNameFontSize);
 }
