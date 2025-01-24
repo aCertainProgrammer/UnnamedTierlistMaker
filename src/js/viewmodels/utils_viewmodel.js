@@ -34,4 +34,8 @@ export default class UtilsViewModel {
 	toggleSnapshots() {
 		this.notificationCenter.publish("toggleSnapshots");
 	}
+
+	saveSnapshot() {
+		this.notificationCenter.publish("saveSnapshot");
+	}
 }

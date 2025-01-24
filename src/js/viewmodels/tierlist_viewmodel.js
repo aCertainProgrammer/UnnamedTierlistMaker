@@ -40,6 +40,10 @@ export default class TierlistViewModel {
 			"exportPng",
 			this.exportTierlistAsPng.bind(this),
 		);
+		this.notificationCenter.subscribe(
+			"loadSnapshot",
+			this.loadSnapshot.bind(this),
+		);
 
 		this.tierViewModels = null;
 		this.loadTiers();
@@ -271,5 +275,12 @@ export default class TierlistViewModel {
 			.then(function (dataUrl) {
 				exportImage(dataUrl, "tierlist.png");
 			});
+	}
+
+	loadSnapshot(data) {
+		const snapshot = data.snapshot;
+		this.tierlistModel.saveTierlist(snapshot);
+		this.loadTiers();
+		this.notificationCenter.publish("refreshTierlist");
 	}
 }

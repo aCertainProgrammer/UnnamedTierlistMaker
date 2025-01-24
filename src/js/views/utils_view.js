@@ -104,6 +104,18 @@ export default class UtilsView {
 		);
 
 		this.utilsContainer.appendChild(this.toggleSnapshotsButton);
+
+		this.saveSnapshotButton = document.createElement("input");
+		this.saveSnapshotButton.type = "button";
+		this.saveSnapshotButton.value = "Save snapshot";
+		this.saveSnapshotButton.classList.add("normal-button");
+
+		this.saveSnapshotButton.addEventListener(
+			"click",
+			this.saveSnapshot.bind(this),
+		);
+
+		this.utilsContainer.appendChild(this.saveSnapshotButton);
 	}
 
 	render() {}
@@ -144,6 +156,10 @@ export default class UtilsView {
 		this.utilsViewModel.toggleSnapshots();
 	}
 
+	saveSnapshot() {
+		this.utilsViewModel.saveSnapshot();
+	}
+
 	handleKeyInput(data) {
 		const key = data.key;
 		const isShiftPressed = data.shift;
@@ -153,6 +169,9 @@ export default class UtilsView {
 		}
 		if (key.toLowerCase() == "g") {
 			this.clickInput(this.toggleSnapshotsButton);
+		}
+		if (key.toLowerCase() == "v") {
+			this.clickInput(this.saveSnapshotButton);
 		}
 	}
 }

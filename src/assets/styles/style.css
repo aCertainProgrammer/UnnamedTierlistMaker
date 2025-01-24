@@ -14,6 +14,9 @@
 	--changeTierNameFontSize: 2rem;
 	--removeTierButtonFontSize: 1.5rem;
 	--tierEditorContainerOpacity: 0.95;
+	--tierNameFontSize: 1.3rem;
+	--snapshotChampionIconHeight: 60px;
+	--snapshotContainerHeight: 360px;
 }
 
 :root[data-theme="dark"] {
@@ -28,6 +31,7 @@
 	--tierNameTextColor: var(--tierBackgroundColor);
 	--tierContainerBoxShadow: 0px 0px 1px 1px black;
 	--tierAdditionElementBorder: 1px solid #555555;
+	--snapshotContainerBorder: 1px solid #555555;
 }
 
 * {
@@ -96,7 +100,7 @@ body {
 	min-width: var(--tierlistTierHeight);
 	min-height: var(--tierlistTierHeight);
 	max-width: var(--tierlistTierHeight);
-	font-size: 1.3rem;
+	font-size: var(--tierNameFontSize);
 	text-align: center;
 	text-wrap: wrap;
 	display: flex;
@@ -302,7 +306,68 @@ input[type="text"] {
 	height: 70vh;
 	width: 70vw;
 
+	min-width: var(--snapshotContainerHeight);
+	min-height: var(--snapshotContainerHeight);
+	overflow-y: auto;
+	overflow-x: hidden;
+
+	padding: 10px 10px;
 	background: var(--bodyBackgroundColor);
 	opacity: 0.95;
 	border-radius: var(--overlayBorderRadius);
+
+	display: flex;
+	flex-direction: row;
+	align-items: start;
+	justify-content: start;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.snapshot-container {
+	max-height: var(--snapshotContainerHeight);
+	max-width: var(--snapshotContainerHeight);
+	min-height: var(--snapshotContainerHeight);
+	min-width: var(--snapshotContainerHeight);
+	overflow-y: auto;
+	border: var(--snapshotContainerBorder);
+	border-radius: var(--generalBorderRadius);
+	padding: 4px;
+	cursor: pointer;
+}
+
+.snapshot-tierlist {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.snapshot-tier-container {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	background: var(--tierBackgroundColor);
+	box-shadow: var(--tierContainerBoxShadow);
+}
+
+.snapshot-tier-name {
+	width: var(--snapshotChampionIconHeight);
+	min-height: var(--snapshotChampionIconHeight);
+	font-size: calc(--tierNameFontSize / 2);
+}
+
+.snapshot-tier-champions {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.snapshot-champion-icon-container,
+.snapshot-champion-icon-container > img {
+	max-height: var(--snapshotChampionIconHeight);
+	max-width: var(--snapshotChampionIconHeight);
+	height: var(--snapshotChampionIconHeight);
+	width: var(--snapshotChampionIconHeight);
 }
