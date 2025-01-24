@@ -371,3 +371,11 @@ input[type="text"] {
 	height: var(--snapshotChampionIconHeight);
 	width: var(--snapshotChampionIconHeight);
 }
+
+#tierlist-name {
+	width: 100%;
+	height: calc(var(--tierlistTierHeight) / 2);
+	text-align: center;
+	padding: 4px 0px;
+	font-size: var(--tierNameFontSize);
+}

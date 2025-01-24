@@ -14,6 +14,10 @@ export default class SnapshotsView {
 			"toggleSnapshots",
 			this.toggleSnapshots.bind(this),
 		);
+		this.notificationCenter.subscribe(
+			"key",
+			this.processKeyInput.bind(this),
+		);
 
 		this.snapshotsContainer = document.getElementById(
 			"snapshots-container",
@@ -106,5 +110,18 @@ export default class SnapshotsView {
 
 	loadSnapshot(index) {
 		this.snapshotsViewModel.loadSnapshot(index);
+	}
+
+	processKeyInput(data) {
+		if (data.target != "snapshotsContainer") {
+			return;
+		}
+		if (!data.shift) {
+			return;
+		}
+
+		if (data.key.toLowerCase() == "g") {
+			this.toggleSnapshots();
+		}
 	}
 }

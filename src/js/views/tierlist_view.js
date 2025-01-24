@@ -13,11 +13,21 @@ export class TierlistView {
 			"refreshTierlist",
 			this.render.bind(this),
 		);
+
+		this.name = "";
 	}
 
 	render() {
 		this.tierViews = [];
 		this.tierlistContainer.innerHTML = "";
+
+		const tierlistName = document.createElement("input");
+		tierlistName.type = "text";
+		tierlistName.id = "tierlist-name";
+		tierlistName.value = this.name;
+
+		this.tierlistContainer.appendChild(tierlistName);
+
 		for (let i = 0; i < this.tierlistViewModel.tierViewModels.length; i++) {
 			this.createTierContainer(i);
 		}

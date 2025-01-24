@@ -161,9 +161,15 @@ export default class UtilsView {
 	}
 
 	handleKeyInput(data) {
+		if (data.target != "mainScreen") {
+			return;
+		}
 		const key = data.key;
 		const isShiftPressed = data.shift;
 
+		if (data.target == "tierName") {
+			return;
+		}
 		if (!isShiftPressed) {
 			return;
 		}
