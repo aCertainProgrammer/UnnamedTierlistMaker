@@ -54,11 +54,26 @@ export default class SnapshotsView {
 			this.loadSnapshot.bind(this, index),
 		);
 
+		const snapshotName = document.createElement("input");
+		snapshotName.type = "text";
+		snapshotName.id = "snapshot-name";
+		snapshotName.value = snapshotData.name;
+
+		snapshotName.addEventListener("input", () => {
+			this.changeSnapshotName(index, event.target.value);
+		});
+
+		snapshotName.addEventListener("click", () => {
+			event.stopPropagation();
+		});
+
+		snapshotContainer.appendChild(snapshotName);
+
 		const snapshotTierlist = document.createElement("div");
 		snapshotTierlist.classList.add("snapshot-tierlist");
 
-		for (let i = 0; i < snapshotData.length; i++) {
-			const tier = this.createSnapshotTier(snapshotData[i]);
+		for (let i = 0; i < snapshotData.tiers.length; i++) {
+			const tier = this.createSnapshotTier(snapshotData.tiers[i]);
 			snapshotTierlist.appendChild(tier);
 		}
 
@@ -123,5 +138,9 @@ export default class SnapshotsView {
 		if (data.key.toLowerCase() == "g") {
 			this.toggleSnapshots();
 		}
+	}
+
+	changeSnapshotName(index, name) {
+		this.snapshotsViewModel.changeSnapshotName(index, name);
 	}
 }

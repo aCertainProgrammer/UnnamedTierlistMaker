@@ -27,4 +27,8 @@ export default class SnapshotsViewModel {
 			snapshot: snapshots[index],
 		});
 	}
+
+	changeSnapshotName(index, name) {
+		this.snapshotsModel.changeSnapshotName(index, name);
+	}
 }

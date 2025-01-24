@@ -15,4 +15,12 @@ export default class SnapshotsModel {
 			return [];
 		} else return JSON.parse(snapshotsJson);
 	}
+
+	changeSnapshotName(index, name) {
+		const snapshots = this.getSnapshots();
+
+		console.log(snapshots);
+		snapshots[index].name = name;
+		localStorage.setItem("snapshots", JSON.stringify(snapshots));
+	}
 }

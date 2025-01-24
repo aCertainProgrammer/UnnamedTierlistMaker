@@ -46,6 +46,7 @@ export default class TierlistViewModel {
 		);
 
 		this.tierViewModels = null;
+		this.name = "";
 		this.loadTiers();
 	}
 
@@ -53,10 +54,12 @@ export default class TierlistViewModel {
 		const tierViewModels = [];
 
 		const tierlistData = this.tierlistModel.getSavedTierlist();
-		for (let i = 0; i < tierlistData.length; i++) {
-			const tierModel = new TierModel(tierlistData[i].name);
-			tierModel.champions = tierlistData[i].champions;
-			tierModel.color = tierlistData[i].color;
+		const tiers = tierlistData.tiers;
+		const name = tierlistData.name;
+		for (let i = 0; i < tiers.length; i++) {
+			const tierModel = new TierModel(tiers[i].name);
+			tierModel.champions = tiers[i].champions;
+			tierModel.color = tiers[i].color;
 			const tierViewModel = new TierViewModel(
 				tierModel,
 				this.notificationCenter,
@@ -65,6 +68,7 @@ export default class TierlistViewModel {
 		}
 
 		this.tierViewModels = tierViewModels;
+		this.name = name;
 	}
 
 	saveTierlist() {
@@ -75,7 +79,7 @@ export default class TierlistViewModel {
 			tiersToSave.push(tierData);
 		}
 
-		this.tierlistModel.saveTierlist(tiersToSave);
+		this.tierlistModel.saveTierlist(tiersToSave, this.name);
 	}
 
 	pickChampion(data) {
@@ -279,8 +283,14 @@ export default class TierlistViewModel {
 
 	loadSnapshot(data) {
 		const snapshot = data.snapshot;
-		this.tierlistModel.saveTierlist(snapshot);
+		this.tierlistModel.saveTierlist(snapshot.tiers, snapshot.name);
+		this.name = snapshot.name;
 		this.loadTiers();
 		this.notificationCenter.publish("refreshTierlist");
+	}
+
+	changeTierlistName(name) {
+		this.name = name;
+		this.saveTierlist();
 	}
 }

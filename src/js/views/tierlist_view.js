@@ -14,17 +14,23 @@ export class TierlistView {
 			this.render.bind(this),
 		);
 
-		this.name = "";
+		this.name = this.tierlistViewModel.name;
 	}
 
 	render() {
 		this.tierViews = [];
 		this.tierlistContainer.innerHTML = "";
+		this.name = this.tierlistViewModel.name;
 
 		const tierlistName = document.createElement("input");
 		tierlistName.type = "text";
 		tierlistName.id = "tierlist-name";
 		tierlistName.value = this.name;
+
+		tierlistName.addEventListener(
+			"input",
+			this.changeTierlistName.bind(this),
+		);
 
 		this.tierlistContainer.appendChild(tierlistName);
 
@@ -72,5 +78,9 @@ export class TierlistView {
 		);
 
 		this.tierViews.push(tierView);
+	}
+
+	changeTierlistName(event) {
+		this.tierlistViewModel.changeTierlistName(event.target.value.trim());
 	}
 }
