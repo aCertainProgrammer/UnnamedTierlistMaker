@@ -1,12 +1,10 @@
 CURRENT WORK:
 
-- Tierlist snapshots
+- Tierlist export all snaphots as images
 
 THEN:
 
 SHORT IDEAS:
-
-- Tierlist export all snaphots as images
 
 - Champion preview instead of dummy
 
