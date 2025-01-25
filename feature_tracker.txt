@@ -12,6 +12,8 @@ SHORT IDEAS:
 
 - Make a manual
 
+- Snapshots keyboard handling
+
 LONG IDEAS:
 
 BUGS:
