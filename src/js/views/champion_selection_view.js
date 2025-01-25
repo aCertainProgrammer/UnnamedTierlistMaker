@@ -118,7 +118,6 @@ export class ChampionSelectionView {
 			this.searchBar.blur();
 			return;
 		}
-		console.log(data);
 		const key = data.key;
 		const letterRegex = /^[A-Za-z]$/;
 		if (key.match(letterRegex)) {

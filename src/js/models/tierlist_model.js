@@ -1,3 +1,4 @@
+import localStorageStrings from "../constants.js";
 export default class TierlistModel {
 	constructor() {}
 
@@ -33,7 +34,9 @@ export default class TierlistModel {
 			],
 		};
 
-		const tierlistData = localStorage.getItem("tierlist");
+		const tierlistData = localStorage.getItem(
+			localStorageStrings.tierlistSaveLocation,
+		);
 
 		if (tierlistData == null) {
 			return defaultData;
@@ -47,11 +50,14 @@ export default class TierlistModel {
 			name: name,
 			tiers: tiers,
 		};
-		localStorage.setItem("tierlist", JSON.stringify(tierlist));
+		localStorage.setItem(
+			localStorageStrings.tierlistSaveLocation,
+			JSON.stringify(tierlist),
+		);
 	}
 
 	clearTierlist() {
-		localStorage.removeItem("tierlist");
+		localStorage.removeItem(localStorageStrings.tierlistSaveLocation);
 	}
 
 	loadPoolTemplate() {

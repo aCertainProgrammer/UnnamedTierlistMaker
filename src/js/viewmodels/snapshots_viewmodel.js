@@ -31,4 +31,8 @@ export default class SnapshotsViewModel {
 	changeSnapshotName(index, name) {
 		this.snapshotsModel.changeSnapshotName(index, name);
 	}
+
+	removeSnapshot(index) {
+		this.snapshotsModel.removeSnapshot(index);
+	}
 }

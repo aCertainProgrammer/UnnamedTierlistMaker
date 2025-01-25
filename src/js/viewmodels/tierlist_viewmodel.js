@@ -262,7 +262,6 @@ export default class TierlistViewModel {
 		// This violates MVVM. Too bad!
 		const tierlist = document.getElementById("tierlist");
 		const rect = tierlist.getBoundingClientRect();
-		console.log(rect);
 		domtoimage
 			.toPng(tierlist, {
 				filter: function (node) {

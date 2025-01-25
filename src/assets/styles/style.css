@@ -325,6 +325,7 @@ input[type="text"] {
 }
 
 .snapshot-container {
+	position: relative;
 	max-height: var(--snapshotContainerHeight);
 	max-width: var(--snapshotContainerHeight);
 	min-height: var(--snapshotContainerHeight);
@@ -397,4 +398,12 @@ input[type="text"] {
 	padding: 4px 0px;
 	text-align: center;
 	font-size: var(--tierNameFontSize);
+}
+
+.snapshot-removal-element {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+
+	filter: invert(0.85);
 }

@@ -24,7 +24,6 @@ export default class UtilsViewModel {
 
 	exportPoolTemplate() {
 		this.notificationCenter.publish("exportPoolTemplate");
-		console.log("hi");
 	}
 
 	exportPng() {

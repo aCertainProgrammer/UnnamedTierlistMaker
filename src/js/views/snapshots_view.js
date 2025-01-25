@@ -78,6 +78,16 @@ export default class SnapshotsView {
 		}
 
 		snapshotContainer.appendChild(snapshotTierlist);
+
+		const snapshotRemovalElement = document.createElement("img");
+		snapshotRemovalElement.src = "./assets/img/trash.png";
+		snapshotRemovalElement.classList = "snapshot-removal-element";
+		snapshotRemovalElement.addEventListener("click", (event) => {
+			event.stopPropagation();
+			this.removeSnapshot(index);
+		});
+		snapshotContainer.appendChild(snapshotRemovalElement);
+
 		return snapshotContainer;
 	}
 
@@ -142,5 +152,10 @@ export default class SnapshotsView {
 
 	changeSnapshotName(index, name) {
 		this.snapshotsViewModel.changeSnapshotName(index, name);
+	}
+
+	removeSnapshot(index) {
+		this.snapshotsViewModel.removeSnapshot(index);
+		this.render();
 	}
 }
