@@ -1,3 +1,5 @@
+import { readFile } from "../util";
+
 export default class SnapshotsViewModel {
 	constructor(snapshotsModel, notificationCenter) {
 		this.snapshotsModel = snapshotsModel;
@@ -34,5 +36,13 @@ export default class SnapshotsViewModel {
 
 	removeSnapshot(index) {
 		this.snapshotsModel.removeSnapshot(index);
+	}
+
+	clearAllSnapshots() {
+		this.snapshotsModel.clearAllSnapshots();
+	}
+
+	importSnapshots(data) {
+		this.snapshotsModel.importSnapshots(data);
 	}
 }

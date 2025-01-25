@@ -1,4 +1,4 @@
-import { capitalize } from "../util";
+import { capitalize, exportData, readFile } from "../util";
 
 export default class SnapshotsView {
 	/**
@@ -22,6 +22,8 @@ export default class SnapshotsView {
 		this.snapshotsContainer = document.getElementById(
 			"snapshots-container",
 		);
+
+		this.searchQuery = "";
 	}
 
 	render() {
@@ -33,16 +35,26 @@ export default class SnapshotsView {
 		if (this.snapshotsContainer.classList.contains("hidden")) {
 			this.snapshotsContainer.classList.remove("hidden");
 		}
-		this.snapshotsContainer.innerHTML = "";
+
+		const snapshotUtils = this.createSnapshotUtils();
+		this.snapshotsContainer.appendChild(snapshotUtils);
+
+		const searchBar = document.getElementById("snapshot-search-bar");
+		searchBar.value = this.searchQuery;
+		searchBar.focus();
+
+		const searchQuery = this.searchQuery.trim().toLowerCase();
 
 		const snapshotData = this.snapshotsViewModel.getSnapshots();
 
 		for (let i = 0; i < snapshotData.length; i++) {
-			const snapshotContainer = this.createSnapshotContainer(
-				snapshotData[i],
-				i,
-			);
-			this.snapshotsContainer.appendChild(snapshotContainer);
+			if (snapshotData[i].name.toLowerCase().includes(searchQuery)) {
+				const snapshotContainer = this.createSnapshotContainer(
+					snapshotData[i],
+					i,
+				);
+				this.snapshotsContainer.appendChild(snapshotContainer);
+			}
 		}
 	}
 
@@ -156,6 +168,90 @@ export default class SnapshotsView {
 
 	removeSnapshot(index) {
 		this.snapshotsViewModel.removeSnapshot(index);
+		this.render();
+	}
+
+	createSnapshotUtils() {
+		const snapshotUtils = document.createElement("div");
+		snapshotUtils.classList.add("snapshot-utils");
+
+		const closeButton = document.createElement("input");
+		closeButton.type = "button";
+		closeButton.value = "Close";
+		closeButton.classList.add("normal-button");
+		closeButton.addEventListener("click", this.toggleSnapshots.bind(this));
+		snapshotUtils.appendChild(closeButton);
+
+		const clearAllButton = document.createElement("input");
+		clearAllButton.type = "button";
+		clearAllButton.value = "Clear all";
+		clearAllButton.classList.add("normal-button");
+		clearAllButton.addEventListener(
+			"click",
+			this.clearAllSnapshots.bind(this),
+		);
+		snapshotUtils.appendChild(clearAllButton);
+
+		const snapshotSearchBar = document.createElement("input");
+		snapshotSearchBar.type = "text";
+		snapshotSearchBar.placeholder = "Search by name...";
+		snapshotSearchBar.id = "snapshot-search-bar";
+		snapshotSearchBar.addEventListener(
+			"input",
+			this.searchSnapshots.bind(this),
+		);
+		snapshotUtils.appendChild(snapshotSearchBar);
+
+		const exportButton = document.createElement("input");
+		exportButton.type = "button";
+		exportButton.value = "Export";
+		exportButton.classList.add("normal-button");
+		exportButton.addEventListener("click", this.exportSnapshots.bind(this));
+		snapshotUtils.appendChild(exportButton);
+
+		const importFileInput = document.createElement("input");
+		importFileInput.type = "file";
+		importFileInput.classList = "hidden";
+		importFileInput.addEventListener(
+			"input",
+			this.importSnapshots.bind(this),
+		);
+
+		snapshotUtils.appendChild(importFileInput);
+		const importButton = document.createElement("input");
+		importButton.type = "button";
+		importButton.value = "Import";
+		importButton.classList.add("normal-button");
+		importButton.addEventListener("click", () => {
+			importFileInput.click();
+		});
+		snapshotUtils.appendChild(importButton);
+
+		return snapshotUtils;
+	}
+
+	clearAllSnapshots() {
+		const ok = confirm("Clear all snapshots?");
+		if (ok == false) return;
+
+		this.snapshotsViewModel.clearAllSnapshots();
+		this.render();
+	}
+
+	searchSnapshots() {
+		this.searchQuery = event.target.value.trim().toLowerCase();
+		this.render();
+	}
+
+	async exportSnapshots() {
+		const snapshots = this.snapshotsViewModel.getSnapshots();
+		exportData(snapshots, "UTM_Snapshots.json");
+	}
+
+	async importSnapshots() {
+		const data = await readFile(event.target.files[0]);
+		const json = JSON.parse(data);
+		this.snapshotsViewModel.importSnapshots(json);
 		this.render();
 	}
 }
