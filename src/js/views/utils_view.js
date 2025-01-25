@@ -7,6 +7,10 @@ export default class UtilsView {
 			"key",
 			this.handleKeyInput.bind(this),
 		);
+		this.notificationCenter.subscribe(
+			"clickSnapshotsToggle",
+			this.toggleSnapshots.bind(this),
+		);
 
 		this.utilsContainer = document.querySelector("#utils");
 

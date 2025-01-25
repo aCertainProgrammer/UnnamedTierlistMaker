@@ -158,7 +158,7 @@ export default class SnapshotsView {
 		}
 
 		if (data.key.toLowerCase() == "g") {
-			this.toggleSnapshots();
+			this.notificationCenter.publish("clickSnapshotsToggle");
 		}
 	}
 
