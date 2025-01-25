@@ -41,7 +41,7 @@ export default class SnapshotsView {
 
 		const searchBar = document.getElementById("snapshot-search-bar");
 		searchBar.value = this.searchQuery;
-		searchBar.focus();
+		if (searchBar.value != "") searchBar.focus();
 
 		const searchQuery = this.searchQuery.trim().toLowerCase();
 
