@@ -17,6 +17,8 @@
 	--tierNameFontSize: 1.3rem;
 	--snapshotChampionIconHeight: 60px;
 	--snapshotContainerHeight: 360px;
+	--snapshotNameHeight: 2rem;
+	--snapshotPadding: 4px;
 }
 
 :root[data-theme="dark"] {
@@ -326,14 +328,20 @@ input[type="text"] {
 
 .snapshot-container {
 	position: relative;
+
 	max-height: var(--snapshotContainerHeight);
 	max-width: var(--snapshotContainerHeight);
+	height: var(--snapshotContainerHeight);
+	width: var(--snapshotContainerHeight);
 	min-height: var(--snapshotContainerHeight);
 	min-width: var(--snapshotContainerHeight);
+
 	overflow-y: auto;
+
 	border: var(--snapshotContainerBorder);
 	border-radius: var(--generalBorderRadius);
-	padding: 4px;
+	padding: 4px 4px;
+
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
@@ -343,7 +351,7 @@ input[type="text"] {
 }
 
 .snapshot-tierlist {
-	height: 100%;
+	height: calc(100% - 2rem - 8px);
 	width: 100%;
 	display: flex;
 	flex-direction: column;
@@ -395,6 +403,7 @@ input[type="text"] {
 
 #snapshot-name {
 	width: 100%;
+	height: 2rem;
 	padding: 4px 0px;
 	text-align: center;
 	font-size: var(--tierNameFontSize);
@@ -421,6 +430,7 @@ input[type="text"] {
 #snapshot-search-bar {
 	height: 25px;
 	font-size: 1rem;
+	text-align: center;
 }
 
 .snapshot-utils > input[type="button"] {
