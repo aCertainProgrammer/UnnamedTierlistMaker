@@ -1,10 +1,12 @@
 CURRENT WORK:
 
-- Tierlist export all snaphots as images
+- settings menu
 
 THEN:
 
 SHORT IDEAS:
+
+- Tierlist export all snaphots as images
 
 - Champion preview instead of dummy
 
@@ -13,6 +15,8 @@ SHORT IDEAS:
 - Make a manual
 
 - Snapshots keyboard handling
+
+- make a preview of how the tierlist looks like in the settings menu if there are any consmetic changes
 
 LONG IDEAS:
 

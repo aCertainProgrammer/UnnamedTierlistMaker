@@ -14,6 +14,15 @@ export default class UtilsView {
 
 		this.utilsContainer = document.querySelector("#utils");
 
+		this.openSettingsButton = document.createElement("input");
+		this.openSettingsButton.type = "button";
+		this.openSettingsButton.classList.add("normal-button");
+		this.openSettingsButton.value = "Open settings";
+		this.openSettingsButton.addEventListener("click", () => {
+			this.notificationCenter.publish("openSettings");
+		});
+
+		this.utilsContainer.appendChild(this.openSettingsButton);
 		this.clearTierlistButton = document.createElement("input");
 		this.clearTierlistButton.type = "button";
 		this.clearTierlistButton.value = "Reset tierlist";
