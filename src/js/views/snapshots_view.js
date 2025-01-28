@@ -227,6 +227,17 @@ export default class SnapshotsView {
 		});
 		snapshotUtils.appendChild(importButton);
 
+		const exportImages = document.createElement("input");
+		exportImages.type = "button";
+		exportImages.classList.add("normal-button");
+		exportImages.value = "Export all snapshots as images";
+		exportImages.addEventListener(
+			"click",
+			this.exportSnapshotsAsImages.bind(this),
+		);
+
+		snapshotUtils.appendChild(exportImages);
+
 		return snapshotUtils;
 	}
 
@@ -253,5 +264,9 @@ export default class SnapshotsView {
 		const json = JSON.parse(data);
 		this.snapshotsViewModel.importSnapshots(json);
 		this.render();
+	}
+
+	exportSnapshotsAsImages() {
+		this.snapshotsViewModel.exportSnapshotsAsImages();
 	}
 }
