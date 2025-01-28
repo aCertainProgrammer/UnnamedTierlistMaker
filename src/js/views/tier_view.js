@@ -1,4 +1,4 @@
-import { capitalize } from "../util.js";
+import { capitalize, prettifyChampionName } from "../util.js";
 import TierEditorView from "./tier_editor_view.js";
 export default class TierView {
 	/**
@@ -200,6 +200,33 @@ export default class TierView {
 			event.preventDefault();
 			const dragImage = document.querySelector("#drag-image");
 			document.body.removeChild(dragImage);
+		});
+
+		championIcon.addEventListener("mouseenter", () => {
+			const championNameContainer = document.createElement("div");
+			championNameContainer.classList.add(
+				"champion-name-container-on-hover",
+			);
+			championNameContainer.innerText = prettifyChampionName(champion);
+
+			document.body.appendChild(championNameContainer);
+
+			const rect = championIcon.getBoundingClientRect();
+			const nameRect = championNameContainer.getBoundingClientRect();
+			const width = parseInt(nameRect.width);
+			championNameContainer.style.top = parseInt(rect.y - 30) + "px";
+			championNameContainer.style.left =
+				parseInt(rect.x + 40 - width / 2) + "px";
+		});
+
+		championIcon.addEventListener("mouseleave", () => {
+			const championNameContainer = document.querySelector(
+				".champion-name-container-on-hover",
+			);
+
+			if (championNameContainer != null) {
+				championNameContainer.remove();
+			}
 		});
 
 		return championIcon;
