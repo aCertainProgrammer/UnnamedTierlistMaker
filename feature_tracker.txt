@@ -16,6 +16,8 @@ SHORT IDEAS:
 
 - fix the lack of unsubscribing in pubsub
 
+- include the tierlist name in image exports
+
 LONG IDEAS:
 
 BUGS:
