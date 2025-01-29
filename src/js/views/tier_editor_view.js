@@ -163,5 +163,9 @@ export default class TierEditorView {
 	die() {
 		this.tierEditorOverlay.innerHTML = "";
 		this.tierEditorOverlay.remove();
+		this.notificationCenter.unsubscribe(
+			"key",
+			this.handleKeyboardInput.bind(this),
+		);
 	}
 }
