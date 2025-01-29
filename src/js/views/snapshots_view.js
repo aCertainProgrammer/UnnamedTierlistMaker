@@ -150,9 +150,11 @@ export default class SnapshotsView {
 	}
 
 	processKeyInput(data) {
+		console.log(data);
 		if (data.target != "snapshotsContainer") {
 			return;
 		}
+
 		if (!data.shift) {
 			return;
 		}
@@ -230,7 +232,7 @@ export default class SnapshotsView {
 		const exportImages = document.createElement("input");
 		exportImages.type = "button";
 		exportImages.classList.add("normal-button");
-		exportImages.value = "Export all snapshots as images";
+		exportImages.value = "Export images";
 		exportImages.addEventListener(
 			"click",
 			this.exportSnapshotsAsImages.bind(this),
