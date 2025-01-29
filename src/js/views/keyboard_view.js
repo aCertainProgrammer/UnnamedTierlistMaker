@@ -16,7 +16,6 @@ export default class KeyboardView {
 
 		if (document.getElementById("tier-editor-overlay") != null) {
 			this.handleTierEditorInput(event);
-			console.log("hi");
 		} else if (!snapshotsContainer.classList.contains("hidden")) {
 			this.handleSnapshotInput(event);
 		} else {
