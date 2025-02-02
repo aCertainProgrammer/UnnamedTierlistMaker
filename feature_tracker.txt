@@ -8,15 +8,11 @@ SHORT IDEAS:
 
 - Moving tiers not with arrows but by dragging?
 
-- Make a manual
+- Moving tiers with arrow keys up/down
 
 - Snapshots keyboard handling
 
 - make a preview of how the tierlist looks like in the settings menu if there are any consmetic changes
-
-- fix the lack of unsubscribing in pubsub
-
-- include the tierlist name in image exports
 
 LONG IDEAS:
 
