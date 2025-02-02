@@ -4,6 +4,7 @@ import SnapshotsModel from "../models/snapshots_model.js";
 import SnapshotsViewModel from "./snapshots_viewmodel.js";
 import SettingsViewModel from "./settings_viewmodel.js";
 import SettingsModel from "../models/settings_model.js";
+import ManualViewModel from "./manual_viewmodel.js";
 export default class AppViewModel {
 	constructor(notificationCenter) {
 		this.notificationCenter = notificationCenter;
@@ -15,6 +16,8 @@ export default class AppViewModel {
 			settingsModel,
 			notificationCenter,
 		);
+
+		this.manualViewModel = new ManualViewModel(this.notificationCenter);
 
 		this.keyboardViewModel = new KeyboardViewModel(notificationCenter);
 
