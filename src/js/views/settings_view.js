@@ -7,6 +7,10 @@ export default class SettingsView {
 			"openSettings",
 			this.openSettings.bind(this),
 		);
+		this.notificationCenter.subscribe(
+			"key",
+			this.handleKeyInput.bind(this),
+		);
 
 		this.settingsContainer = document.getElementById("settings-container");
 		this.visible = false;
@@ -38,5 +42,21 @@ export default class SettingsView {
 	openSettings() {
 		this.visible = true;
 		this.render();
+	}
+
+	handleKeyInput(data) {
+		if (data.target != "settingsScreen") {
+			return;
+		}
+		const key = data.key;
+		const isShiftPressed = data.shift;
+
+		if (!isShiftPressed) {
+			return;
+		}
+
+		if (key.toLowerCase() == "s") {
+			this.closeSettingsButton.click();
+		}
 	}
 }

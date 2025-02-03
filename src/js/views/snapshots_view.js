@@ -150,7 +150,6 @@ export default class SnapshotsView {
 	}
 
 	processKeyInput(data) {
-		console.log(data);
 		if (data.target != "snapshotsContainer") {
 			return;
 		}

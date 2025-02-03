@@ -8,6 +8,10 @@ export default class ManualView {
 			"openManual",
 			this.openManual.bind(this),
 		);
+		this.notificationCenter.subscribe(
+			"key",
+			this.handleKeyInput.bind(this),
+		);
 
 		this.manualContainer = document.getElementById("manual-container");
 		this.visible = false;
@@ -49,5 +53,22 @@ export default class ManualView {
 	openManual() {
 		this.visible = true;
 		this.render();
+	}
+
+	handleKeyInput(data) {
+		if (data.target != "manualScreen") {
+			return;
+		}
+
+		const key = data.key;
+		const isShiftPressed = data.shift;
+
+		if (!isShiftPressed) {
+			return;
+		}
+
+		if (key.toLowerCase() == "m") {
+			this.closeManualButton.click();
+		}
 	}
 }

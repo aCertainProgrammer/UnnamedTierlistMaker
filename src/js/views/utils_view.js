@@ -202,5 +202,11 @@ export default class UtilsView {
 		if (key.toLowerCase() == "v") {
 			this.clickInput(this.saveSnapshotButton);
 		}
+		if (key.toLowerCase() == "s") {
+			this.clickInput(this.openSettingsButton);
+		}
+		if (key.toLowerCase() == "m") {
+			this.clickInput(this.openManualButton);
+		}
 	}
 }
