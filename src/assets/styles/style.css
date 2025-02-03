@@ -77,7 +77,7 @@ body {
 	overflow-y: hidden;
 }
 
-#tierlist-container {
+.tierlist-container {
 	height: 100%;
 	width: 45vw;
 	overflow-y: auto;
@@ -86,7 +86,12 @@ body {
 	flex-direction: column;
 	gap: 20px;
 }
-#tierlist {
+
+.tierlist-preview-container {
+	gap: 1px !important;
+}
+
+.tierlist {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
@@ -395,7 +400,7 @@ input[type="text"] {
 	width: var(--snapshotChampionIconHeight);
 }
 
-#tierlist-name {
+.tierlist-name {
 	width: 100%;
 	height: calc(var(--tierlistTierHeight) / 2);
 	text-align: center;

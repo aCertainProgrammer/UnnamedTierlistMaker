@@ -29,6 +29,7 @@ export class TierlistView {
 		const tierlistName = document.createElement("input");
 		tierlistName.type = "text";
 		tierlistName.id = "tierlist-name";
+		tierlistName.classList.add("tierlist-name");
 		tierlistName.value = this.name;
 
 		tierlistName.addEventListener(

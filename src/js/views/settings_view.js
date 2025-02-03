@@ -1,3 +1,4 @@
+import { capitalize } from "../util.js";
 export default class SettingsView {
 	constructor(settingsViewModel) {
 		this.settingsViewModel = settingsViewModel;
@@ -38,8 +39,10 @@ export default class SettingsView {
 			"input",
 			this.changeChampionIconPadding.bind(this),
 		);
-
 		this.settingsContainer.appendChild(this.championIconPaddingSetter);
+
+		this.tierlistPreview = this.createTierlistPreview();
+		this.settingsContainer.appendChild(this.tierlistPreview);
 	}
 
 	render() {
@@ -53,6 +56,10 @@ export default class SettingsView {
 		if (this.settingsContainer.classList.contains("hidden")) {
 			this.settingsContainer.classList.remove("hidden");
 		}
+
+		this.tierlistPreview.remove();
+		this.tierlistPreview = this.createTierlistPreview();
+		this.settingsContainer.appendChild(this.tierlistPreview);
 	}
 
 	openSettings() {
@@ -79,5 +86,110 @@ export default class SettingsView {
 	changeChampionIconPadding() {
 		const padding = event.target.value.trim();
 		this.settingsViewModel.setChampionIconPadding(padding);
+		this.render();
+	}
+
+	createTierlistPreview() {
+		const tierlistPreviewContainer = document.createElement("div");
+		tierlistPreviewContainer.classList.add("tierlist-container");
+		tierlistPreviewContainer.classList.add("tierlist-preview-container");
+
+		const tierlistPreviewData = {
+			name: "SKT tierlist",
+			tiers: [
+				{
+					name: "Toplane",
+					champions: ["camille", "ornn", "renekton", "jayce"],
+					color: "deepskyblue",
+				},
+				{
+					name: "Jungle",
+					champions: ["vi", "wukong", "lillia"],
+					color: "limegreen",
+				},
+				{
+					name: "Midlane",
+					champions: ["syndra", "viktor", "azir"],
+					color: "yellow",
+				},
+				{
+					name: "Botlane",
+					champions: ["missfortune", "kaisa", "xayah"],
+					color: "orange",
+				},
+				{
+					name: "Support",
+					champions: [
+						"rell",
+						"leona",
+						"nautilus",
+						"alistar",
+						"rakan",
+					],
+					color: "tomato",
+				},
+			],
+		};
+
+		const tierlistName = document.createElement("input");
+		tierlistName.type = "text";
+		tierlistName.classList.add("tierlist-name");
+		tierlistName.value = tierlistPreviewData.name;
+		tierlistPreviewContainer.appendChild(tierlistName);
+
+		const tierlistPreviewTierlist = document.createElement("div");
+		tierlistPreviewTierlist.classList.add("tierlist");
+
+		for (let i = 0; i < tierlistPreviewData.tiers.length; i++) {
+			const tier = this.createTierlistPreviewTier(
+				tierlistPreviewData.tiers[i],
+			);
+			tierlistPreviewTierlist.appendChild(tier);
+		}
+
+		tierlistPreviewContainer.appendChild(tierlistPreviewTierlist);
+
+		return tierlistPreviewContainer;
+		return tierlistPreview;
+	}
+
+	createTierlistPreviewTier(tierData) {
+		const tierContainer = document.createElement("div");
+		tierContainer.classList.add("tier-container");
+
+		const tierName = document.createElement("div");
+		tierName.classList.add("tier-name");
+		tierName.style.backgroundColor = tierData.color;
+		tierName.innerText = tierData.name;
+
+		tierContainer.appendChild(tierName);
+
+		const tierChampions = document.createElement("div");
+		tierChampions.classList.add("tier-champions");
+
+		const settings = this.settingsViewModel.getSettings();
+		const padding = settings.championIconPadding;
+
+		for (let i = 0; i < tierData.champions.length; i++) {
+			const championIcon = this.createChampionIcon(
+				tierData.champions[i],
+				padding,
+			);
+			tierChampions.appendChild(championIcon);
+		}
+
+		tierContainer.appendChild(tierChampions);
+
+		return tierContainer;
+	}
+
+	createChampionIcon(champion, padding) {
+		const championIcon = document.createElement("img");
+		championIcon.classList.add("champion-icon");
+		championIcon.src =
+			"./assets/img/champion_icons/" + capitalize(champion) + ".webp";
+		championIcon.style.padding = padding + "px";
+		championIcon.draggable = false;
+		return championIcon;
 	}
 }
