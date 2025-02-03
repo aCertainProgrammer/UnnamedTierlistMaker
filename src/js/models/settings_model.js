@@ -2,17 +2,25 @@ import localStorageStrings from "../constants.js";
 export default class SettingsModel {
 	constructor() {}
 
-	saveSettings() {}
+	saveSettings(settings) {
+		localStorage.setItem(
+			localStorageStrings.settingsSaveLocation,
+			JSON.stringify(settings),
+		);
+	}
 	getSettings() {
 		const settings = localStorage.getItem(
 			localStorageStrings.settingsSaveLocation,
 		);
 
-		const default_settings = {};
+		const default_settings = {
+			championIconPadding: "0",
+		};
 		if (settings == undefined) {
 			return default_settings;
 		} else {
-			return this.validateSettings(JSON.parse(settings));
+			return JSON.parse(settings);
+			//return this.validateSettings(JSON.parse(settings));
 		}
 	}
 

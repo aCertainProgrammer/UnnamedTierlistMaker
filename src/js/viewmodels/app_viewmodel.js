@@ -9,22 +9,25 @@ export default class AppViewModel {
 	constructor(notificationCenter) {
 		this.notificationCenter = notificationCenter;
 
-		this.mainScreenViewModel = new MainScreenViewModel(notificationCenter);
-
 		const settingsModel = new SettingsModel();
 		this.settingsViewModel = new SettingsViewModel(
 			settingsModel,
+			this.notificationCenter,
+		);
+
+		this.mainScreenViewModel = new MainScreenViewModel(
 			notificationCenter,
+			this.settingsViewModel,
 		);
 
 		this.manualViewModel = new ManualViewModel(this.notificationCenter);
 
-		this.keyboardViewModel = new KeyboardViewModel(notificationCenter);
+		this.keyboardViewModel = new KeyboardViewModel(this.notificationCenter);
 
 		const snapshotsModel = new SnapshotsModel();
 		this.snapshotsViewModel = new SnapshotsViewModel(
 			snapshotsModel,
-			notificationCenter,
+			this.notificationCenter,
 		);
 	}
 }

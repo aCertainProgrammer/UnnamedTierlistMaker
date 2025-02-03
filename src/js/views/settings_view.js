@@ -14,6 +14,7 @@ export default class SettingsView {
 
 		this.settingsContainer = document.getElementById("settings-container");
 		this.visible = false;
+		const settings = this.settingsViewModel.getSettings();
 
 		this.closeSettingsButton = document.createElement("input");
 		this.closeSettingsButton.type = "button";
@@ -24,6 +25,21 @@ export default class SettingsView {
 			this.render();
 		});
 		this.settingsContainer.appendChild(this.closeSettingsButton);
+
+		this.championIconPaddingSetterLabel = document.createElement("label");
+		this.championIconPaddingSetterLabel.innerText =
+			"Set champion icon padding";
+		this.settingsContainer.appendChild(this.championIconPaddingSetterLabel);
+
+		this.championIconPaddingSetter = document.createElement("input");
+		this.championIconPaddingSetter.type = "number";
+		this.championIconPaddingSetter.value = settings.championIconPadding;
+		this.championIconPaddingSetter.addEventListener(
+			"input",
+			this.changeChampionIconPadding.bind(this),
+		);
+
+		this.settingsContainer.appendChild(this.championIconPaddingSetter);
 	}
 
 	render() {
@@ -58,5 +74,10 @@ export default class SettingsView {
 		if (key.toLowerCase() == "s") {
 			this.closeSettingsButton.click();
 		}
+	}
+
+	changeChampionIconPadding() {
+		const padding = event.target.value.trim();
+		this.settingsViewModel.setChampionIconPadding(padding);
 	}
 }

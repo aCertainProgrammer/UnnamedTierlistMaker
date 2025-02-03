@@ -13,6 +13,10 @@ export class TierlistView {
 			"refreshTierlist",
 			this.render.bind(this),
 		);
+		this.notificationCenter.subscribe(
+			"championIconPaddingChanged",
+			this.render.bind(this),
+		);
 
 		this.name = this.tierlistViewModel.name;
 	}

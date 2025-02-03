@@ -1,7 +1,8 @@
 export default class TierViewModel {
-	constructor(tierModel, notificationCenter) {
+	constructor(tierModel, notificationCenter, settingsViewModel) {
 		this.tierModel = tierModel;
 		this.notificationCenter = notificationCenter;
+		this.settingsViewModel = settingsViewModel;
 	}
 
 	addChampion(champion) {
@@ -30,5 +31,10 @@ export default class TierViewModel {
 
 	clearTier() {
 		this.tierModel.clearTier();
+	}
+
+	getChampionIconPadding() {
+		const settings = this.settingsViewModel.getSettings();
+		return settings.championIconPadding;
 	}
 }

@@ -132,10 +132,13 @@ export default class TierView {
 		const tierChampions = document.createElement("div");
 		tierChampions.classList = "tier-champions";
 
+		const championIconPadding = this.getChampionIconPadding();
+
 		for (let i = 0; i < tier.champions.length; i++) {
 			const championIcon = this.createChampionIcon(
 				this.tierIndex,
 				tier.champions[i],
+				championIconPadding,
 			);
 			tierChampions.appendChild(championIcon);
 		}
@@ -168,11 +171,13 @@ export default class TierView {
 		return this.tierContainer;
 	}
 
-	createChampionIcon(index, champion) {
+	createChampionIcon(index, champion, padding) {
 		const championIcon = document.createElement("img");
 		championIcon.classList = "champion-icon";
 		championIcon.src =
 			"./assets/img/champion_icons/" + capitalize(champion) + ".webp";
+		championIcon.style.padding = padding + "px";
+		console.log(padding);
 
 		championIcon.addEventListener("dragstart", () => {
 			const dragImage = document.createElement("img");
@@ -272,5 +277,9 @@ export default class TierView {
 		this.tierlistViewModel.swapTierDown(this.tierIndex);
 
 		this.sendTierlistRenderSignal();
+	}
+
+	getChampionIconPadding() {
+		return this.tierViewModel.getChampionIconPadding();
 	}
 }

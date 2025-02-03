@@ -19,6 +19,7 @@
 	--snapshotContainerHeight: 360px;
 	--snapshotNameHeight: 2rem;
 	--snapshotPadding: 4px;
+	--settingsScreenPadding: 4px;
 }
 
 :root[data-theme="dark"] {
@@ -47,6 +48,7 @@ body {
 	width: 100vw;
 	background-color: var(--bodyBackgroundColor);
 	overflow: hidden;
+	color: var(--generalTextColor);
 }
 
 #root {
@@ -108,6 +110,7 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	color: var(--bodyBackgroundColor);
 
 	cursor: pointer;
 }
@@ -128,7 +131,6 @@ body {
 	width: var(--championIconHeight);
 
 	cursor: pointer;
-	padding: 0px;
 }
 
 #champion-selection {
@@ -446,6 +448,13 @@ input[type="text"] {
 	height: 100vh;
 	width: 100vw;
 	background: var(--bodyBackgroundColor);
+
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	justify-content: start;
+
+	padding: var(--settingsScreenPadding);
 }
 
 #manual-container {

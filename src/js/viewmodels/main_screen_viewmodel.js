@@ -6,8 +6,9 @@ import UtilsModel from "../models/utils_model.js";
 import UtilsViewModel from "./utils_viewmodel.js";
 
 export default class MainScreenViewModel {
-	constructor(notificationCenter) {
+	constructor(notificationCenter, settingsViewModel) {
 		this.notificationCenter = notificationCenter;
+		this.settingsViewModel = settingsViewModel;
 
 		const utilsModel = new UtilsModel();
 		this.utilsViewModel = new UtilsViewModel(
@@ -19,6 +20,7 @@ export default class MainScreenViewModel {
 		this.tierlistViewModel = new TierlistViewModel(
 			this.notificationCenter,
 			tierlistModel,
+			this.settingsViewModel,
 		);
 
 		const championSelectionModel = new ChampionSelectionModel();

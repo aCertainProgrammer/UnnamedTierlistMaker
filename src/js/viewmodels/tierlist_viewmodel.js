@@ -4,8 +4,9 @@ import { readFile, exportData, exportImage } from "../util.js";
 import domtoimage from "dom-to-image";
 
 export default class TierlistViewModel {
-	constructor(notificationCenter, tierlistModel) {
+	constructor(notificationCenter, tierlistModel, settingsViewModel) {
 		this.tierlistModel = tierlistModel;
+		this.settingsViewModel = settingsViewModel;
 
 		this.notificationCenter = notificationCenter;
 		this.notificationCenter.subscribe(
@@ -63,6 +64,7 @@ export default class TierlistViewModel {
 			const tierViewModel = new TierViewModel(
 				tierModel,
 				this.notificationCenter,
+				this.settingsViewModel,
 			);
 			tierViewModels.push(tierViewModel);
 		}
