@@ -132,6 +132,7 @@ export default class TierlistViewModel {
 		const tierViewModel = new TierViewModel(
 			tierModel,
 			this.notificationCenter,
+			this.settingsViewModel,
 		);
 
 		this.tierViewModels.push(tierViewModel);
@@ -230,6 +231,7 @@ export default class TierlistViewModel {
 			const tierViewModel = new TierViewModel(
 				tierModel,
 				this.notificationCenter,
+				this.settingsViewModel,
 			);
 			tierViewModels.push(tierViewModel);
 		}
