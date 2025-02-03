@@ -177,7 +177,6 @@ export default class TierView {
 		championIcon.src =
 			"./assets/img/champion_icons/" + capitalize(champion) + ".webp";
 		championIcon.style.padding = padding + "px";
-		console.log(padding);
 
 		championIcon.addEventListener("dragstart", () => {
 			const dragImage = document.createElement("img");

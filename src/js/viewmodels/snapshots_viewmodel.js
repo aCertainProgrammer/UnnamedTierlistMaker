@@ -49,7 +49,6 @@ export default class SnapshotsViewModel {
 	exportSnapshotsAsImages() {
 		// This violates MVVM. Too bad!
 		const snapshots = document.querySelectorAll(".snapshot-tierlist");
-		console.log(snapshots);
 		for (let i = 0; i < snapshots.length; i++) {
 			const snapshot = snapshots[i];
 			domtoimage.toPng(snapshot).then(function (dataUrl) {
