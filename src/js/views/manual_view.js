@@ -17,6 +17,7 @@ export default class ManualView {
 		this.visible = false;
 
 		this.closeManualButton = document.createElement("input");
+		this.closeManualButton.id = "close-manual-button";
 		this.closeManualButton.type = "button";
 		this.closeManualButton.classList.add("normal-button");
 		this.closeManualButton.value = "Close manual";

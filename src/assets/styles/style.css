@@ -481,3 +481,7 @@ input[type="text"] {
 	justify-content: center;
 	scrollbar-color: var(--scrollbarColor);
 }
+
+#close-manual-button {
+	max-width: 120px;
+}
