@@ -17,32 +17,26 @@ export default class SettingsView {
 		this.visible = false;
 		const settings = this.settingsViewModel.getSettings();
 
-		this.closeSettingsButton = document.createElement("input");
-		this.closeSettingsButton.type = "button";
-		this.closeSettingsButton.classList.add("normal-button");
-		this.closeSettingsButton.value = "Close settings";
+		this.closeSettingsButton = document.getElementById(
+			"close-settings-button",
+		);
 		this.closeSettingsButton.addEventListener("click", () => {
 			this.visible = false;
 			this.render();
 		});
-		this.settingsContainer.appendChild(this.closeSettingsButton);
 
-		this.championIconPaddingSetterLabel = document.createElement("label");
-		this.championIconPaddingSetterLabel.innerText =
-			"Set champion icon padding";
-		this.settingsContainer.appendChild(this.championIconPaddingSetterLabel);
-
-		this.championIconPaddingSetter = document.createElement("input");
-		this.championIconPaddingSetter.type = "number";
+		this.championIconPaddingSetter = document.getElementById(
+			"champion-icon-padding-setter",
+		);
 		this.championIconPaddingSetter.value = settings.championIconPadding;
 		this.championIconPaddingSetter.addEventListener(
 			"input",
 			this.changeChampionIconPadding.bind(this),
 		);
-		this.settingsContainer.appendChild(this.championIconPaddingSetter);
 
 		this.tierlistPreview = this.createTierlistPreview();
-		this.settingsContainer.appendChild(this.tierlistPreview);
+		this.notSettingsUtils = document.getElementById("not-settings-utils");
+		this.notSettingsUtils.appendChild(this.tierlistPreview);
 	}
 
 	render() {
@@ -59,7 +53,7 @@ export default class SettingsView {
 
 		this.tierlistPreview.remove();
 		this.tierlistPreview = this.createTierlistPreview();
-		this.settingsContainer.appendChild(this.tierlistPreview);
+		this.notSettingsUtils.appendChild(this.tierlistPreview);
 	}
 
 	openSettings() {

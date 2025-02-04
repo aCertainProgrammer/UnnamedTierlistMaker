@@ -33,7 +33,30 @@
 			</div>
 		</div>
 		<div id="snapshots-container" class="hidden"></div>
-		<div id="settings-container" class="hidden"></div>
+		<div id="settings-container" class="hidden">
+			<div id="settings-utils">
+				<input
+					id="close-settings-button"
+					type="button"
+					class="normal-button"
+					value="Close settings"
+				/>
+			</div>
+			<div id="not-settings-utils">
+				<div id="settings-content">
+					<div class="setting-container">
+						<label for="champion-icon-padding-setter"
+							>Champion icon padding:
+						</label>
+						<input
+							id="champion-icon-padding-setter"
+							type="number"
+						/>
+						<span>px</span>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div id="manual-container" class="hidden">
 			<div class="manual-contents">
 				<zero-md src="README.md" id="manual-text">
