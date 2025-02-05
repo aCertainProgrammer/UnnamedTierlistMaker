@@ -141,7 +141,9 @@ export default class TierEditorView {
 			}
 			tierNameEditor.focus();
 			return;
-		} else if (key == "Escape") {
+		}
+
+		if (key == "Escape") {
 			this.die();
 			return;
 		}
