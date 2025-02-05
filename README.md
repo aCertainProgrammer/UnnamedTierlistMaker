@@ -1,15 +1,13 @@
-# unnamed_tierlist_maker
-
-# General usage
+# Unnamed Tierlist Maker
 
 ## Picking champions
-    - by dragging
-    - by using a shortcut
+- by dragging
+- by using a shortcut
 
 ## Editing tiers
-    - click on the tier name
+- click on the tier name
 
-Current shortcuts:
+## Current shortcuts:
 - in the main screen:
     - type letters `a` to `z` to search for champions
     - `Shift` + `V` to save a snapshot
