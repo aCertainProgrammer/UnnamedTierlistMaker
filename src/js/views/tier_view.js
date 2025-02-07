@@ -224,12 +224,14 @@ export default class TierView {
 		});
 
 		championIcon.addEventListener("mouseleave", () => {
-			const championNameContainer = document.querySelector(
+			const championNameContainers = document.querySelectorAll(
 				".champion-name-container-on-hover",
 			);
 
-			if (championNameContainer != null) {
-				championNameContainer.remove();
+			if (championNameContainers != null) {
+				for (let i = 0; i < championNameContainers.length; i++) {
+					championNameContainers[i].remove();
+				}
 			}
 		});
 
