@@ -4,8 +4,6 @@ THEN:
 
 SHORT IDEAS:
 
-- Champion preview instead of dummy
-
 - Snapshots keyboard handling
 
 
