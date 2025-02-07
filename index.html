@@ -10,8 +10,8 @@
 		<title>Unnamed Tierlist Maker</title>
 		<link rel="manifest" href="/UnnamedTierlistMaker/manifest.json" />
 		<link rel="icon" type="image/x-icon" href="/UnnamedTierlistMaker/favicon.ico" />
-		<script type="module" crossorigin src="/UnnamedTierlistMaker/assets/index-BwZbVm_0.js"></script>
-		<link rel="stylesheet" crossorigin href="/UnnamedTierlistMaker/assets/index-ChJ8uf51.css">
+		<script type="module" crossorigin src="/UnnamedTierlistMaker/assets/index-BSfsCwwb.js"></script>
+		<link rel="stylesheet" crossorigin href="/UnnamedTierlistMaker/assets/index-OczFvuKV.css">
 	</head>
 	<body>
 		<div id="main-screen">
@@ -48,11 +48,36 @@
 						<label for="champion-icon-padding-setter"
 							>Champion icon padding:
 						</label>
+						<span>
+							<input
+								id="champion-icon-padding-setter"
+								type="number"
+							/>
+							<span>px</span></span
+						>
+					</div>
+					<div class="setting-container">
+						<label
+							>Display champion names on hover in the tierlist:
+						</label>
 						<input
-							id="champion-icon-padding-setter"
-							type="number"
+							id="champion-names-on-hover-tierlist-toggle"
+							type="button"
+							class="normal-button"
+							value="Yes"
 						/>
-						<span>px</span>
+					</div>
+					<div class="setting-container">
+						<label
+							>Display champion names on hover in the champion
+							selection:
+						</label>
+						<input
+							id="champion-names-on-hover-champion-selection-toggle"
+							type="button"
+							class="normal-button"
+							value="Yes"
+						/>
 					</div>
 				</div>
 			</div>
