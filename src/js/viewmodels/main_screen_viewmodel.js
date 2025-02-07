@@ -27,6 +27,7 @@ export default class MainScreenViewModel {
 		this.championSelectionViewModel = new ChampionSelectionViewModel(
 			championSelectionModel,
 			this.notificationCenter,
+			this.settingsViewModel,
 		);
 	}
 

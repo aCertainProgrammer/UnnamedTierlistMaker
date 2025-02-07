@@ -20,6 +20,10 @@ export default class SettingsViewModel {
 		settings.championNamesDisplayOnHoverInTheTierlist =
 			!settings.championNamesDisplayOnHoverInTheTierlist;
 		this.settingsModel.saveSettings(settings);
+
+		this.notificationCenter.publish(
+			"championNamesDisplayOnHoverInTheTierlistChanged",
+		);
 	}
 
 	setChampionNamesOnHoverInTheChampionSelection() {
@@ -27,5 +31,8 @@ export default class SettingsViewModel {
 		settings.championNamesDisplayOnHoverInTheChampionSelection =
 			!settings.championNamesDisplayOnHoverInTheChampionSelection;
 		this.settingsModel.saveSettings(settings);
+		this.notificationCenter.publish(
+			"championNamesDisplayOnHoverInTheChampionSelectionChanged",
+		);
 	}
 }

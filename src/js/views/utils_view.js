@@ -141,9 +141,7 @@ export default class UtilsView {
 		this.utilsContainer.appendChild(this.saveSnapshotButton);
 	}
 
-	render() {
-		this.openSettingsButton.click();
-	}
+	render() {}
 
 	clearTierlist() {
 		this.utilsViewModel.clearTierlist();

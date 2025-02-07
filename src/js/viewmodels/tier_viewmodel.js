@@ -37,4 +37,8 @@ export default class TierViewModel {
 		const settings = this.settingsViewModel.getSettings();
 		return settings.championIconPadding;
 	}
+	getNameOnHoverSetting() {
+		const settings = this.settingsViewModel.getSettings();
+		return settings.championNamesDisplayOnHoverInTheTierlist;
+	}
 }

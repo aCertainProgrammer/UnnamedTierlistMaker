@@ -18,6 +18,10 @@ export class ChampionSelectionView {
 			"key",
 			this.handleKeyEvent.bind(this),
 		);
+		this.notificationCenter.subscribe(
+			"championNamesDisplayOnHoverInTheChampionSelectionChanged",
+			this.render.bind(this),
+		);
 	}
 
 	render() {
@@ -33,12 +37,14 @@ export class ChampionSelectionView {
 		}
 		const champions = this.championSelectionViewModel.getChampions();
 
+		const nameOnHover =
+			this.championSelectionViewModel.getNameOnHoverSetting();
 		for (let i = 0; i < champions.length; i++) {
-			this.createChampionIcon(champions[i]);
+			this.createChampionIcon(champions[i], nameOnHover);
 		}
 	}
 
-	createChampionIcon(champion) {
+	createChampionIcon(champion, nameOnHover) {
 		const championIcon = document.createElement("img");
 
 		championIcon.classList = "champion-icon";
@@ -74,32 +80,35 @@ export class ChampionSelectionView {
 			document.body.removeChild(dragImage);
 		});
 
-		championIcon.addEventListener("mouseenter", () => {
-			const championNameContainer = document.createElement("div");
-			championNameContainer.classList.add(
-				"champion-name-container-on-hover",
-			);
-			championNameContainer.innerText = prettifyChampionName(champion);
+		if (nameOnHover) {
+			championIcon.addEventListener("mouseenter", () => {
+				const championNameContainer = document.createElement("div");
+				championNameContainer.classList.add(
+					"champion-name-container-on-hover",
+				);
+				championNameContainer.innerText =
+					prettifyChampionName(champion);
 
-			document.body.appendChild(championNameContainer);
+				document.body.appendChild(championNameContainer);
 
-			const rect = championIcon.getBoundingClientRect();
-			const nameRect = championNameContainer.getBoundingClientRect();
-			const width = parseInt(nameRect.width);
-			championNameContainer.style.top = parseInt(rect.y - 30) + "px";
-			championNameContainer.style.left =
-				parseInt(rect.x + 40 - width / 2) + "px";
-		});
+				const rect = championIcon.getBoundingClientRect();
+				const nameRect = championNameContainer.getBoundingClientRect();
+				const width = parseInt(nameRect.width);
+				championNameContainer.style.top = parseInt(rect.y - 30) + "px";
+				championNameContainer.style.left =
+					parseInt(rect.x + 40 - width / 2) + "px";
+			});
 
-		championIcon.addEventListener("mouseleave", () => {
-			const championNameContainer = document.querySelector(
-				".champion-name-container-on-hover",
-			);
+			championIcon.addEventListener("mouseleave", () => {
+				const championNameContainer = document.querySelector(
+					".champion-name-container-on-hover",
+				);
 
-			if (championNameContainer != null) {
-				championNameContainer.remove();
-			}
-		});
+				if (championNameContainer != null) {
+					championNameContainer.remove();
+				}
+			});
+		}
 	}
 
 	searchChampions() {

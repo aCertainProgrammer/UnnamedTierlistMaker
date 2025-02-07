@@ -17,6 +17,10 @@ export class TierlistView {
 			"championIconPaddingChanged",
 			this.render.bind(this),
 		);
+		this.notificationCenter.subscribe(
+			"championNamesDisplayOnHoverInTheTierlistChanged",
+			this.render.bind(this),
+		);
 
 		this.name = this.tierlistViewModel.name;
 	}

@@ -1,6 +1,7 @@
 export class ChampionSelectionViewModel {
-	constructor(model, notificationCenter) {
+	constructor(model, notificationCenter, settingsViewModel) {
 		this.notificationCenter = notificationCenter;
+		this.settingsViewModel = settingsViewModel;
 		this.model = model;
 		this.champions = [];
 
@@ -34,5 +35,10 @@ export class ChampionSelectionViewModel {
 			champion: this.champions[0],
 			key: key,
 		});
+	}
+
+	getNameOnHoverSetting() {
+		const settings = this.settingsViewModel.getSettings();
+		return settings.championNamesDisplayOnHoverInTheChampionSelection;
 	}
 }

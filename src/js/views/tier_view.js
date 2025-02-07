@@ -169,6 +169,7 @@ export default class TierView {
 
 	render() {
 		const championIconPadding = this.getChampionIconPadding();
+		const nameOnHover = this.getNameOnHoverSetting();
 		const tier = this.tierViewModel.getTier();
 		this.tierChampions.innerHTML = "";
 		for (let i = 0; i < tier.champions.length; i++) {
@@ -176,6 +177,7 @@ export default class TierView {
 				this.tierIndex,
 				tier.champions[i],
 				championIconPadding,
+				nameOnHover,
 			);
 			this.tierChampions.appendChild(championIcon);
 		}
@@ -183,7 +185,7 @@ export default class TierView {
 		return this.tierContainer;
 	}
 
-	createChampionIcon(index, champion, padding) {
+	createChampionIcon(index, champion, padding, nameOnHover) {
 		const championIcon = document.createElement("img");
 		championIcon.classList = "champion-icon";
 		championIcon.dataset.champion = champion;
@@ -223,34 +225,37 @@ export default class TierView {
 			document.body.removeChild(dragImage);
 		});
 
-		championIcon.addEventListener("mouseenter", () => {
-			const championNameContainer = document.createElement("div");
-			championNameContainer.classList.add(
-				"champion-name-container-on-hover",
-			);
-			championNameContainer.innerText = prettifyChampionName(champion);
+		if (nameOnHover) {
+			championIcon.addEventListener("mouseenter", () => {
+				const championNameContainer = document.createElement("div");
+				championNameContainer.classList.add(
+					"champion-name-container-on-hover",
+				);
+				championNameContainer.innerText =
+					prettifyChampionName(champion);
 
-			document.body.appendChild(championNameContainer);
+				document.body.appendChild(championNameContainer);
 
-			const rect = championIcon.getBoundingClientRect();
-			const nameRect = championNameContainer.getBoundingClientRect();
-			const width = parseInt(nameRect.width);
-			championNameContainer.style.top = parseInt(rect.y - 30) + "px";
-			championNameContainer.style.left =
-				parseInt(rect.x + 40 - width / 2) + "px";
-		});
+				const rect = championIcon.getBoundingClientRect();
+				const nameRect = championNameContainer.getBoundingClientRect();
+				const width = parseInt(nameRect.width);
+				championNameContainer.style.top = parseInt(rect.y - 30) + "px";
+				championNameContainer.style.left =
+					parseInt(rect.x + 40 - width / 2) + "px";
+			});
 
-		championIcon.addEventListener("mouseleave", () => {
-			const championNameContainers = document.querySelectorAll(
-				".champion-name-container-on-hover",
-			);
+			championIcon.addEventListener("mouseleave", () => {
+				const championNameContainers = document.querySelectorAll(
+					".champion-name-container-on-hover",
+				);
 
-			if (championNameContainers != null) {
-				for (let i = 0; i < championNameContainers.length; i++) {
-					championNameContainers[i].remove();
+				if (championNameContainers != null) {
+					for (let i = 0; i < championNameContainers.length; i++) {
+						championNameContainers[i].remove();
+					}
 				}
-			}
-		});
+			});
+		}
 
 		return championIcon;
 	}
@@ -299,6 +304,10 @@ export default class TierView {
 
 	getChampionIconPadding() {
 		return this.tierViewModel.getChampionIconPadding();
+	}
+
+	getNameOnHoverSetting() {
+		return this.tierViewModel.getNameOnHoverSetting();
 	}
 
 	createTierEditor() {
