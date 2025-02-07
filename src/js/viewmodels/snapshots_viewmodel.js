@@ -1,4 +1,5 @@
-import { readFile } from "../util";
+import { readFile, exportImage } from "../util";
+import domtoimage from "dom-to-image";
 
 export default class SnapshotsViewModel {
 	constructor(snapshotsModel, notificationCenter) {
@@ -44,5 +45,15 @@ export default class SnapshotsViewModel {
 
 	importSnapshots(data) {
 		this.snapshotsModel.importSnapshots(data);
+	}
+	exportSnapshotsAsImages() {
+		// This violates MVVM. Too bad!
+		const snapshots = document.querySelectorAll(".snapshot-tierlist");
+		for (let i = 0; i < snapshots.length; i++) {
+			const snapshot = snapshots[i];
+			domtoimage.toPng(snapshot).then(function (dataUrl) {
+				exportImage(dataUrl, "tierlist.png");
+			});
+		}
 	}
 }

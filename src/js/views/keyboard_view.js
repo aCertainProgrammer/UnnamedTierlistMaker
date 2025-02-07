@@ -13,8 +13,14 @@ export default class KeyboardView {
 		const snapshotsContainer = document.getElementById(
 			"snapshots-container",
 		);
+		const settingsContainer = document.getElementById("settings-container");
+		const manualContainer = document.getElementById("manual-container");
 
-		if (document.getElementById("tier-editor-overlay") != null) {
+		if (!settingsContainer.classList.contains("hidden")) {
+			this.handleSettingsScreenInput();
+		} else if (!manualContainer.classList.contains("hidden")) {
+			this.handleManualScreenInput();
+		} else if (document.getElementById("tier-editor-overlay") != null) {
 			this.handleTierEditorInput(event);
 		} else if (!snapshotsContainer.classList.contains("hidden")) {
 			this.handleSnapshotInput(event);
@@ -23,8 +29,26 @@ export default class KeyboardView {
 		}
 	}
 
+	handleManualScreenInput() {
+		const target = "manualScreen";
+		this.notificationCenter.publish("key", {
+			key: event.key,
+			shift: event.shiftKey,
+			target: target,
+		});
+	}
+
+	handleSettingsScreenInput() {
+		const target = "settingsScreen";
+		this.notificationCenter.publish("key", {
+			key: event.key,
+			shift: event.shiftKey,
+			target: target,
+		});
+	}
+
 	handleTierEditorInput(event) {
-		const target = "tierlistName";
+		const target = "tierEditorOverlay";
 
 		this.notificationCenter.publish("key", {
 			key: event.key,

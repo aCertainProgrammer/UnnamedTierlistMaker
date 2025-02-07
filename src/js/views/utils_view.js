@@ -23,6 +23,16 @@ export default class UtilsView {
 		});
 
 		this.utilsContainer.appendChild(this.openSettingsButton);
+
+		this.openManualButton = document.createElement("input");
+		this.openManualButton.type = "button";
+		this.openManualButton.classList.add("normal-button");
+		this.openManualButton.value = "Open manual";
+		this.openManualButton.addEventListener("click", () => {
+			this.notificationCenter.publish("openManual");
+		});
+
+		this.utilsContainer.appendChild(this.openManualButton);
 		this.clearTierlistButton = document.createElement("input");
 		this.clearTierlistButton.type = "button";
 		this.clearTierlistButton.value = "Reset tierlist";
@@ -191,6 +201,12 @@ export default class UtilsView {
 		}
 		if (key.toLowerCase() == "v") {
 			this.clickInput(this.saveSnapshotButton);
+		}
+		if (key.toLowerCase() == "s") {
+			this.clickInput(this.openSettingsButton);
+		}
+		if (key.toLowerCase() == "m") {
+			this.clickInput(this.openManualButton);
 		}
 	}
 }

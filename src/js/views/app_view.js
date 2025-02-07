@@ -1,5 +1,6 @@
 import MainScreenView from "./main_screen_view.js";
 import SettingsView from "./settings_view.js";
+import ManualView from "./manual_view.js";
 import KeyboardView from "./keyboard_view.js";
 import SnapshotsView from "./snapshots_view.js";
 
@@ -23,6 +24,8 @@ export default class AppView {
 			this.appViewModel.settingsViewModel,
 		);
 
+		this.manualView = new ManualView(this.appViewModel.manualViewModel);
+
 		this.keyboardView = new KeyboardView(
 			this.appViewModel.keyboardViewModel,
 		);
@@ -35,6 +38,7 @@ export default class AppView {
 	render() {
 		this.mainScreenView.render();
 		this.settingsView.render();
+		this.manualView.render();
 		this.snapshotsView.render();
 	}
 }

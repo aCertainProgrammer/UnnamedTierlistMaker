@@ -1,4 +1,4 @@
-import { capitalize } from "../util.js";
+import { capitalize, prettifyChampionName } from "../util.js";
 import TierEditorView from "./tier_editor_view.js";
 export default class TierView {
 	/**
@@ -132,10 +132,13 @@ export default class TierView {
 		const tierChampions = document.createElement("div");
 		tierChampions.classList = "tier-champions";
 
+		const championIconPadding = this.getChampionIconPadding();
+
 		for (let i = 0; i < tier.champions.length; i++) {
 			const championIcon = this.createChampionIcon(
 				this.tierIndex,
 				tier.champions[i],
+				championIconPadding,
 			);
 			tierChampions.appendChild(championIcon);
 		}
@@ -168,11 +171,12 @@ export default class TierView {
 		return this.tierContainer;
 	}
 
-	createChampionIcon(index, champion) {
+	createChampionIcon(index, champion, padding) {
 		const championIcon = document.createElement("img");
 		championIcon.classList = "champion-icon";
 		championIcon.src =
 			"./assets/img/champion_icons/" + capitalize(champion) + ".webp";
+		championIcon.style.padding = padding + "px";
 
 		championIcon.addEventListener("dragstart", () => {
 			const dragImage = document.createElement("img");
@@ -200,6 +204,33 @@ export default class TierView {
 			event.preventDefault();
 			const dragImage = document.querySelector("#drag-image");
 			document.body.removeChild(dragImage);
+		});
+
+		championIcon.addEventListener("mouseenter", () => {
+			const championNameContainer = document.createElement("div");
+			championNameContainer.classList.add(
+				"champion-name-container-on-hover",
+			);
+			championNameContainer.innerText = prettifyChampionName(champion);
+
+			document.body.appendChild(championNameContainer);
+
+			const rect = championIcon.getBoundingClientRect();
+			const nameRect = championNameContainer.getBoundingClientRect();
+			const width = parseInt(nameRect.width);
+			championNameContainer.style.top = parseInt(rect.y - 30) + "px";
+			championNameContainer.style.left =
+				parseInt(rect.x + 40 - width / 2) + "px";
+		});
+
+		championIcon.addEventListener("mouseleave", () => {
+			const championNameContainer = document.querySelector(
+				".champion-name-container-on-hover",
+			);
+
+			if (championNameContainer != null) {
+				championNameContainer.remove();
+			}
 		});
 
 		return championIcon;
@@ -245,5 +276,9 @@ export default class TierView {
 		this.tierlistViewModel.swapTierDown(this.tierIndex);
 
 		this.sendTierlistRenderSignal();
+	}
+
+	getChampionIconPadding() {
+		return this.tierViewModel.getChampionIconPadding();
 	}
 }
