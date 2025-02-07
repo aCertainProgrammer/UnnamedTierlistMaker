@@ -22,92 +22,6 @@ export default class TierView {
 		this.tierlistRenderSignal = tierlistRenderSignal;
 		this.tierIndex = tierIndex;
 
-		this.dragData = {
-			championIndex: null,
-			x: null,
-			y: null,
-		};
-
-		this.championDragIndex = -1;
-
-		this.imageSize = 80;
-		this.tierNameSize = 80;
-		this.swapArrowsSize = 80;
-
-		this.dropFunction = function () {
-			event.stopPropagation();
-			const dropData = JSON.parse(
-				event.dataTransfer.getData("text/plain"),
-			);
-			const champion = dropData.champion;
-
-			this.tierViewModel.removeChampion("dummy");
-
-			this.tierViewModel.addChampionAtIndex(
-				champion,
-				this.dragData.championIndex,
-			);
-
-			this.sendTierlistRenderSignal();
-		};
-
-		this.tierContainer.addEventListener(
-			"drop",
-			this.dropFunction.bind(this),
-		);
-
-		this.tierContainer.addEventListener("dragover", () => {
-			event.preventDefault();
-
-			const rect = this.tierContainer.getBoundingClientRect();
-
-			this.dragData.x = parseInt(
-				event.clientX - rect.left - this.tierNameSize,
-			);
-			this.dragData.y = event.clientY - rect.top;
-
-			const tierChampions = this.tierContainer.children[1];
-			const tierChampionsRect = tierChampions.getBoundingClientRect();
-			const tierLengthWithoutNameAndSwapArrows = parseInt(
-				tierChampionsRect.width,
-			);
-			const championsPerRow = parseInt(
-				tierLengthWithoutNameAndSwapArrows / this.imageSize,
-			);
-
-			const tierHeight = parseInt(rect.bottom - rect.top);
-			const currentRow = this.findCurrentRow(this.dragData.y, tierHeight);
-			const currentColumn = this.findCurrentColumn(
-				this.dragData.x,
-				tierLengthWithoutNameAndSwapArrows,
-			);
-
-			let index = currentRow * championsPerRow + currentColumn;
-
-			const tier = this.tierViewModel.getTier();
-			const numberOfChampions = tier.champions.length;
-
-			if (index > numberOfChampions) index = numberOfChampions;
-			if (this.championDragIndex != index) {
-				this.tierViewModel.removeChampion("dummy");
-				this.tierViewModel.addChampionAtIndex("dummy", index);
-
-				this.render();
-				//console.log(
-				//	`We are in row ${currentRow} and column ${currentColumn}, there are currently ${championsPerRow} championsPerRow, meaning our index is ${index}`,
-				//);
-			}
-
-			this.championDragIndex = index;
-
-			this.dragData.championIndex = index;
-		});
-
-		this.tierContainer.addEventListener("dragleave", () => {
-			this.tierViewModel.removeChampion("dummy");
-			this.dragData.championIndex = -1;
-		});
-
 		const tier = this.tierViewModel.getTier();
 
 		this.tierName = document.createElement("div");
@@ -151,11 +65,96 @@ export default class TierView {
 		this.tierSwappingContainer.appendChild(this.tierDownArrow);
 
 		this.tierContainer.appendChild(this.tierSwappingContainer);
+
+		this.dragData = {
+			championIndex: null,
+			x: null,
+			y: null,
+		};
+
+		this.championDragIndex = -1;
+
+		this.imageSize = 80;
+		this.tierNameSize = 80;
+		this.swapArrowsSize = 80;
+
+		this.dropFunction = function () {
+			event.stopPropagation();
+			const dropData = JSON.parse(
+				event.dataTransfer.getData("text/plain"),
+			);
+			const champion = dropData.champion;
+
+			this.tierViewModel.removeChampion("dummy");
+
+			this.tierViewModel.addChampionAtIndex(
+				champion,
+				this.dragData.championIndex,
+			);
+
+			this.sendTierlistRenderSignal();
+		};
+
+		this.tierChampions.addEventListener(
+			"drop",
+			this.dropFunction.bind(this),
+		);
+
+		this.tierChampions.addEventListener("dragover", () => {
+			event.preventDefault();
+
+			const rect = this.tierChampions.getBoundingClientRect();
+
+			this.dragData.x = parseInt(event.clientX - rect.left);
+			this.dragData.y = event.clientY - rect.top;
+
+			const tierChampionsRect =
+				this.tierChampions.getBoundingClientRect();
+			const tierLengthWithoutNameAndSwapArrows = parseInt(
+				tierChampionsRect.width,
+			);
+			const championsPerRow = parseInt(
+				tierLengthWithoutNameAndSwapArrows / this.imageSize,
+			);
+
+			const tierHeight = parseInt(rect.bottom - rect.top);
+			const currentRow = this.findCurrentRow(this.dragData.y, tierHeight);
+			const currentColumn = this.findCurrentColumn(
+				this.dragData.x,
+				tierLengthWithoutNameAndSwapArrows,
+			);
+
+			let index = currentRow * championsPerRow + currentColumn;
+
+			const tier = this.tierViewModel.getTier();
+			const numberOfChampions = tier.champions.length;
+
+			if (index > numberOfChampions) index = numberOfChampions;
+			if (this.championDragIndex != index) {
+				this.tierViewModel.removeChampion("dummy");
+				this.tierViewModel.addChampionAtIndex("dummy", index);
+
+				this.render();
+				//console.log(
+				//	`We are in row ${currentRow} and column ${currentColumn}, there are currently ${championsPerRow} championsPerRow, meaning our index is ${index}`,
+				//);
+			}
+
+			this.championDragIndex = index;
+
+			this.dragData.championIndex = index;
+		});
+
+		this.tierChampions.addEventListener("dragleave", () => {
+			this.tierViewModel.removeChampion("dummy");
+			this.dragData.championIndex = -1;
+		});
 	}
 
 	render() {
 		const championIconPadding = this.getChampionIconPadding();
 		const tier = this.tierViewModel.getTier();
+		console.trace();
 		this.tierChampions.innerHTML = "";
 		for (let i = 0; i < tier.champions.length; i++) {
 			const championIcon = this.createChampionIcon(
