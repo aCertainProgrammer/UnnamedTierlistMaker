@@ -107,66 +107,64 @@ export default class TierView {
 			this.tierViewModel.removeChampion("dummy");
 			this.dragData.championIndex = -1;
 		});
+
+		const tier = this.tierViewModel.getTier();
+
+		this.tierName = document.createElement("div");
+		this.tierName.classList = "tier-name";
+		this.tierName.innerHTML = tier.name;
+		this.tierName.style.backgroundColor = tier.color;
+
+		this.tierName.addEventListener(
+			"click",
+			this.createTierEditor.bind(this),
+		);
+
+		this.tierContainer.appendChild(this.tierName);
+
+		this.tierChampions = document.createElement("div");
+		this.tierChampions.classList = "tier-champions";
+		this.tierContainer.appendChild(this.tierChampions);
+
+		this.tierSwappingContainer = document.createElement("div");
+		this.tierSwappingContainer.classList.add("tier-swapping-container");
+
+		this.tierUpArrow = document.createElement("img");
+		this.tierUpArrow.classList.add("tier-swapping-arrow");
+		this.tierUpArrow.src = "./assets/img/up-arrow.png";
+		this.tierUpArrow.draggable = false;
+
+		this.tierUpArrow.addEventListener("click", this.swapTierUp.bind(this));
+
+		this.tierSwappingContainer.appendChild(this.tierUpArrow);
+
+		this.tierDownArrow = document.createElement("img");
+		this.tierDownArrow.classList.add("tier-swapping-arrow");
+		this.tierDownArrow.src = "./assets/img/down-arrow.png";
+		this.tierDownArrow.draggable = false;
+
+		this.tierDownArrow.addEventListener(
+			"click",
+			this.swapTierDown.bind(this),
+		);
+
+		this.tierSwappingContainer.appendChild(this.tierDownArrow);
+
+		this.tierContainer.appendChild(this.tierSwappingContainer);
 	}
 
 	render() {
-		this.tierContainer.innerHTML = "";
-		const tier = this.tierViewModel.getTier();
-
-		const tierName = document.createElement("div");
-		tierName.classList = "tier-name";
-		tierName.innerHTML = tier.name;
-		tierName.style.backgroundColor = tier.color;
-
-		tierName.addEventListener("click", () => {
-			new TierEditorView(
-				this.tierlistViewModel,
-				tier,
-				this.tierIndex,
-				this.tierViewModel.notificationCenter,
-			);
-		});
-
-		this.tierContainer.appendChild(tierName);
-
-		const tierChampions = document.createElement("div");
-		tierChampions.classList = "tier-champions";
-
 		const championIconPadding = this.getChampionIconPadding();
-
+		const tier = this.tierViewModel.getTier();
+		this.tierChampions.innerHTML = "";
 		for (let i = 0; i < tier.champions.length; i++) {
 			const championIcon = this.createChampionIcon(
 				this.tierIndex,
 				tier.champions[i],
 				championIconPadding,
 			);
-			tierChampions.appendChild(championIcon);
+			this.tierChampions.appendChild(championIcon);
 		}
-
-		this.tierContainer.appendChild(tierChampions);
-
-		const tierSwappingContainer = document.createElement("div");
-		tierSwappingContainer.classList.add("tier-swapping-container");
-
-		const tierUpArrow = document.createElement("img");
-		tierUpArrow.classList.add("tier-swapping-arrow");
-		tierUpArrow.src = "./assets/img/up-arrow.png";
-		tierUpArrow.draggable = false;
-
-		tierUpArrow.addEventListener("click", this.swapTierUp.bind(this));
-
-		tierSwappingContainer.appendChild(tierUpArrow);
-
-		const tierDownArrow = document.createElement("img");
-		tierDownArrow.classList.add("tier-swapping-arrow");
-		tierDownArrow.src = "./assets/img/down-arrow.png";
-		tierDownArrow.draggable = false;
-
-		tierDownArrow.addEventListener("click", this.swapTierDown.bind(this));
-
-		tierSwappingContainer.appendChild(tierDownArrow);
-
-		this.tierContainer.appendChild(tierSwappingContainer);
 
 		return this.tierContainer;
 	}
@@ -282,5 +280,15 @@ export default class TierView {
 
 	getChampionIconPadding() {
 		return this.tierViewModel.getChampionIconPadding();
+	}
+
+	createTierEditor() {
+		const tier = this.tierlistViewModel.getTier();
+		new TierEditorView(
+			this.tierlistViewModel,
+			tier,
+			this.tierIndex,
+			this.tierViewModel.notificationCenter,
+		);
 	}
 }
