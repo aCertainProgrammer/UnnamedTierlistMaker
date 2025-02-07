@@ -31,7 +31,24 @@ export default class SettingsView {
 		this.championIconPaddingSetter.value = settings.championIconPadding;
 		this.championIconPaddingSetter.addEventListener(
 			"input",
-			this.changeChampionIconPadding.bind(this),
+			this.setChampionIconPadding.bind(this),
+		);
+
+		this.championNamesOnHoverTierlistToggle = document.getElementById(
+			"champion-names-on-hover-tierlist-toggle",
+		);
+		this.championNamesOnHoverTierlistToggle.addEventListener(
+			"click",
+			this.setChampionNamesOnHoverInTheTierlist.bind(this),
+		);
+
+		this.championNamesOnHoverChampionSelectionToggle =
+			document.getElementById(
+				"champion-names-on-hover-champion-selection-toggle",
+			);
+		this.championNamesOnHoverChampionSelectionToggle.addEventListener(
+			"click",
+			this.setChampionNamesOnHoverInTheChampionSelection.bind(this),
 		);
 
 		this.tierlistPreview = this.createTierlistPreview();
@@ -54,6 +71,7 @@ export default class SettingsView {
 		this.tierlistPreview.remove();
 		this.tierlistPreview = this.createTierlistPreview();
 		this.notSettingsUtils.appendChild(this.tierlistPreview);
+		this.colorSettingsButtons();
 	}
 
 	openSettings() {
@@ -77,10 +95,42 @@ export default class SettingsView {
 		}
 	}
 
-	changeChampionIconPadding() {
+	setChampionIconPadding() {
 		const padding = event.target.value.trim();
 		this.settingsViewModel.setChampionIconPadding(padding);
 		this.render();
+	}
+
+	setChampionNamesOnHoverInTheTierlist() {
+		this.settingsViewModel.setChampionNamesOnHoverInTheTierlist();
+		this.colorSettingsButtons();
+	}
+
+	setChampionNamesOnHoverInTheChampionSelection() {
+		this.settingsViewModel.setChampionNamesOnHoverInTheChampionSelection();
+		this.colorSettingsButtons();
+	}
+
+	colorSettingsButtons() {
+		const settings = this.settingsViewModel.getSettings();
+		const buttons = [
+			this.championNamesOnHoverTierlistToggle,
+			this.championNamesOnHoverChampionSelectionToggle,
+		];
+		const properties = [
+			settings.championNamesDisplayOnHoverInTheTierlist,
+			settings.championNamesDisplayOnHoverInTheChampionSelection,
+		];
+
+		for (let i = 0; i < buttons.length; i++) {
+			if (properties[i] == true) {
+				buttons[i].dataset.state = "on";
+				buttons[i].value = "On";
+			} else {
+				buttons[i].dataset.state = "off";
+				buttons[i].value = "Off";
+			}
+		}
 	}
 
 	createTierlistPreview() {
@@ -144,7 +194,6 @@ export default class SettingsView {
 		tierlistPreviewContainer.appendChild(tierlistPreviewTierlist);
 
 		return tierlistPreviewContainer;
-		return tierlistPreview;
 	}
 
 	createTierlistPreviewTier(tierData) {

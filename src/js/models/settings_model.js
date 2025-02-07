@@ -15,14 +15,37 @@ export default class SettingsModel {
 
 		const default_settings = {
 			championIconPadding: "0",
+			championNamesDisplayOnHoverInTheTierlist: true,
+			championNamesDisplayOnHoverInTheChampionSelection: true,
 		};
 		if (settings == undefined) {
 			return default_settings;
 		} else {
-			return JSON.parse(settings);
-			//return this.validateSettings(JSON.parse(settings));
+			return this.validateSettings(
+				JSON.parse(settings),
+				default_settings,
+			);
 		}
 	}
 
-	validateSettings(settingsToValidate) {}
+	validateSettings(settingsToValidate, default_settings) {
+		const properties = [
+			"championIconPadding",
+			"championNamesDisplayOnHoverInTheTierlist",
+			"championNamesDisplayOnHoverInTheChampionSelection",
+		];
+
+		const validSettings = {};
+
+		for (let i = 0; i < properties.length; i++) {
+			const property = properties[i];
+			if (settingsToValidate[property] == undefined) {
+				validSettings[property] = default_settings[property];
+			} else {
+				validSettings[property] = settingsToValidate[property];
+			}
+		}
+
+		return validSettings;
+	}
 }

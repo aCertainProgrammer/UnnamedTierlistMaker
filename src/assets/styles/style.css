@@ -36,6 +36,8 @@
 	--tierAdditionElementBorder: 1px solid #555555;
 	--snapshotContainerBorder: 1px solid #555555;
 	--transparentBackground: #00000000;
+	--onButtonBackgroundColor: darkgreen;
+	--offButtonBackgroundColor: darkred;
 }
 
 * {
@@ -484,6 +486,7 @@ input[type="text"] {
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
+	gap: 100px;
 }
 
 #settings-content {
@@ -521,4 +524,26 @@ input[type="text"] {
 
 #close-manual-button {
 	max-width: 120px;
+}
+
+input[data-state="on"] {
+	background: var(--onButtonBackgroundColor);
+}
+
+input[data-state="off"] {
+	background: var(--offButtonBackgroundColor);
+}
+
+.setting-container {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0px 6px;
+}
+
+.setting-container > input,
+.setting-container > span {
+	width: 80px;
+	height: 30px;
 }
