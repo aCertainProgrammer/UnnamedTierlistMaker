@@ -27,3 +27,8 @@
 
 - in the manual screen:
     - `Shift` + `M` to close manual 
+
+- in the snapshot screen:
+    - type letters `a` to `z` to search for snapshots
+    - `Enter` to load the first snapshot
+    - `Shift` + `G` to close the snapshot screen
