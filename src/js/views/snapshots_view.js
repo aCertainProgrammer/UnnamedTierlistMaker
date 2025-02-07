@@ -68,7 +68,7 @@ export default class SnapshotsView {
 
 		const snapshotName = document.createElement("input");
 		snapshotName.type = "text";
-		snapshotName.id = "snapshot-name";
+		snapshotName.classList = "snapshot-name";
 		snapshotName.value = snapshotData.name;
 
 		snapshotName.addEventListener("input", () => {
@@ -153,13 +153,30 @@ export default class SnapshotsView {
 		if (data.target != "snapshotsContainer") {
 			return;
 		}
-
-		if (!data.shift) {
+		if (document.activeElement.classList.contains("snapshot-name")) {
 			return;
 		}
 
-		if (data.key.toLowerCase() == "g") {
-			this.notificationCenter.publish("clickSnapshotsToggle");
+		if (
+			data.key == "Enter" &&
+			this.snapshotsContainer.children[1] != undefined
+		) {
+			this.snapshotsContainer.children[1].click();
+			document.getElementById("snapshot-search-bar").blur();
+			return;
+		}
+		if (document.activeElement.id == "snapshot-search-bar") {
+			return;
+		}
+		if (!data.shift) {
+			const letterRegex = /^[A-Za-z]$/;
+			if (data.key.match(letterRegex)) {
+				document.getElementById("snapshot-search-bar").focus();
+			}
+		} else {
+			if (data.key.toLowerCase() == "g") {
+				this.notificationCenter.publish("clickSnapshotsToggle");
+			}
 		}
 	}
 
