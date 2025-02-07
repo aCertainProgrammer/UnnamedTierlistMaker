@@ -108,20 +108,13 @@ export default class TierView {
 			this.dragData.x = parseInt(event.clientX - rect.left);
 			this.dragData.y = event.clientY - rect.top;
 
-			const tierChampionsRect =
-				this.tierChampions.getBoundingClientRect();
-			const tierLengthWithoutNameAndSwapArrows = parseInt(
-				tierChampionsRect.width,
-			);
-			const championsPerRow = parseInt(
-				tierLengthWithoutNameAndSwapArrows / this.imageSize,
-			);
+			const championsPerRow = parseInt(rect.width / this.imageSize);
 
 			const tierHeight = parseInt(rect.bottom - rect.top);
 			const currentRow = this.findCurrentRow(this.dragData.y, tierHeight);
 			const currentColumn = this.findCurrentColumn(
 				this.dragData.x,
-				tierLengthWithoutNameAndSwapArrows,
+				rect.width,
 			);
 
 			let index = currentRow * championsPerRow + currentColumn;
