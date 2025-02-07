@@ -96,7 +96,15 @@ export default class SettingsView {
 	}
 
 	setChampionIconPadding() {
-		const padding = event.target.value.trim();
+		let padding = event.target.value.trim();
+		if (padding < 0) {
+			event.target.value = 0;
+			padding = 0;
+		}
+		if (padding > 40) {
+			event.target.value = 40;
+			padding = 40;
+		}
 		this.settingsViewModel.setChampionIconPadding(padding);
 		this.render();
 	}
