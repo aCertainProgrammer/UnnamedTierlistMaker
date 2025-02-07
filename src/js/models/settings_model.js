@@ -1,6 +1,12 @@
 import localStorageStrings from "../constants.js";
 export default class SettingsModel {
-	constructor() {}
+	constructor() {
+		this.default_settings = {
+			championIconPadding: "0",
+			championNamesDisplayOnHoverInTheTierlist: true,
+			championNamesDisplayOnHoverInTheChampionSelection: true,
+		};
+	}
 
 	saveSettings(settings) {
 		localStorage.setItem(
@@ -13,22 +19,14 @@ export default class SettingsModel {
 			localStorageStrings.settingsSaveLocation,
 		);
 
-		const default_settings = {
-			championIconPadding: "0",
-			championNamesDisplayOnHoverInTheTierlist: true,
-			championNamesDisplayOnHoverInTheChampionSelection: true,
-		};
 		if (settings == undefined) {
-			return default_settings;
+			return this.default_settings;
 		} else {
-			return this.validateSettings(
-				JSON.parse(settings),
-				default_settings,
-			);
+			return this.validateSettings(JSON.parse(settings));
 		}
 	}
 
-	validateSettings(settingsToValidate, default_settings) {
+	validateSettings(settingsToValidate) {
 		const properties = [
 			"championIconPadding",
 			"championNamesDisplayOnHoverInTheTierlist",
@@ -40,12 +38,16 @@ export default class SettingsModel {
 		for (let i = 0; i < properties.length; i++) {
 			const property = properties[i];
 			if (settingsToValidate[property] == undefined) {
-				validSettings[property] = default_settings[property];
+				validSettings[property] = this.default_settings[property];
 			} else {
 				validSettings[property] = settingsToValidate[property];
 			}
 		}
 
 		return validSettings;
+	}
+
+	resetSettings() {
+		this.saveSettings(this.default_settings);
 	}
 }

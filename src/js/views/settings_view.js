@@ -25,6 +25,14 @@ export default class SettingsView {
 			this.render();
 		});
 
+		this.resetSettingsButton = document.getElementById(
+			"reset-settings-button",
+		);
+		this.resetSettingsButton.addEventListener(
+			"click",
+			this.resetSettings.bind(this),
+		);
+
 		this.championIconPaddingSetter = document.getElementById(
 			"champion-icon-padding-setter",
 		);
@@ -242,5 +250,13 @@ export default class SettingsView {
 		championIcon.style.padding = padding + "px";
 		championIcon.draggable = false;
 		return championIcon;
+	}
+
+	resetSettings() {
+		this.settingsViewModel.resetSettings();
+		this.colorSettingsButtons();
+		const settings = this.settingsViewModel.getSettings();
+		this.championIconPaddingSetter.value = settings.championIconPadding;
+		this.render();
 	}
 }

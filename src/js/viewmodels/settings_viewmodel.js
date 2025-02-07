@@ -35,4 +35,15 @@ export default class SettingsViewModel {
 			"championNamesDisplayOnHoverInTheChampionSelectionChanged",
 		);
 	}
+
+	resetSettings() {
+		this.settingsModel.resetSettings();
+		this.notificationCenter.publish("championIconPaddingChanged");
+		this.notificationCenter.publish(
+			"championNamesDisplayOnHoverInTheTierlistChanged",
+		);
+		this.notificationCenter.publish(
+			"championNamesDisplayOnHoverInTheChampionSelectionChanged",
+		);
+	}
 }
