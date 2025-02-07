@@ -71,6 +71,7 @@ export default class TierView {
 			x: null,
 			y: null,
 		};
+		this.currentDummy = null;
 
 		this.championDragIndex = -1;
 
@@ -102,6 +103,10 @@ export default class TierView {
 
 		this.tierChampions.addEventListener("dragover", () => {
 			event.preventDefault();
+			const dragData = JSON.parse(
+				event.dataTransfer.getData("text/plain"),
+			);
+			this.currentDummy = dragData.champion;
 
 			const rect = this.tierChampions.getBoundingClientRect();
 
@@ -140,6 +145,24 @@ export default class TierView {
 
 		this.tierChampions.addEventListener("dragleave", () => {
 			this.tierViewModel.removeChampion("dummy");
+			const rect = this.tierChampions.getBoundingClientRect();
+			const drag_x = parseInt(event.clientX - rect.left);
+			const drag_y = event.clientY - rect.top;
+			if (
+				drag_y <= 0 ||
+				drag_x <= 0 ||
+				drag_x >= rect.width ||
+				drag_y >= rect.height
+			) {
+				const dummies = document.querySelectorAll(
+					"[data-champion='dummy']",
+				);
+				if (dummies != undefined) {
+					for (let i = 0; i < dummies.length; i++) {
+						dummies[i].remove();
+					}
+				}
+			}
 			this.dragData.championIndex = -1;
 		});
 	}
@@ -147,7 +170,6 @@ export default class TierView {
 	render() {
 		const championIconPadding = this.getChampionIconPadding();
 		const tier = this.tierViewModel.getTier();
-		console.trace();
 		this.tierChampions.innerHTML = "";
 		for (let i = 0; i < tier.champions.length; i++) {
 			const championIcon = this.createChampionIcon(
@@ -164,6 +186,11 @@ export default class TierView {
 	createChampionIcon(index, champion, padding) {
 		const championIcon = document.createElement("img");
 		championIcon.classList = "champion-icon";
+		championIcon.dataset.champion = champion;
+		if (champion == "dummy") {
+			champion = this.currentDummy;
+			championIcon.style.opacity = "0.5";
+		}
 		championIcon.src =
 			"./assets/img/champion_icons/" + capitalize(champion) + ".webp";
 		championIcon.style.padding = padding + "px";
