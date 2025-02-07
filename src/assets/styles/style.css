@@ -34,6 +34,7 @@
 	--tierContainerBoxShadow: 0px 0px 1px 1px black;
 	--tierAdditionElementBorder: 1px solid #555555;
 	--snapshotContainerBorder: 1px solid #555555;
+	--transparentBackground: #00000000;
 }
 
 * {
@@ -181,7 +182,8 @@ body {
 	gap: 4px;
 	width: 80vh;
 	height: 80vh;
-	background: var(--tierBackgroundColor);
+	background: var(--bodyBackgroundColor);
+	opacity: var(--tierEditorContainerOpacity);
 }
 .tier-name-editor {
 	max-width: 140px;
@@ -217,8 +219,7 @@ input[type="text"] {
 	position: fixed;
 	top: 0px;
 	left: 0px;
-	opacity: var(--tierEditorContainerOpacity);
-	background: var(--bodyBackgroundColor);
+	background: var(--transparentBackground);
 
 	height: 100vh;
 	width: 100vw;
@@ -289,8 +290,10 @@ input[type="text"] {
 }
 
 #utils {
+	width: 100%;
 	display: flex;
 	flex-direction: row;
+	flex-wrap: wrap;
 	align-items: center;
 	justify-content: start;
 	padding: 4px 4px;
