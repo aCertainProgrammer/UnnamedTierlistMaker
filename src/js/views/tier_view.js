@@ -311,7 +311,7 @@ export default class TierView {
 	}
 
 	createTierEditor() {
-		const tier = this.tierlistViewModel.getTier();
+		const tier = this.tierViewModel.getTier();
 		new TierEditorView(
 			this.tierlistViewModel,
 			tier,
