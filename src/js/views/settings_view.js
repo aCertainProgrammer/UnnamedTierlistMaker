@@ -1,4 +1,4 @@
-import { capitalize } from "../util.js";
+import { capitalize, prettifyChampionName } from "../util.js";
 export default class SettingsView {
 	constructor(settingsViewModel) {
 		this.settingsViewModel = settingsViewModel;
@@ -120,6 +120,7 @@ export default class SettingsView {
 	setChampionNamesOnHoverInTheTierlist() {
 		this.settingsViewModel.setChampionNamesOnHoverInTheTierlist();
 		this.colorSettingsButtons();
+		this.render();
 	}
 
 	setChampionNamesOnHoverInTheChampionSelection() {
@@ -228,11 +229,13 @@ export default class SettingsView {
 
 		const settings = this.settingsViewModel.getSettings();
 		const padding = settings.championIconPadding;
+		const nameOnHover = settings.championNamesDisplayOnHoverInTheTierlist;
 
 		for (let i = 0; i < tierData.champions.length; i++) {
 			const championIcon = this.createChampionIcon(
 				tierData.champions[i],
 				padding,
+				nameOnHover,
 			);
 			tierChampions.appendChild(championIcon);
 		}
@@ -242,13 +245,45 @@ export default class SettingsView {
 		return tierContainer;
 	}
 
-	createChampionIcon(champion, padding) {
+	createChampionIcon(champion, padding, nameOnHover) {
 		const championIcon = document.createElement("img");
 		championIcon.classList.add("champion-icon");
 		championIcon.src =
 			"./assets/img/champion_icons/" + capitalize(champion) + ".webp";
 		championIcon.style.padding = padding + "px";
 		championIcon.draggable = false;
+
+		if (nameOnHover) {
+			championIcon.addEventListener("mouseenter", () => {
+				const championNameContainer = document.createElement("div");
+				championNameContainer.classList.add(
+					"champion-name-container-on-hover",
+				);
+				championNameContainer.innerText =
+					prettifyChampionName(champion);
+
+				document.body.appendChild(championNameContainer);
+
+				const rect = championIcon.getBoundingClientRect();
+				const nameRect = championNameContainer.getBoundingClientRect();
+				const width = parseInt(nameRect.width);
+				championNameContainer.style.top = parseInt(rect.y - 30) + "px";
+				championNameContainer.style.left =
+					parseInt(rect.x + 40 - width / 2) + "px";
+			});
+
+			championIcon.addEventListener("mouseleave", () => {
+				const championNameContainers = document.querySelectorAll(
+					".champion-name-container-on-hover",
+				);
+
+				if (championNameContainers != null) {
+					for (let i = 0; i < championNameContainers.length; i++) {
+						championNameContainers[i].remove();
+					}
+				}
+			});
+		}
 		return championIcon;
 	}
 

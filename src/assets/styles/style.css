@@ -268,6 +268,10 @@ input[type="text"] {
 	filter: brightness(110%);
 }
 
+.tier-name:hover {
+	filter: brightness(85%);
+}
+
 #tier-removal-button {
 	height: var(--tierColorButtonHeight);
 	font-size: var(--removeTierButtonFontSize);
