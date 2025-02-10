@@ -268,7 +268,7 @@ export default class SnapshotsView {
 	}
 
 	searchSnapshots() {
-		this.searchQuery = event.target.value.trim().toLowerCase();
+		this.searchQuery = event.target.value;
 		this.render();
 	}
 
