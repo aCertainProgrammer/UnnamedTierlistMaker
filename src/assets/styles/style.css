@@ -514,7 +514,7 @@ input[type="text"] {
 	width: 100vw;
 	background: var(--bodyBackgroundColor);
 	display: flex;
-	flex-direction: column-reverse;
+	flex-direction: column;
 }
 
 #manual-text {

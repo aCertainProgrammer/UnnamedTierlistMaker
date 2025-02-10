@@ -25,7 +25,7 @@ export default class ManualView {
 			this.visible = false;
 			this.render();
 		});
-		this.manualContainer.appendChild(this.closeManualButton);
+		this.manualContainer.prepend(this.closeManualButton);
 
 		customElements.define(
 			"zero-md",
