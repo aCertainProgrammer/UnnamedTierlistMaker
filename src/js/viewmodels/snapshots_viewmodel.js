@@ -1,5 +1,7 @@
-import { readFile, exportImage } from "../util";
+import { readFile, exportImage, exportData } from "../util";
 import domtoimage from "dom-to-image";
+import { saveAs } from "file-saver";
+import JSZip from "jszip";
 
 export default class SnapshotsViewModel {
 	constructor(snapshotsModel, notificationCenter) {
@@ -49,11 +51,20 @@ export default class SnapshotsViewModel {
 	exportSnapshotsAsImages() {
 		// This violates MVVM. Too bad!
 		const snapshots = document.querySelectorAll(".snapshot-tierlist");
+		const zip = new JSZip();
+		const promises = [];
 		for (let i = 0; i < snapshots.length; i++) {
 			const snapshot = snapshots[i];
-			domtoimage.toPng(snapshot).then(function (dataUrl) {
-				exportImage(dataUrl, "tierlist.png");
+			const promise = domtoimage.toBlob(snapshot).then(function (blob) {
+				zip.file("tierlist" + i + ".png", blob);
 			});
+			promises.push(promise);
 		}
+
+		Promise.all(promises).then(() => {
+			zip.generateAsync({ type: "blob" }).then(function (blob) {
+				saveAs(blob, "tierlists.zip");
+			});
+		});
 	}
 }
