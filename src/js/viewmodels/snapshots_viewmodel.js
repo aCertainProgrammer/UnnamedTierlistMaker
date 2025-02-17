@@ -1,6 +1,6 @@
 import { readFile, exportImage, exportData } from "../util";
 import domtoimage from "dom-to-image";
-import { saveAs } from "file-saver/src/FileSaver";
+import { saveAs } from "file-saver";
 import JSZip from "jszip";
 
 export default class SnapshotsViewModel {
