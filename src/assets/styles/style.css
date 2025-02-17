@@ -527,7 +527,8 @@ input[type="text"] {
 }
 
 #close-manual-button {
-	max-width: 120px;
+	max-width: 240px;
+	margin: var(--settingsScreenPadding);
 }
 
 input[data-state="on"] {
@@ -550,4 +551,8 @@ input[data-state="off"] {
 .setting-container > span {
 	width: 80px;
 	height: 30px;
+}
+
+#champion-selection-utils {
+	padding-top: 2px;
 }
