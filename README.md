@@ -1,5 +1,7 @@
 # Unnamed Tierlist Maker
 
+Check out my drafting tool: https://acertainprogrammer.github.io/UnnamedDraftingTool/
+
 ## Picking champions
 - by dragging
 - by using a shortcut
