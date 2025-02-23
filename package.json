@@ -9,7 +9,7 @@
 		"lint": "eslint ./src/js/*",
 		"dev": "vite",
 		"build": "vite build",
-		"serve": "vite preview --host"
+		"serve": "vite preview --host --port 2137 --debug"
 	},
 	"author": "",
 	"license": "ISC",

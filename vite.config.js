@@ -5,6 +5,6 @@ export default defineConfig({
 		port: 8080,
 		host: "localhost",
 		open: true,
-		strictPort: true,
+		strictPort: false,
 	},
 });
