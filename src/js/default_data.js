@@ -161,6 +161,7 @@ export const default_data = [
 	"yasuo",
 	"yone",
 	"yorick",
+	"yunara",
 	"yuumi",
 	"zac",
 	"zed",
