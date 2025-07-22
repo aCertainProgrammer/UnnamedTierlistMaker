@@ -66,7 +66,6 @@ export default class TierlistViewModel {
 		}
 
 		this.tierViewModels = tierViewModels;
-		console.log(tierViewModels);
 		this.name = name;
 	}
 
