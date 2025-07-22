@@ -66,6 +66,7 @@ export default class TierlistViewModel {
 		}
 
 		this.tierViewModels = tierViewModels;
+		console.log(tierViewModels);
 		this.name = name;
 	}
 
@@ -204,7 +205,7 @@ export default class TierlistViewModel {
 
 		try {
 			const json = JSON.parse(text);
-			this.tierlistModel.saveTierlist(json);
+			this.tierlistModel.saveTierlist(json.tiers, json.name);
 			this.loadTiers();
 			this.notificationCenter.publish("refreshTierlist");
 		} catch (e) {
