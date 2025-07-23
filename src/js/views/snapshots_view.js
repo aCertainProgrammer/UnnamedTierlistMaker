@@ -143,6 +143,15 @@ export default class SnapshotsView {
 	toggleSnapshots() {
 		this.visible = !this.visible;
 		this.snapshotsViewModel.toggleSnapshots();
+		const toggleSnapshotsButton = document.getElementById(
+			"toggle-snapshots-button",
+		);
+
+		if (this.visible) {
+			toggleSnapshotsButton.value = "Hide snapshots";
+		} else {
+			toggleSnapshotsButton.value = "Show snapshots";
+		}
 	}
 
 	loadSnapshot(index) {

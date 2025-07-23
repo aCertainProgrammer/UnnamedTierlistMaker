@@ -118,6 +118,7 @@ export default class UtilsView {
 
 		this.toggleSnapshotsButton = document.createElement("input");
 		this.toggleSnapshotsButton.type = "button";
+		this.toggleSnapshotsButton.id = "toggle-snapshots-button";
 		this.toggleSnapshotsButton.value = "Show snapshots";
 		this.toggleSnapshotsButton.classList.add("normal-button");
 
