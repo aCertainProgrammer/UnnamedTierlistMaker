@@ -141,6 +141,10 @@ export class ChampionSelectionView {
 				const length = this.searchBar.value.length;
 				this.searchBar.setSelectionRange(length, length);
 			}
+		} else if (key == "Escape") {
+			this.searchBar.value = "";
+			this.searchBar.blur();
+			this.searchChampions();
 		} else {
 			this.searchBar.blur();
 		}
