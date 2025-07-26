@@ -4,9 +4,6 @@ THEN:
 
 SHORT IDEAS:
 
-- Snapshots keyboard handling
-
-
 LONG IDEAS:
 
 BUGS:
