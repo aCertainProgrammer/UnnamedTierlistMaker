@@ -266,10 +266,12 @@ input[type="text"] {
 .tier-color-button:hover,
 .tierlist-addition-element:hover {
 	filter: brightness(110%);
+	cursor: pointer;
 }
 
 .tier-name:hover {
 	filter: brightness(85%);
+	cursor: pointer;
 }
 
 #tier-removal-button {
@@ -555,4 +557,23 @@ input[data-state="off"] {
 
 #champion-selection-utils {
 	padding-top: 2px;
+}
+
+.util-icon {
+	background: none;
+	border: none;
+	filter: brightness(0.01) invert(70%);
+}
+
+.util-icon > img {
+	width: 28px;
+	height: 28px;
+	max-width: 28px;
+	max-height: 28px;
+	cursor: pointer;
+}
+
+.util-icon > img[src="./assets/img/question-mark.webp"] {
+	height: 28px;
+	width: 22px;
 }

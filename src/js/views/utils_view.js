@@ -14,25 +14,46 @@ export default class UtilsView {
 
 		this.utilsContainer = document.querySelector("#utils");
 
-		this.openSettingsButton = document.createElement("input");
-		this.openSettingsButton.type = "button";
-		this.openSettingsButton.classList.add("normal-button");
-		this.openSettingsButton.value = "Open settings";
+		this.openSettingsButton = document.createElement("button");
+		const settings_icon = document.createElement("img");
+		this.openSettingsButton.classList += "util-icon";
+		settings_icon.src = "./assets/img/settings-cog.webp";
+
+		this.openSettingsButton.appendChild(settings_icon);
+
 		this.openSettingsButton.addEventListener("click", () => {
 			this.notificationCenter.publish("openSettings");
 		});
 
 		this.utilsContainer.appendChild(this.openSettingsButton);
 
-		this.openManualButton = document.createElement("input");
-		this.openManualButton.type = "button";
-		this.openManualButton.classList.add("normal-button");
-		this.openManualButton.value = "Open manual";
+		this.openManualButton = document.createElement("button");
+		this.openManualButton.classList.add("util-icon");
+
+		const manualIcon = document.createElement("img");
+		manualIcon.src = "./assets/img/question-mark.webp";
+		this.openManualButton.appendChild(manualIcon);
+
 		this.openManualButton.addEventListener("click", () => {
 			this.notificationCenter.publish("openManual");
 		});
 
 		this.utilsContainer.appendChild(this.openManualButton);
+
+		this.exportPngButton = document.createElement("button");
+		this.exportPngButton.classList.add("util-icon");
+
+		const exportPngIcon = document.createElement("img");
+		exportPngIcon.src = "./assets/img/screenshot.webp";
+		this.exportPngButton.appendChild(exportPngIcon);
+
+		this.exportPngButton.addEventListener(
+			"click",
+			this.exportPng.bind(this),
+		);
+
+		this.utilsContainer.appendChild(this.exportPngButton);
+
 		this.clearTierlistButton = document.createElement("input");
 		this.clearTierlistButton.type = "button";
 		this.clearTierlistButton.value = "Reset tierlist";
@@ -103,18 +124,6 @@ export default class UtilsView {
 		);
 
 		this.utilsContainer.appendChild(this.exportDraftPoolButton);
-
-		this.exportPngButton = document.createElement("input");
-		this.exportPngButton.type = "button";
-		this.exportPngButton.value = "Export image";
-		this.exportPngButton.classList.add("normal-button");
-
-		this.exportPngButton.addEventListener(
-			"click",
-			this.exportPng.bind(this),
-		);
-
-		this.utilsContainer.appendChild(this.exportPngButton);
 
 		this.toggleSnapshotsButton = document.createElement("input");
 		this.toggleSnapshotsButton.type = "button";
