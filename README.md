@@ -35,3 +35,4 @@ Check out my drafting tool: https://acertainprogrammer.github.io/UnnamedDrafting
     - type letters `a` to `z` to search for snapshots
     - `Enter` to load the first snapshot
     - `Shift` + `G` to close the snapshot screen
+
