@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta
+			name="description"
+			content="Unnamed Tierlist maker, a tool that helps you make League of Legends tierlists"
+		/>
+		<title>Unnamed Tierlist Maker</title>
+		<link rel="manifest" href="/UnnamedTierlistMaker/manifest.json" />
+		<link rel="icon" type="image/x-icon" href="/UnnamedTierlistMaker/favicon.ico" />
+		<script type="module" crossorigin src="/UnnamedTierlistMaker/assets/index-CgeONV_d.js"></script>
+		<link rel="stylesheet" crossorigin href="/UnnamedTierlistMaker/assets/index-BllCwAhg.css">
+	</head>
+	<body>
+		<div id="main-screen">
+			<div id="utils"></div>
+			<div id="not-utils">
+				<div id="tierlist-container" class="tierlist-container">
+					<div id="tierlist" class="tierlist"></div>
+				</div>
+				<div id="champion-selection-container">
+					<div id="champion-selection-utils">
+						<input
+							type="text"
+							id="champion-selection-search-bar"
+							placeholder="Start typing to search for a champion"
+						/>
+					</div>
+					<div id="champion-selection"></div>
+				</div>
+			</div>
+		</div>
+		<div id="snapshots-container" class="hidden"></div>
+		<div id="settings-container" class="hidden">
+			<div id="settings-utils">
+				<input
+					id="close-settings-button"
+					type="button"
+					class="normal-button"
+					value="Close settings"
+				/>
+				<input
+					id="reset-settings-button"
+					type="button"
+					class="normal-button"
+					value="Reset settings"
+				/>
+			</div>
+			<div id="not-settings-utils">
+				<div id="settings-content">
+					<div class="setting-container">
+						<label for="champion-icon-padding-setter"
+							>Champion icon padding:
+						</label>
+						<span>
+							<input
+								id="champion-icon-padding-setter"
+								type="number"
+							/>
+							<span>px</span></span
+						>
+					</div>
+					<div class="setting-container">
+						<label
+							>Display champion names on hover in the tierlist:
+						</label>
+						<input
+							id="champion-names-on-hover-tierlist-toggle"
+							type="button"
+							class="normal-button"
+							value="Yes"
+						/>
+					</div>
+					<div class="setting-container">
+						<label
+							>Display champion names on hover in the champion
+							selection:
+						</label>
+						<input
+							id="champion-names-on-hover-champion-selection-toggle"
+							type="button"
+							class="normal-button"
+							value="Yes"
+						/>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="manual-container" class="hidden">
+			<div class="manual-contents">
+				<zero-md src="README.md" id="manual-text">
+					<template data-append>
+						<style>
+							.markdown-body {
+								padding: 20px 10px;
+								max-width: 900px;
+								border-radius: 8px;
+							}
+						</style>
+					</template>
+				</zero-md>
+			</div>
+		</div>
+	</body>
+</html>
